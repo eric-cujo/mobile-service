@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Features API(PA)
+    - SECURITY (PA)
+  summary: Get listen only mode status for agent
+  description: Get agent's listen only mode status as
+  operationId: GetListenOnlyModeStatusForAgent
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ListenOnlyModeResponse"
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

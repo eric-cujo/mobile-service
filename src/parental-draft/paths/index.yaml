@@ -1,0 +1,6 @@
+/agents/{agentId}/access-profiles:
+  $ref: '../paths/agents/agent_id_access_profiles.yaml'
+/agents/{agentId}/access-profiles/{accessProfileId}:
+  $ref: '../paths/agents/agent_id_access_profiles_profile_id.yaml'
+/webhooks:
+  $ref: '../paths/webhooks/index.yaml'

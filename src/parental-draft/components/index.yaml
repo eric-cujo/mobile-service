@@ -1,0 +1,340 @@
+schemas:
+  AccessProfile:
+    title: AccessProfile
+    description: The root of the AccessProfile type's schema.
+    required:
+      - id
+      - deviceIds
+      - policies
+      - name
+      - timeZone
+
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      timeZone:
+        type: string
+      deviceIds:
+        type: array
+        items:
+          type: integer
+      policies:
+        type: array
+        items:
+          $ref: "/src/swagger-parental-draft.yaml#/components/schemas/AccessProfilePolicy"
+    example:
+      id: 5215
+      name: "User defined access profile name, shows up in UX"
+      timeZone: "America/Phoenix"
+      deviceIds:
+        - 3453742
+        - 7749377
+        - 2847324
+      policies:
+        - name: "User defined name, shows up in UX"
+          # List of categories that this policy applies to
+          categories: [
+            "category:adult",
+            "category:violence",
+            "domain:cdn.facebook.com"
+          ]
+          action: "BLOCK" # block | allow.
+          # Schedules (optional)
+          # Do not specify together with .limit
+          # Schedules determine when to apply this policy
+          schedules:
+            - "weekDays": ["MONDAY", "TUESDAY"]
+              "timeStart": "16:00"
+              "durationMinutes": 60
+
+          # Limit- optional
+          # Do not specify together with .schedules
+          # Trigger the policy actions when the (tracking) limit have been reached
+          # Reset the limit/trigger at a well-known implicit internal (e.g. midnight)
+          limit:
+            dailyUsage:
+              durationMinutes: 60
+              # tracking_interval: "day" # This is the default/implicit tracking context
+
+  CreateAccessProfileRequest:
+    title: CreateAccessProfileRequest
+    description: The root of the CreateAccessProfileRequest type's schema.
+    required:
+      - agentId
+      - name
+      - policies
+      - deviceIds
+      - timeZone
+      - partnerAgentId
+    type: object
+    properties:
+      name:
+        description: User defined access profile name, for UX purposes
+        type: string
+      timeZone:
+        description: User time zone in regional format
+        type: string
+      deviceIds:
+        description: Devices that will be assigned for this access profile
+        type: array
+        items:
+          type: integer
+      policies:
+        type: array
+        items:
+          $ref: "/src/swagger-parental-draft.yaml#/components/schemas/AccessProfilePolicy"
+
+  AccessProfilePolicy:
+    type: object
+    description: Defines a parental policy for an access profile
+    required:
+      - categories
+      - action
+      - name
+    properties:
+      name:
+        description: User defined name, for UX purposes
+        type: string
+      categories:
+        description: List of content category names (tags) for targeted categories/platforms/domains
+        type: array
+        items:
+          type: string
+      action:
+        description: |
+          * ALLOW => For domains & platforms; override possible category-scoped BLOCK policies
+          * BLOCK => For all category types; block specified content categories
+        type: string
+        enum:
+          - ALLOW
+          - BLOCK
+      schedules:
+        type: array
+        items:
+          $ref: '/src/swagger-parental-draft.yaml#/components/schemas/AccessProfileSchedule'
+      limit:
+        $ref: '/src/swagger-parental-draft.yaml#/components/schemas/AccessProfileLimit'
+
+  AccessProfileSchedule:
+    type: object
+    description: |
+      Defines a schedule when a policy is in effect.
+      When specifying a policy, do not specify *limit*
+    properties:
+      weekDays:
+        type: array
+        items:
+          type: string
+          enum: [ MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY ]
+      timeStart:
+        type: string
+        description: Specifies the daily start time for the schedule, in HH:mm
+      durationMinutes:
+        type: integer
+        description: Specifies the duration of the schedule, in minutes
+    example:
+      weekDays:
+        - "MONDAY"
+        - "TUESDAY"
+      timeStart: "16:00"
+      durationMinutes: 60
+  AccessProfileLimit:
+    description: |
+      Defines periodically (e.g. daily) trackable content usage limit that trigger policy enforcement
+    type: object
+    properties:
+      DailyUsage:
+        type: object
+        definition: |
+          Defines daily limit for usage. The limit are reset at a pre-defined time of day,
+          relative to the local time zone of each subscriber
+        properties:
+          DurationMinutes:
+            type: integer
+            description: The number of minutes of usage until the limit is reached
+
+  ActivityBlocks:
+    type: object
+    properties:
+      object:
+        type: string
+        enum:
+          - PARENTAL_BLOCK
+      event:
+        type: string
+        enum:
+          - CREATE
+      id:
+        type: string
+        description: Unique identifier for the notification
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            accessProfileId:
+              type: int
+            blocks:
+              type: array
+              items:
+                type: string
+            timestamp:
+              type: int
+
+    # UsageNotificationPayload example
+    example:
+      object: PARENTAL_BLOCK
+      event: CREATE
+      id: "234523452"
+      data:
+        - accessProfileId: 456781
+          blocks:
+            - domain:cnn.com
+            - platform:facebook
+          blockedOn: 1540395900
+        - accessProfileId: 456782
+          blocks:
+            - platform:9gag
+          blockedOn: 1540395960
+
+  UsageStats:
+    required:
+      - agentId
+      - deviceId
+      - statistics
+      - windowEndTime
+      - windowStartTime
+    type: object
+    properties:
+      deviceId:
+        type: integer
+        description: Cujo identifier for the user device
+        example: 87654
+      agentId:
+        type: integer
+        description: Cujo identifier for the router agent
+        example: 12345
+      windowStartTime:
+        type: integer
+        description: Unix Timestamp for the start of aggregation interval
+      windowEndTime:
+        type: integer
+        description: Unix Timestamp for the end of aggregation interval
+      statistics:
+        type: array
+        items:
+          $ref: '#UsageStats_statistics'
+
+  UsageStats_statistics:
+    type: object
+    properties:
+      deviceId:
+        type: integer
+      agendId:
+        type: integer
+      partnerAgentId:
+        type: string
+        description: Partner's identifier for the agent (CMMAC)
+      partnerDeviceId:
+        type: string
+        description: Partner's identifier for the device (deviceMAC)
+      usage:
+        type: array
+        items:
+            $ref: '#StatsItem_statistics'
+
+  StatsItem_statistics:
+    type: object
+    description: A hashmap with usage identifier (platform, category, domain) as a key and the object as the value
+    properties:
+      timeSeconds:
+        type: integer
+      tags:
+        type: array
+        description: List of related categorization identifiers
+        items:
+          type: string
+    example:
+      category:social:
+        timeSeconds: 300
+      platform:facebook:
+        timeSeconds: 300
+        tags:
+          - category:social
+      category:shopping:
+        timeSeconds: 300
+      domain:slickdeals.net:
+        timeSeconds: 300
+        tags:
+          - category:shopping
+      domain:www.instructure.com:
+        timeSeconds: 300
+      domain:www.canvaslms.com:
+        timeSeconds: 300
+
+  UsageNotificationPayload:
+    type: object
+    properties:
+      object:
+        type: string
+        enum:
+          - PARENTAL
+      event:
+        type: string
+        enum:
+          - UPDATE
+      id:
+        type: string
+        description: Unique identifier for the notification
+      data:
+        type: array
+        items:
+          $ref: '#UsageStats'
+    # UsageNotificationPayload example
+    example:
+      object: PARENTAL
+      event: UPDATE
+      data:
+        windowStartTime: 1540395900
+        windowEndTime: 15403396800
+        statistics:
+          agentId: 98765
+          partnerAgentId: aa:bb:cc:dd:ee:ff
+          devices:
+            - deviceId: 123456
+              partnerDeviceId: 11:22:33:44:55:66
+              usage:
+                category:user_generated:
+                  timeSeconds: 600
+                platform:wikipedia:
+                  timeSeconds: 300
+                  tags:
+                    - category:social
+                    - category:news
+                platform:facebook:
+                  timeSeconds: 300
+                  tags:
+                    - category:social
+            - deviceId: 10
+              partnerDeviceId: 52044024131
+              usage:
+                category:user_generated:
+                  timeSeconds: 900
+                platform:wikipedia:
+                  timeSeconds: 300
+                  tags:
+                    - category:social
+                    - category:news
+                platform:instagram:
+                  timeSeconds: 900
+                  tags:
+                    - category:social
+                domain:cujo.ai:
+                  timeSeconds: 300
+                domain:ebay.com:
+                  timeSeconds: 300
+                  tags:
+                    - category:shopping

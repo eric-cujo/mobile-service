@@ -1,0 +1,121 @@
+summary: customer details
+get:
+  tags:
+    - Customers API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get details
+  description: Returns the details for some customer
+  operationId: ShowCustomer
+  responses:
+    200:
+      description: Get customer details
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ShowCustomerResponse"
+          examples:
+            showCustomerInfo:
+              value:
+                id: 401786
+                partnerUserId: p.api.2@cujot.com
+                phoneCountry: 370
+                phone: "61630111"
+                email: p.api.2@cujot.com
+                timeZone: UTC
+    404:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            invalidCustomerId:
+              value:
+                error:
+                  "Customer with id: 12121321232 does not exist under partner
+                      with id: 324419."
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl "https://api.cujo.io/v1/customers/401786" \
+        -H 'Authorization: Bearer eyJh...'
+put:
+  tags:
+    - Customers API(PA)
+    - GENERAL/CORE(PA)
+  summary: Change a customer details
+  description:
+    "Update the customer details and returns the updated information\
+        \ in response.\r\n"
+  operationId: UpdateCustomer
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/UpdateCustomerRequest"
+        examples:
+          updateCustomer:
+            value:
+              partnerUserId: partner@api.com
+              phone: "123456789"
+              email: partner@api.com
+    required: true
+  responses:
+    200:
+      description: Customer record successfully updated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/UpdateCustomerResponse"
+          examples:
+            updatedCustomer:
+              value:
+                id: 401786
+                partnerUserId: partner@api.com
+                phoneCountry: 1
+                phone: "123456789"
+                email: partner@api.com
+                timeZone: UTC
+    400:
+      description: Not valid parameters email or phone
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            invalidPhone:
+              value:
+                error: Input parameters are not correct in format
+                errors:
+                  - phone: size must be between 0 and 16
+            invalidEmail:
+              value:
+                error: Input parameters are not correct in format
+                errors:
+                  - email: must be a well-formed email address
+            phoneCountry:
+              value:
+                error: phone and phoneCountry must be specified together
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl -X "PUT" "https://api.cujo.io/v1/customers/401786" \
+             -H 'Authorization: Bearer eyJh...' \
+             -H 'Content-Type: application/json; charset=utf-8' \
+             -d $'{
+          "email": "partner@api.com",
+          "phone": "123456789",
+          "partnerUserId": "partner@api.com",
+          "phoneCountry": "+1"
+        }'
+parameters:
+  - name: customerId
+    in: path
+    description: Customer id
+    required: true
+    schema:
+      type: integer

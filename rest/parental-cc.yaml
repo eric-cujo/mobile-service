@@ -1,0 +1,1042 @@
+openapi: 3.0.0
+info:
+  title: CUJO - Parental / Express
+  description: Parental Controls Extensions for CUJO Partner API
+  contact:
+    email: andrius.dapsevicius@cujo.com
+  license:
+    name: Proprietary (c) CUJO AI
+  version: 2019-03-05-draft
+servers:
+  - url: https://virtserver.swaggerhub.com/CUJO.AI/Parental/draft
+    description: SwaggerHub API Auto Mocking
+tags:
+  - name: labeling
+    description: Data classification labels
+  - name: service control
+    description: Service enablement for a device
+  - name: policy control
+    description: Access control management operations
+  - name: blocking
+    description: Temporary access blocking (for time limit enforcement etc)
+  - name: notifications
+    description: Notification related operations
+  - name: Devices API
+    description: Enhancements to existing CUJO Devices API
+  - name: PartnerId Proxy
+    description: Duplicate endpoints for PartnerID (MAC) based access
+paths:
+  /parental/categories:
+    get:
+      tags:
+        - labeling
+      description: Retrieve a system wide list of all content categories
+      responses:
+        200:
+          description: A list of known content categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParentalCategoryDescriptor'
+              example:
+                - id: category:social_network
+                  title: Social Networks
+                - id: category:user_generated
+                  title: User generated content
+                - id: category:adult
+                  title: Adult
+                - id: category:science
+                  title: Science
+  /parental/platforms:
+    get:
+      tags:
+        - labeling
+      description: Retrieve a system wide list of all content platforms
+      responses:
+        200:
+          description: A list of known platforms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParentalPlatformDescriptor'
+              example:
+                - id: platform:facebook
+                  title: Facebook
+                  description: A social media platform
+                  tags:
+                    - category:social_network
+                    - category:user_generated
+                - id: platform:wikipedia
+                  title: Wikipedia
+                  description: Free online encyclopedia
+                  tags:
+                    - category:science
+                    - category:user_generated
+  /parental/devices/{deviceId}/tracking:
+    get:
+      tags:
+        - service control
+      summary: |
+        Verify tracking status for a device
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Tracking state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingEnablement'
+    put:
+      tags:
+        - service control
+      summary: |
+        Enable or disable tracking for a device
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackingEnablement'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingEnablement'
+        404:
+          description: Agent not found
+          content:
+            application/json:
+              example:
+                message: Agent for device ID {deviceId} not found
+        409:
+          description: Device per agent limit reached
+          content:
+            application/json:
+              example:
+                message: The limit ({limit}) for tracked devices has been reached
+  /parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/tracking:
+    get:
+      tags:
+        - PartnerId Proxy
+      summary: |
+        Verify tracking status for a device
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Tracking state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingEnablement'
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+    put:
+      tags:
+        - PartnerId Proxy
+      summary: |
+        Enable or disable tracking for a device
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackingEnablement'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackingEnablement'
+        400:
+          description: Bad Request
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+        409:
+          description: Device per agent limit reached
+          content:
+            application/json:
+              example:
+                message: The limit ({limit}) for tracked devices has been reached
+  /parental/devices/{deviceId}/access-profile:
+    get:
+      tags:
+        - policy control
+      description: Retrieve a policy entry
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: An access policy descriptor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessProfileDescriptor'
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device deviceId={deviceId} not found
+    put:
+      tags:
+        - policy control
+      description: Replace an access policy
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: An access policy descriptor
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessProfileDescriptor'
+      responses:
+        200:
+          description: Access policy received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessProfileDescriptor'
+        400:
+          description: Bad Request
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device deviceId={deviceId} not found
+        409:
+          description: Device tracking feature is not enabled
+          content:
+            application/json:
+              example:
+                message: Tracking feature is not enabled for deviceId={deviceId}
+  /parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/access-profile:
+    get:
+      tags:
+        - PartnerId Proxy
+      description: Retrieve a policy entry
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: An access policy descriptor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessProfileDescriptor'
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+    put:
+      tags:
+        - PartnerId Proxy
+      description: Replace an access policy
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: An access policy descriptor
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessProfileDescriptor'
+      responses:
+        200:
+          description: Access policy received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessProfileDescriptor'
+        400:
+          description: Bad Request
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+        409:
+          description: Device tracking feature is not enabled
+          content:
+            application/json:
+              example:
+                message: Tracking feature is not enabled for partnerAgentId={partnerAgentId}, partnerDeviceId ={partnerDeviceId}
+  /parental/devices/{deviceId}/access-profile/temporary-blocks:
+    get:
+      tags:
+        - blocking
+      description: Retrieve a list of temporarily blocked content identifiers
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A block list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockList'
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device deviceId={deviceId} not found
+    put:
+      tags:
+        - blocking
+      description: Fully replace the list of temporarily blocked content identifiers
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: A block list
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockList'
+      responses:
+        200:
+          description: A block list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockList'
+        400:
+          description: Invalid request
+          content:
+            application/json:
+              example:
+                message: Invalid access profile was requested
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device deviceId={deviceId} not found
+        409:
+          description: Device tracking feature is not enabled
+          content:
+            application/json:
+              example:
+                message: Tracking feature is not enabled for deviceId={deviceId}
+    post:
+      tags:
+        - blocking
+      description: Add to the list of temporarily blocked content identifiers
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: A block list
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockList'
+      responses:
+        200:
+          description: A block list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockList'
+        400:
+          description: Bad Request
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device deviceId={deviceId} not found
+        409:
+          description: Device tracking feature is not enabled
+          content:
+            application/json:
+              example:
+                message: Tracking feature is not enabled for deviceId={deviceId}
+  /parental/devices/{deviceId}/access-profile/temporary-blocks/{blockId}:
+    delete:
+      tags:
+        - blocking
+      description: Remove a temporary blocking entry
+      parameters:
+        - name: deviceId
+          in: path
+          description: CUJO device ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: blockId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+  /parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/access-profile/temporary-blocks:
+    get:
+      tags:
+        - PartnerId Proxy
+      description: Retrieve a list of temporarily blocked content identifiers
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A block list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockList'
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+    put:
+      tags:
+        - PartnerId Proxy
+      description: Fully replace the list of temporarily blocked content identifiers
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: A block list
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockList'
+      responses:
+        200:
+          description: A block list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockList'
+        400:
+          description: Bad Request
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+        409:
+          description: Device tracking feature is not enabled
+          content:
+            application/json:
+              example:
+                message: Tracking feature is not enabled for partnerAgentId={partnerAgentId}, partnerDeviceId ={partnerDeviceId}
+    post:
+      tags:
+        - PartnerId Proxy
+      description: Add to the list of temporarily blocked content identifiers
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: A block list
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockList'
+      responses:
+        200:
+          description: A block list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockList'
+        400:
+          description: Bad Request
+        404:
+          description: Device not found
+          content:
+            application/json:
+              example:
+                message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+        409:
+          description: Device tracking feature is not enabled
+          content:
+            application/json:
+              example:
+                message: Tracking feature is not enabled for partnerAgentId={partnerAgentId}, partnerDeviceId ={partnerDeviceId}
+  /parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/access-profile/temporary-blocks/{blockId}:
+    delete:
+      tags:
+        - PartnerId Proxy
+      description: Remove a temporary blocking entry
+      parameters:
+        - name: partnerAgentId
+          in: path
+          description: CMMAC or other partner's identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: partnerDeviceId
+          in: path
+          description: MAC or other partner's device identifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: blockId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+  /webhooks:
+    post:
+      tags:
+        - notifications
+      description: Creates a new webhook for the specified object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsageWebHookInput'
+      responses:
+        201:
+          description: Web hook created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/UsageWebHookDescriptor'
+                  - type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Unique subscription identifier
+      callbacks:
+        myEvent:
+          '{$request.body#/callbackUrl}':
+            post:
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/UsageNotificationPayload'
+                    example:
+                      object: PARENTAL
+                      event: UPDATE
+                      data:
+                        windowStartTime: 1540395900
+                        windowEndTime: 15403396800
+                        statistics:
+                          agentId: 98765
+                          partnerAgentId: aa:bb:cc:dd:ee:ff
+                          devices:
+                            - deviceId: 123456
+                              partnerDeviceId: 11:22:33:44:55:66
+                              usage:
+                                category:user_generated:
+                                  timeSeconds: 600
+                                platform:wikipedia:
+                                  timeSeconds: 300
+                                  tags:
+                                    - category:social
+                                    - category:news
+                                platform:facebook:
+                                  timeSeconds: 300
+                                  tags:
+                                    - category:social
+                            - deviceId: 10
+                              partnerDeviceId: 52044024131
+                              usage:
+                                category:user_generated:
+                                  timeSeconds: 900
+                                platform:wikipedia:
+                                  timeSeconds: 300
+                                  tags:
+                                    - category:social
+                                    - category:news
+                                platform:instagram:
+                                  timeSeconds: 900
+                                  tags:
+                                    - category:social
+                                domain:cujo.ai:
+                                  timeSeconds: 300
+                                domain:ebay.com:
+                                  timeSeconds: 300
+                                  tags:
+                                    - category:shopping
+
+                required: true
+              responses:
+                200:
+                  description: Your server returns this code if it accepts the callback
+  /webhooks/{subId}:
+    delete:
+      tags:
+        - notifications
+      parameters:
+        - name: subId
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success response
+  /agents/{agentId}/devices/{deviceId}:
+    get:
+      tags:
+        - Devices API
+      summary: Retrieve device properties for specified agent / device combination
+      parameters:
+        - name: agentId
+          in: path
+          description: CUJO agentId OR agent CMMAC
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: deviceId
+          in: path
+          description: CUJO deviceID OR device CMAC
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Device properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceProperties'
+        404:
+          description: Agent or device not found
+components:
+  schemas:
+    DeviceProperties:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: CUJO unique device id
+        mac:
+          type: string
+          description: Device MAC address
+      description: Device Properties, enhanced with MAC addresses
+      example:
+        id: 12345
+        mac: ab:cd:ef:12:34:56
+        quarantine: true
+        monitored: true
+        secured: true
+        hidden: false
+        dhcpHostname: Chromecast
+        lastSeen: 1478761546
+        modelAccuracyLevel: 8
+        accurate: true
+        operatingSystem: Windows 8.1
+        model: abc
+        feedback: feedback
+        brand: generic
+        type: computer
+        capabilities:
+          streaming: true
+          4k: true
+    BlockList:
+      type: array
+      example:
+        - platform:google_plus
+        - category:adult
+      items:
+        $ref: '#/components/schemas/BlockListEntry'
+    BlockListEntry:
+      type: string
+      description: Identifies the category, platform or domain to be blocked
+    AccessProfileDescriptor:
+      type: object
+      properties:
+        blacklist:
+          type: array
+          items:
+            type: string
+        whitelist:
+          type: array
+          items:
+            type: string
+      example:
+        blacklist:
+          - category:adult
+          - category:violence
+        whitelist:
+          - domain:cdn.facebook.com
+    TrackingEnablement:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        timeZone:
+          type: string
+          description: a time zone identifier provided by IANA https://www.iana.org/time-zones registry
+          example: America/New_York, America/Chicago, America/Denver, America/Los_Angeles, America/Halifax, America/St_Johns
+    UsageNotificationPayload:
+      type: object
+      properties:
+        object:
+          type: string
+          enum:
+            - PARENTAL
+        event:
+          type: string
+          enum:
+            - UPDATE
+        id:
+          type: string
+          description: Unique identifier for the notification
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageStats'
+    UsageStats:
+      required:
+        - agentId
+        - deviceId
+        - statistics
+        - windowEndTime
+        - windowStartTime
+      type: object
+      properties:
+        deviceId:
+          type: integer
+          description: Cujo identifier for the user device
+          example: 87654
+        agentId:
+          type: integer
+          description: Cujo identifier for the router agent
+          example: 12345
+        windowStartTime:
+          type: integer
+          description: Unix Timestamp for the start of aggregation interval
+        windowEndTime:
+          type: integer
+          description: Unix Timestamp for the end of aggregation interval
+        statistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageStats_statistics'
+    UsageWebHookInput:
+      allOf:
+        - $ref: '#/components/schemas/UsageWebHookDescriptor'
+        - type: object
+          properties:
+            authentication:
+              $ref: '#/components/schemas/UsageWebHookInput_authentication'
+    UsageWebHookDescriptor:
+      type: object
+      properties:
+        fullData:
+          type: boolean
+        object:
+          type: string
+          enum:
+            - PARENTAL
+        event:
+          type: string
+          enum:
+            - UPDATE
+        properties:
+          $ref: '#/components/schemas/UsageWebHookDescriptor_properties'
+        url:
+          type: string
+          description: The URL of the webhook (receiver) endpoint
+    ParentalCategoryDescriptor:
+      type: object
+      properties:
+        id:
+          type: string
+          description: |
+            Immutable identifier for a well known category; unique across all category classes. Examples:  "category:violence"
+        title:
+          type: string
+          description: Human readable category label
+      description: A traffic/content categorization descriptor
+    ParentalPlatformDescriptor:
+      type: object
+      properties:
+        id:
+          type: string
+          description: |
+            Immutable identifier for a well known platform; unique across all category classes. Examples: "application:facebook", "category:violence"
+        title:
+          type: string
+          description: Human readable platform label
+        description:
+          type: string
+          description: Human readable platform description
+        tags:
+          type: array
+          description: List of related categorization identifiers
+          items:
+            type: string
+      description: A traffic/content categorization descriptor
+    UsageStats_statistics:
+      type: object
+      properties:
+        deviceId:
+          type: integer
+        agendId:
+          type: integer
+        partnerAgentId:
+          type: string
+          description: Partner's identifier for the agent (CMMAC)
+        partnerDeviceId:
+          type: string
+          description: Partner's identifier for the device (deviceMAC)
+        usage:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatsItem_statistics'
+    StatsItem_statistics:
+      type: object
+      description: A hashmap with usage identifier (platform, category, domain) as a key and the object as the value
+      properties:
+        timeSeconds:
+          type: integer
+        tags:
+          type: array
+          description: List of related categorization identifiers
+          items:
+            type: string
+      example:
+        category:social:
+          timeSeconds: 300
+        platform:facebook:
+          timeSeconds: 300
+          tags:
+            - category:social
+        category:shopping:
+          timeSeconds: 300
+        domain:slickdeals.net:
+          timeSeconds: 300
+          tags:
+            - category:shopping
+        domain:www.instructure.com:
+          timeSeconds: 300
+        domain:www.canvaslms.com:
+          timeSeconds: 300
+
+    UsageWebHookInput_authentication:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Authentication type
+          enum:
+            - OAUTH
+        apiKey:
+          type: string
+          description: The API authentication key
+        apiSecret:
+          type: string
+          description: The API authentication secret
+    UsageWebHookDescriptor_properties:
+      type: object
+      properties:
+        batchSize:
+          type: integer
+          description: How big are the request batches, how many device statistics are delivered in a single call
+          example: 1000
+        rps:
+          type: integer
+          description: Request per second limit for this webhook
+          example: 500
+  responses:
+    deviceTrackingGet:
+      description: Tracking state
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TrackingEnablement'

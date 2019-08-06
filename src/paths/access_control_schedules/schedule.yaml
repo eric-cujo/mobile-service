@@ -1,0 +1,18 @@
+post:
+  tags:
+    - Access Control Schedules
+  summary: Create a new schedule
+  description: Create a new schedule for a profile
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/ScheduleRequest"
+  responses:
+    200:
+      description: Agent successfully activated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ScheduleResponse"

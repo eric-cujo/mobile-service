@@ -1,0 +1,32 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: CUJO Partner API
+  version: "1.0.0"
+  title: CUJO Partner API
+  contact:
+    email: developer@cujo.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+paths:
+  /oauth/token_PLACEHOLDER:
+    post:
+      tags:
+        - Auth API
+      summary: Placeholder endpoint
+      operationId: postTokenPlaceholderId
+      description: |
+        Placeholder description for auth token retrieval
+      responses:
+        200:
+          description: Placeholder
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceHolderSchema"
+components:
+  schemas:
+    PlaceHolderSchema:
+      type: object

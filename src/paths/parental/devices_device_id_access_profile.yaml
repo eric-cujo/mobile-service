@@ -1,0 +1,76 @@
+get:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: Retrieve a policy entry
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/DeviceIdParameter'
+  responses:
+    200:
+      description: An access policy descriptor
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/AccessProfileDescriptor'
+    404:
+      description: Device not found
+      content:
+        application/json:
+          example:
+            message: Device deviceId={deviceId} not found
+put:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: Replace an access policy
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/DeviceIdParameter'
+  requestBody:
+    description: An access policy descriptor
+    content:
+      application/json:
+        schema:
+          $ref: '/src/swagger.yaml#/components/schemas/AccessProfileDescriptor'
+        examples:
+          AccessPolicy:
+            value:
+              blacklist:
+                - category:adult
+                - category:violence
+              whitelist:
+                - domain:cdn.facebook.com
+          PauseOverride:
+            value:
+              blacklist:
+                - category:*
+              whitelist: []
+  responses:
+    200:
+      description: Access policy received
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/AccessProfileDescriptor'
+          examples:
+            AccessPolicy:
+              value:
+                blacklist:
+                  - category:adult
+                  - category:violence
+                whitelist:
+                  - domain:cdn.facebook.com
+            PauseOverride:
+              value:
+                blacklist:
+                  - category:*
+                whitelist: []
+    404:
+      description: Device not found
+      content:
+        application/json:
+          example:
+            message: Device deviceId={deviceId} not found
+    409:
+      description: Tracking not enabled for device
+      content:
+        application/json:
+          example:
+            message: Tracking feature is not enabled for deviceId={deviceId}

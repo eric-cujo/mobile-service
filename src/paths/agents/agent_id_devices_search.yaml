@@ -1,0 +1,64 @@
+get:
+  tags:
+    - Agents API(PA)
+    - DEVICE IDENTIFICATION (PA)
+  summary: Search devices by user agent
+  description: Search devices by user agent.
+  operationId: AgentSearchDevice
+  parameters:
+    - name: agentId
+      in: query
+      schema:
+        type: string
+    - name: page
+      in: query
+      schema:
+        type: integer
+    - name: userAgent
+      in: query
+      schema:
+        type: string
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/SearchDevice"
+          examples:
+            searchDevice:
+              value:
+                - meta:
+                    score: 0
+                    itemType: CompleteDevice
+                  data:
+                    id: 2295046
+                    modelAccuracyLevel: 0
+                    quarantine: false
+                    monitored: true
+                    secured: true
+                    hidden: true
+                    operatingSystem: RemixOS
+                    dhcpHostname: android-df183f7b1a5a3ba8
+                    gatewayMac: a0:f3:c1:b7:72:0a
+                    model: model
+                    brand: brand
+                    mac: 9c:5c:f9:8d:bb:10
+                    ip: 192.168.0.2
+                    lastSeen: 1507796547362
+                    capabilities:
+                      streaming: false
+                      4k: false
+    404:
+      description: Agent with id is not found
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+  deprecated: true
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

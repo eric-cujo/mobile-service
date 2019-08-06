@@ -1,0 +1,103 @@
+get:
+  tags:
+    - Notifications API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get web-hook by id
+  description: Retrieves existing created web-hook by its unique id.
+  operationId: GetWebHookByID
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CreatedWebhook"
+          examples:
+            webhook:
+              value:
+                fullData: true
+                object: DEVICE
+                event: ALL
+                url: https://www.example.com
+                id: 121
+    404:
+      description: Web-hook does not exist
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            notFound:
+              value:
+                error: Webhook was not found by id xxx
+  security:
+    - AccessToken: []
+put:
+  tags:
+    - Notifications API(PA)
+    - GENERAL/CORE(PA)
+  summary: Update web-hook
+  description: Updates existing web-hook by using its unique id
+  operationId: UpdateWebHook
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/CreateWebhookRequest"
+        examples:
+          create:
+            value:
+              fullData: true
+              object: DEVICE
+              event: CREATE
+              url: https://www.example.com
+    required: true
+  responses:
+    201:
+      description: Web-hook successfully updated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CreatedWebhook"
+          examples:
+            created:
+              value:
+                fullData: true
+                object: DEVICE
+                event: CREATE
+                url: https://www.example.com
+                id: 121
+    409:
+      description:
+        Web-hook with passed URL and object type already exist (URL
+        case is ignored)
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+  security:
+    - AccessToken: []
+delete:
+  tags:
+    - Notifications API(PA)
+    - GENERAL/CORE(PA)
+  summary: Delete web-hook by id
+  description: Deletes a web-hook by using its unique id.
+  operationId: DeleteWebHookByID
+  responses:
+    200:
+      description: Webhook successfully deleted
+    404:
+      description: Webhook with passed id was not found
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+  security:
+    - AccessToken: []
+parameters:
+  - name: webhookId
+    in: path
+    required: true
+    schema:
+      type: integer

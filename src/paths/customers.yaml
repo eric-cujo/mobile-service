@@ -1,0 +1,114 @@
+get:
+  tags:
+    - Customers API(PA)
+    - GENERAL/CORE(PA)
+  summary: View all customers
+  description:
+    "Returns the list of all customers with pagination for 50 items\
+        \ per page. \r\n"
+  operationId: ListCustomers
+  parameters:
+    - name: page
+      in: query
+      description: Paginate the results
+      schema:
+        type: integer
+  responses:
+    200:
+      description: successfully get the customers list
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/CreatedCustomer"
+          examples:
+            listCustomers:
+              value:
+                - id: 401786
+                  partnerUserId: p.api.2@cujot.com
+                  phoneCountry: 370
+                  phone: "61630111"
+                  email: p.api.2@cujot.com
+                  timeZone: UTC
+                - id: 401788
+                  partnerUserId: p.api.3@cujot.com
+                  phoneCountry: 370
+                  phone: "61630111"
+                  email: p.api.3@cujot.com
+                  timeZone: UTC
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl "https://api.cujo.io/v1/customers" \
+        -H 'Authorization: Bearer eyJh...'
+post:
+  tags:
+    - Customers API(PA)
+    - GENERAL/CORE(PA)
+  summary: Register a new customer
+  description:
+    "Register the new customer and returns the customer object in response.json\r\
+        \n"
+  operationId: CreateCustomer
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/CreateCustomerRequest"
+        examples:
+          createCustomer:
+            value:
+              email: p.api@cujot.com
+              phoneCountry: 370
+              phone: "61650111"
+              partnerUserId: ""
+              password: "12345678"
+    required: true
+  responses:
+    201:
+      description: Customer record successfully created
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CreatedCustomer"
+          examples:
+            createCustomer:
+              value:
+                id: 401786
+                partnerUserId: p.api@cujot.com
+                phoneCountry: 370
+                phone: "61650111"
+                email: p.api@cujot.com
+                timeZone: UTC
+    400:
+      description: Not valid parameters email or phone
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            invalidData:
+              value:
+                error:
+                  Could not save customer, make sure that email is not already
+                  taken and all other fields are correct.
+    500:
+      description: Could not register customer
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl -X "POST" "https://api.cujo.io/v1/customers" \
+             -H 'Authorization: Bearer eyJh...' \
+             -H 'Content-Type: application/json; charset=utf-8' \
+             -d $'{
+          "email": "p.api@cujot.com",
+          "phone": "61650111",
+          "password": "12345678",
+          "partnerUserId": "",
+          "phoneCountry": "+370"
+        }'

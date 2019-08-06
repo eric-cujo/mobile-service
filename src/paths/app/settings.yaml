@@ -1,0 +1,20 @@
+get:
+  tags:
+    - App API
+  summary: Get all available countries (POC)
+  description: Get common settings for the mobile application.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AppSettings"
+          examples:
+            countries:
+              value:
+  security:
+    - AccessToken: []

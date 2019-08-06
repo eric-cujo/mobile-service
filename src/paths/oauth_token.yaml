@@ -1,0 +1,62 @@
+description:
+  In order to make authorized calls to Cujo APIs, you must first obtain
+  an access token.
+post:
+  tags:
+    - Auth Partner API(PA)
+    - GENERAL/CORE(PA)
+  summary: Creates the new access tokn
+  description:
+    Generates the new API tken, based on the Client ID and Client
+    Secret kys.
+    \\\\\\\\\\\\\\\\\
+  operationId: createAccessToken
+  parameters:
+    - name: client_id
+      in: query
+      description: The partner client ID key
+      required: true
+      schema:
+        type: string
+    - name: client_secret
+      in: query
+      description: The partner client secret key
+      required: true
+      schema:
+        type: string
+    - name: grant_type
+      in: query
+      description: Grant type. Always `client_credentials`
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: successfully get the access token
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CreateTokenResponse"
+          examples:
+            token:
+              value:
+                access_token: eyJhbGciOaJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiMzI0NDE5Il0sInBhcnRuZXIiOiIzMjQ0MTkiLCJzY29wZSI6WyJwdWJsaWMiXSwiZXhwIjoxNTUyNzYyNDIzLCJqdGkiOiIyYTU2ZjMzZC0xMDFmLTRlOWMtYTNiZS03NWM1NWI2ZjIxNWIiLCJjbGllbnRfaWQiOiJhbGV4LmdpdXZhcmEifQ.DW3U4hUXsA6kzhiwNVilwI6vqgwBzEft0KFYTQvYjPGUKAXpDAtn21n5n0S0uHxdK0pGoKXL92dgdQ6s4cMol9YJfRfYgZIR49n7oMECv98l_Aba7xhT2Kn2kKEIj4ZeZUTT-rN-FjINGV-XqP5c4aS_hoxCDAkdhWhDvZp7D6_1UfiCdqZN9oak6AlHWpOaQTyz2zyat08IPwGsFbTRezPP4kLNgqUUwYwG9DSEzHCj7nDHXahzgG_KvSvWWD8KZRac96rCdW7nskq5mBwlpcvf3eiwXfYRFns0qvpMRcjvo6bU6_7tY0X9OJ_BcRk1vC_lcoVnjfjQUwEpH9m3yQ
+                token_type: bearer
+                expires_in: 86399
+                scope: public
+                partner: "324419"
+                jti: 2a66e33d-121f-4e9c-a3be-75c55a6f215b
+    401:
+      description: if client ID and client secret combination not found
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/AuthErrorResponse"
+          examples:
+            badCredentials:
+              value:
+                error: invalid_client
+                error_description: Bad client credentials
+  x-code-samples:
+    - lang: CURL
+      source: curl -X "POST" "https://api.cujo.io/v1/oauth/token?grant_type=client_credentials&client_id=MY_ID&client_secret=MY_SECRET"

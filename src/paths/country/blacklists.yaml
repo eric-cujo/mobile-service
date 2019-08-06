@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Country API
+  summary: View blacklisted countries for some specific customer agent.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/CountryAPI"
+          examples:
+            countries:
+              value:
+                - countryCode: Some name
+                  areaCode: 123
+                  name:
+  security:
+    - AccessToken: []
+
+
+put:
+  tags:
+    - Country API
+  summary: Update specific agents country blacklist.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/CountryBlacklistReq"
+        examples:
+            countries:
+              value:
+                blacklistedIds:
+                  - id: 12345
+    required: true
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CountryBlacklistResp"
+          examples:
+            countries:
+              value:
+                - id: Some id
+                  blacklisted: yes
+                  name:
+
+  security:
+    - AccessToken: []

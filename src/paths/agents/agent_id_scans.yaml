@@ -1,0 +1,46 @@
+get:
+  deprecated: true
+  tags:
+    - Vulnerability Scan API(PA)
+    - SECURITY (PA)
+  summary: Get vulnerability scan results for agent
+  description:
+    Returns vulnerability scan results for agent with pagination for
+    50 items per page.
+  operationId: VulnerabilityScanResultsAgent
+  parameters:
+    - name: partnerId
+      in: query
+      schema:
+        type: integer
+    - name: page
+      in: query
+      schema:
+        type: integer
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentScanResult"
+          examples:
+            scan:
+              value:
+                - date: 1475148966
+                  deviceId: 1
+                  vulnerabilities:
+                    - threat: HIGH|MEDIUM|LOW|LOG|DEBUG|UNKNOWN
+                      severity: 2
+                      port: ""
+                      name: ""
+                      recommendation: ""
+                      nvtFamily: ""
+                      cve: ""
+                      xref: ""
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

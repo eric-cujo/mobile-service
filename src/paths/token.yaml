@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Auth Partner API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get the information about access token
+  description: Get the information about access token, used mostly for token validations
+  operationId: describeToken
+  responses:
+    200:
+      description: Access token info
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/TokenInfoResponse"
+          examples:
+            expiresIn:
+              value:
+                expiresInSeconds: 86282
+    401:
+      description: Invalid token
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/AuthErrorResponse"
+          examples:
+            invalid_token:
+              value:
+                error: invalid_token
+                error_description: Cannot convert access token to JSON
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl "https://api.cujo.io/v1/token" \
+        -H 'Authorization: Bearer eyJh...'

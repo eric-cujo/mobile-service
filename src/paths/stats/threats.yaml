@@ -1,0 +1,56 @@
+get:
+  tags:
+    - SECURITY (PA)
+    - Stats API(PA)
+  summary: Get stats for threats
+  description:
+    Receive the statistics for the threats for the selected time period.
+    If parameters not specified, returns data for last 30 days period.
+  operationId: GetStatsForThreats
+  parameters:
+    - name: fromDate
+      in: query
+      description: The from date to return threats stats
+      schema:
+        format: date
+        type: string
+    - name: toDate
+      in: query
+      description: The to date to return threats stats
+      schema:
+        format: date
+        type: string
+    - name: agentId
+      in: query
+      description: The agent to return threats stats
+      schema:
+        type: integer
+    - name: deviceId
+      in: query
+      description: The device to return threats stats
+      schema:
+        type: integer
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ThreatStatsResponse"
+          examples:
+            threats:
+              value:
+                actionBlock: 9947
+                actionIgnore: 170
+                total: 10117
+                typeDdos: 0
+                typeDnsReputation: 0
+                typeIpReputation: 0
+                typeRemoteAccess: 0
+                typeSafeBrowsing: 0
+                typeMalware: 0
+                typeSuspiciousActivity: 0
+                typeSuspiciousConnection: 0
+                typeVulnerability: 0
+  security:
+    - AccessToken: []

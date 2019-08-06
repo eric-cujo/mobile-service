@@ -1,0 +1,31 @@
+get:
+  tags:
+    - Stats API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get stats for Cujo agents
+  description: Receive the current state statistics for the agents
+  operationId: GetStatsCujoAgents
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/AgentStatsResponse"
+          examples:
+            stats:
+              value:
+                disabled: 100
+                enabled: 200
+                security: 22
+                offline: 100
+                online: 200
+                total: 300
+                modeUnspecified: 0
+                modeStandby: 120
+                modeGateway: 120
+                modeBridge: 60
+                modeDhcp: 120
+                modeArp: 0
+  security:
+    - AccessToken: []

@@ -1,0 +1,105 @@
+post:
+  tags:
+    - Notifications API
+  summary: Create web-hook
+  description: |-
+    Creates a new web-hook for desired object.
+
+    #### Webhook exchange protocol
+
+    Once desired web-hooks are created, appropriate notifications will be sent to those URLs. Data submitted to web-hook URLS will have **application/json** content type header. The requests will be sent using POST method. Data provided to these URLs will differ based on subscribed object type. There are two types of web-hook notifications (excluding type **ALL**), **CREATE** and **UPDATE**.
+
+    #### Structure
+
+    General notification structure can be described as the following
+
+    ##### Notification structure
+    ```
+    {
+        "object": String,
+        "event": String,
+        "data": {
+            "agentId": long,
+            "id": long,
+            ...
+        },
+        "changes": {
+            "old": {
+                "propertyName": String,
+                ...
+            },
+            "new": {
+                "propertyName": String,
+                ...
+            }
+        }
+    }
+    ```
+  operationId: CreateWebHook
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/CreateWebhookRequest"
+        examples:
+          deviceBlocks:
+            value:
+              fullData: true
+              object: PARENTAL_BLOCKS
+              event: CREATE
+              url: https://www.example.com
+          deviceUsageStatsUpdate:
+            value:
+              fullData: true
+              object: PARENTAL
+              event: UPDATE
+              url: "https://www.example.com"
+    required: true
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CreatedWebhook"
+          examples:
+            deviceBlocks:
+              value:
+                fullData: true
+                object: PARENTAL_BLOCKS
+                event: CREATE
+                url: https://www.example.com
+              deviceUsageStatsUpdate:
+                value:
+                  fullData: true
+                  object: PARENTAL
+                  event: UPDATE
+                  url: "https://www.example.com"
+  callbacks:
+    DeviceBLockStatsResponse:
+      "{$request.body#/url}":
+        post:
+          summary: Device activity block callback
+          description: Applied block actions are batched and delivered for end user notificaitons and reporting
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: '/src/swagger-parental-draft.yaml#/components/schemas/ActivityBlocks'
+          responses:
+            200:
+              description: OK.
+    DeviceUsageStatsResponse:
+      "{$request.body#/url}":
+        post:
+          summary: Device usage stats UPDATE callback
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: '/src/swagger.yaml#/components/schemas/UsageNotificationPayload'
+          responses:
+            200:
+              description: OK.
+  security:
+    - AccessToken: []

@@ -1,0 +1,81 @@
+get:
+  tags:
+    - SECURITY (PA)
+    - Threats API(PA)
+  summary: Get all threats for the agent
+  description:
+    "Get the list of all threats detected for some agent. Returns such\
+      \ information about each threat item.\r\n"
+  operationId: GetAllThreatsForAgent
+  parameters:
+    - name: type
+      in: query
+      description: Filter threats by type
+      schema:
+        enum:
+          - SAFE_BROWSING
+          - IP_REPUTATION
+          - DOS
+          - REMOTE_ACCESS
+          - MODEL_PROFILE
+    - name: action
+      in: query
+      description: Filter threats by action
+      schema:
+        enum:
+          - ignore
+          - block
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/ThreatDetails"
+          examples:
+            threads:
+              value:
+                - partnerAgentId: some text
+                  deviceId: 83.11
+                  deviceMac: some text
+                  seen: true
+                  metadata:
+                    ip: some text
+                    port: 9
+                  id: 43.5
+                  agentId: 6.05
+                  type: some text
+                  interactionType: some text
+                  direction: some text
+                  description: some text
+                  level: some text
+                  action: some text
+                  geolocation: some text
+                  customerAction: some text
+                  startedAt: 32
+                  endedAt: 20
+                - partnerAgentId: some text
+                  deviceId: 7.67
+                  deviceMac: some text
+                  seen: true
+                  metadata:
+                    ip: some text
+                    port: 11
+                  id: 77.47
+                  agentId: 0.22
+                  type: some text
+                  interactionType: some text
+                  direction: some text
+                  description: some text
+                  level: some text
+                  action: some text
+                  geolocation: some text
+                  customerAction: some text
+                  startedAt: 96
+                  endedAt: 51
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

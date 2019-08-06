@@ -1,0 +1,17 @@
+delete:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: Remove a temporary blocking entry (partner)
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerAgentIdParameter'
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerDeviceIdParameter'
+    - name: blockId
+      in: path
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: integer
+  responses:
+    200:
+      description: OK

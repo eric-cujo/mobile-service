@@ -1,0 +1,11 @@
+title: CUJO Mobile API
+description:
+contact:
+  email: developer@cujo.com
+license:
+  name: CUJO Proprietary
+  url: http://www.getcujo.com/api-license
+x-logo:
+  url: "img/1600X362px_01.jpg"
+  "backgroundColor": "#FFFFFF"
+  altText: "CUJO AI"

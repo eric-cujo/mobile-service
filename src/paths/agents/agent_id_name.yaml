@@ -1,0 +1,40 @@
+put:
+  tags:
+    - Agents API(PA)
+    - GENERAL/CORE(PA)
+  summary: Change agent name
+  description: Change the agent name
+  operationId: ChangeAgentNameByPartner
+  requestBody:
+    description: The new agent name
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AgentNameRequest"
+        examples:
+          newName:
+            value:
+              name: test
+    required: true
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ShowAgentResponse"
+          examples:
+            updatedAgentName:
+              value:
+                id: 1
+                partnerAgentId: 01:23:45:67:89:ab
+                name: test agent
+                macAddress: f9:8b:fc:da:da:1d
+                cloudMode: bridge
+                agentMode: dhcp
+                online: true
+                lastSeen: 1474991037575
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

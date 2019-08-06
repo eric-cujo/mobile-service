@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Notifications API
+  summary: Update token
+  description: Update device token.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: 
+  responses:
+    200:
+      description: Agent successfully activated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/TokenType"
+          examples:
+            activatedAgent:
+              value:
+                type: ANDROID
+                token: 1122334455

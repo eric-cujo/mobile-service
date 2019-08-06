@@ -1,0 +1,41 @@
+put:
+  deprecated: true
+  tags:
+    - GENERAL/CORE(PA)
+    - Agents API(PA)
+  summary: Change agent mode
+  description: Change the agent mode
+  operationId: ChangeAgentMode
+  requestBody:
+    description: Change the agent mode
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/ChangeModeRequest"
+        examples:
+          mode:
+            value:
+              mode: dhcp
+    required: true
+  responses:
+    200:
+      description: The new agent mode
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/RegisterAgentResponse"
+          examples:
+            agentMode:
+              value:
+                id: 1
+                partnerAgentId: 01:23:45:67:89:ab
+                name: test agent
+                macAddress: f9:8b:fc:da:da:1d
+                cloudMode: bridge
+                agentMode: dhcp
+                online: true
+                lastSeen: 1474991037575
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

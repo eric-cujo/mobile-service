@@ -1,0 +1,16 @@
+---
+openapi: 3.0.2
+info:
+  $ref: ./info/index.yaml
+  version: "v1.2.0-Parental-controls-draft"
+servers:
+  - url: https://api.cujo.io/v1/
+    description: ""
+paths:
+  $ref: ./parental-draft/paths/index.yaml
+components:
+  $ref: ./parental-draft/components/index.yaml
+tags:
+  - name: Parental controls
+    $ref: ./parental-draft/tags/parental.yaml
+  - name: Notification API

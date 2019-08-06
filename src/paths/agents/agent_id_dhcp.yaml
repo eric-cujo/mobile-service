@@ -1,0 +1,82 @@
+get:
+  tags:
+    - Access Control Schedules
+    - GENERAL/CORE(PA)
+  summary: Get agent DHCP settings
+  description:
+    Get the agent DHCP settings, such as DHCP server IP, lease time
+    and etc.
+  operationId: GetAgentDHCPSettings
+  responses:
+    200:
+      description: the agent DHCP settings
+      content:
+        application/json:
+          examples:
+            agent DHCP settings:
+              value:
+                leaseTime: 3600
+                serverIp: 192.168.0.1
+                networkMask: 255.255.255.0
+                startIp: 192.168.0.2
+                endIp: 192.168.0.254
+                secondaryDnsIp: 8.8.8.8
+                primaryDnsIp: 8.8.9.9
+                routerNetwork:
+                  routerIp: 10.0.0.1
+                  agentIp: 10.0.0.2
+                  networkMask: 255.0.0.0
+  security:
+    - AccessToken: []
+put:
+  tags:
+    - Agents API(PA)
+    - GENERAL/CORE(PA)
+  summary: Set agent DHCP settings
+  description: Set (updates) the agent DHCP settings
+  operationId: SetAgentDHCPSettings
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/UpdateAgentDHCPSettings"
+        examples:
+          update:
+            value:
+              serverIp: 192.168.0.1
+              leaseTime: 3600
+              networkMask: 255.255.255.0
+              startIp: 192.168.0.2
+              endIp: 192.168.0.254
+              primaryDnsIp: 8.8.8.8
+              secondaryDnsIp: 4.4.4.4
+              routerNetwork:
+                routerIp: 10.0.0.1
+                agentIp: 10.0.0.2
+                networkMask: 255.0.0.0
+    required: true
+  responses:
+    200:
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/AgentDHCPSettings"
+          examples:
+            update:
+              value:
+                leaseTime: 3600
+                serverIp: 192.168.0.1
+                networkMask: 255.255.255.0
+                startIp: 192.168.0.2
+                endIp: 192.168.0.254
+                secondaryDnsIp: 8.8.8.8
+                primaryDnsIp: 8.8.9.9
+                routerNetwork:
+                  routerIp: 10.0.0.1
+                  agentIp: 10.0.0.2
+                  networkMask: 255.0.0.0
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

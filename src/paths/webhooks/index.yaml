@@ -1,0 +1,182 @@
+get:
+  tags:
+    - Notifications API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get all created web-hooks
+  description: Retrieves all created web-hooks
+  operationId: GetAllCreatedWebHooks
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/CreatedWebhook"
+          examples:
+            webhooks:
+              value:
+                - fullData: true
+                  object: DEVICE
+                  event: ALL
+                  url: https://www.example.com
+                  id: 121
+  security:
+    - AccessToken: []
+post:
+  tags:
+    - GENERAL/CORE(PA)
+    - Notifications API(PA)
+  summary: Create web-hook
+  description: |-
+    Creates a new web-hook for desired object.
+
+    #### Webhook exchange protocol
+
+    Once desired web-hooks are created, appropriate notifications will be sent to those URLs. Data submitted to web-hook URLS will have **application/json** content type header. The requests will be sent using POST method. Data provided to these URLs will differ based on subscribed object type. There are two types of web-hook notifications (excluding type **ALL**), **CREATE** and **UPDATE**.
+
+    #### Structure
+
+    General notification structure can be described as the following
+
+    ##### Notification structure
+    ```
+    {
+        "object": String,
+        "event": String,
+        "data": {
+            "agentId": long,
+            "id": long,
+            ...
+        },
+        "changes": {
+            "old": {
+                "propertyName": String,
+                ...
+            },
+            "new": {
+                "propertyName": String,
+                ...
+            }
+        }
+    }
+    ```
+  operationId: CreateWebHook
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/CreateWebhookRequest"
+        examples:
+          deviceCreate:
+            value:
+              fullData: true
+              object: DEVICE
+              event: CREATE
+              url: https://www.example.com
+          deviceUpdate:
+            value:
+              fullData: true
+              object: DEVICE
+              event: UPDATE
+              url: https://www.example.com
+          threatCreate:
+            value:
+              fullData: true
+              object: THREAT
+              event: CREATE
+              url: https://www.example.com
+          deviceUsageStatsUpdate:
+            value:
+              fullData: true
+              object: PARENTAL
+              event: UPDATE
+              properties:
+                batchSize: 1000
+                rps: 500
+              url: "https://www.example.com"
+    required: true
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/CreatedWebhook"
+          examples:
+            deviceCreated:
+              value:
+                fullData: true
+                object: DEVICE
+                event: CREATE
+                url: https://www.example.com
+                id: 121
+            deviceUpdated:
+              value:
+                fullData: true
+                object: DEVICE
+                event: UPDATE
+                url: https://www.example.com
+                id: 122
+            deviceUsageStatsUpdated:
+              value:
+                fullData: true
+                object: PARENTAL
+                event: UPDATE
+                url: "https://www.example.com"
+                id: 123
+  callbacks:
+    DeviceEventCreateResponse:
+      "{$request.body#/url}":
+        post:
+          summary: Device CREATE event callback
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "/src/swagger.yaml#/components/schemas/DeviceEventCreateResponse"
+            required: true
+          responses:
+            200:
+              description: OK.
+    DeviceEventUpdateResponse:
+      "{$request.body#/url}":
+        post:
+          summary: Device UPDATE event callback
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "/src/swagger.yaml#/components/schemas/DeviceEventUpdateResponse"
+            required: true
+          responses:
+            200:
+              description: OK.
+    ThreatEventCreateResponse:
+      "{$request.body#/url}":
+        post:
+          summary: Threat CREATE event callback
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: "/src/swagger.yaml#/components/schemas/ThreatEventCreateResponse"
+            required: true
+          responses:
+            200:
+              description: OK.
+    DeviceUsageStatsResponse:
+      "{$request.body#/url":
+        post:
+          summary: Device usage stats UPDATE callback
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: '/src/swagger.yaml#/components/schemas/UsageNotificationPayload'
+          responses:
+            200:
+              description: OK.
+  security:
+    - AccessToken: []

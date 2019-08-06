@@ -1,0 +1,50 @@
+get:
+  tags:
+    - SECURITY (PA)
+    - Features API(PA)
+  summary: Get agent features
+  operationId: GetAgentFeatures
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/AgentFeatures"
+          examples:
+            security:
+              value:
+                security: true
+  security:
+    - AccessToken: []
+put:
+  tags:
+    - SECURITY (PA)
+    - Features API(PA)
+  summary: Update agent features
+  operationId: UpdateAgentFeatures
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AgentFeatures"
+        examples:
+          features:
+            value:
+              security: false
+    required: true
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/AgentFeatures"
+          examples:
+            features:
+              value:
+                security: false
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

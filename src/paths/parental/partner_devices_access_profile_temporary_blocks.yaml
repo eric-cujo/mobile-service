@@ -1,0 +1,96 @@
+get:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: Retrieve a list of temporarily blocked content identifiers (partner)
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerAgentIdParameter'
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerDeviceIdParameter'
+  responses:
+    200:
+      description: A block list
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/BlockList'
+    404:
+      description: Device not found
+      content:
+        application/json:
+          example:
+            message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerAgentId} not found
+put:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: Fully replace the list of temporarily blocked content identifiers (partner)
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerAgentIdParameter'
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerDeviceIdParameter'
+  requestBody:
+    description: A block list
+    content:
+      application/json:
+        schema:
+          $ref: '/src/swagger.yaml#/components/schemas/BlockList'
+  responses:
+    200:
+      description: A block list
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/BlockList'
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          example:
+            message: Invalid access profile was requested
+    404:
+      description: Device not found
+      content:
+        application/json:
+          example:
+            message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerAgentId} not found
+    409:
+      description: Tracking not enabled for device
+      content:
+        application/json:
+          example:
+            message: Tracking feature is not enabled for partnerAgentId={partnerAgentI}, partnerDeviceId={partnerDeviceId}
+post:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: Add to the list of temporarily blocked content identifiers (partner)
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerAgentIdParameter'
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerDeviceIdParameter'
+  requestBody:
+    description: A block list
+    content:
+      application/json:
+        schema:
+          $ref: '/src/swagger.yaml#/components/schemas/BlockList'
+  responses:
+    200:
+      description: A block list
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/BlockList'
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          example:
+            message: Invalid access profile was requested
+    404:
+      description: Device not found
+      content:
+        application/json:
+          example:
+            message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerAgentId} not found
+    409:
+      description: Tracking not enabled for device
+      content:
+        application/json:
+          example:
+            message: Tracking feature is not enabled for partnerAgentId={partnerAgentI}, partnerDeviceId={partnerDeviceId}

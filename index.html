@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Partner API documentation</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+
+    <!--
+    ReDoc doesn't change outer page styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      nav {
+        display: inline-block;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        background-color: white;
+      }
+
+      #versions-label {
+        display: inline-block;
+        padding: 0;
+        margin: 0 0 0 60px;
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+      }
+
+      #versions {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        font-family: Roboto, sans-serif;
+        font-weight: 400;
+      }
+
+      .selected {
+        background-color: rgb(237, 237, 237);
+        color: rgb(50, 50, 159);
+      }
+
+      #versions li {
+        display: inline-block;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div id="versions-label">
+        Selected version:
+      </div>
+      <ul id="versions">
+      </ul>
+    </nav>
+
+    <div id="redoc-container"></div>
+    <script src="js/redoc.standalone.js"> </script>
+  </body>
+  <script>
+
+    function render(link) {
+      Redoc.init(link, {
+        hideDownloadButton: true,
+        suppressWarnings: true,
+        scrollYOffset: "#versions",
+        lazyLoading: true
+      }, document.getElementById('redoc-container'));
+    }
+
+    var versions = [
+      {
+        title: "v1.0.0-RC",
+        definition: "src/swagger.yaml"
+      }
+    ];
+
+    function showVersion(item) {
+      versions.forEach(function(v) {
+        v.item.classList.remove("selected")
+      });
+
+      console.log("switching to " + item);
+      item.classList.add("selected");
+      render(item.getAttribute('data-definition'));
+    }
+
+    function onClick() {
+      showVersion(this);
+    }
+
+    var versions_menu = document.getElementById("versions");
+
+    versions.forEach(function(version){
+      var item = document.createElement('li');
+      item.setAttribute('data-definition', version.definition);
+      item.innerText = version.title;
+      item.addEventListener('click', onClick);
+      versions_menu.appendChild(item);
+
+      version.item = item;
+    });
+
+    showVersion(versions[0].item);
+
+  </script>
+</html>

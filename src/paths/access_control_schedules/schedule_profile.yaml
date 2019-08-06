@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Access Control Schedules
+  summary: Get schedules for profile
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ScheduleResponse"
+          examples:
+              weekDay:
+                value:
+                  weekDay: tue
+                  startTime: tue
+                  endTime: tue
+                  title: tue
+                  enabled: tue
+                  pauseInternet: tue

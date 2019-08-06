@@ -1,0 +1,53 @@
+get:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: |
+    Verify tracking status for a device (partner)
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerAgentIdParameter'
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerDeviceIdParameter'
+  responses:
+    200:
+      description: Tracking state
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/TrackingEnablement'
+    404:
+      description: Device not found
+      content:
+        application/json:
+          example:
+            message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+put:
+  tags:
+    - PARENTAL LOW-LEVEL(PA) API
+  summary: |
+    Enable or disable tracking for a device (partner)
+  parameters:
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerAgentIdParameter'
+    - $ref: '/src/swagger.yaml#/components/schemas/PartnerDeviceIdParameter'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '/src/swagger.yaml#/components/schemas/TrackingEnablement'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '/src/swagger.yaml#/components/schemas/TrackingEnablement'
+    404:
+      description: Agent not found
+      content:
+        application/json:
+          example:
+            message: Device partnerAgentId={partnerAgentId}, partnerDeviceId={partnerDeviceId} not found
+    409:
+      description: Device per agent limit reached
+      content:
+        application/json:
+          example:
+            message: The limit ({limit}) for tracked devices has been reached

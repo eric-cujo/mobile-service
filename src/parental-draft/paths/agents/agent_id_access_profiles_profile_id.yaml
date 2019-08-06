@@ -1,0 +1,242 @@
+parameters:
+  - name: agentId
+    in: path
+    required: true
+    schema:
+      type: integer
+  - name: accessProfileId
+    in: path
+    required: true
+    schema:
+      type: integer
+get:
+  tags:
+    - Parental controls
+  summary: Get access profile
+  description: Get access profile
+  operationId: GetAccessProfile
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger-parental-draft.yaml#/components/schemas/AccessProfile"
+    404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            agentNotFound:
+              value:
+                error: Agent with such ID was not found
+            profileNotFound:
+              value:
+                error: "Could not find profile by id: {profileId}"
+  security:
+    - AccessToken: []
+put:
+  tags:
+    - Parental controls
+  summary: Update access profile.
+  description: Please see Create call for the limitations of the access profile.
+  operationId: UpdateAccessProfile
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger-parental-draft.yaml#/components/schemas/CreateAccessProfileRequest"
+        examples:
+          Scheduled Block:
+            description: |
+              This example shows the use of scheduled policies for blocking specified content categories
+            value:
+              name: "User defined access profile name"
+              timeZone: "America/Phoenix"
+              deviceIds:
+                - 234523
+                - 303744
+              policies:
+                - name: "No violence at night"
+                  categories:
+                    - "category:adult"
+                    - "category:violence"
+                  action: BLOCK
+                  schedules:
+                    - "weekDays":
+                        - MONDAY
+                        - TUESDAY
+                      "timeStart": "18:00"
+                      "durationMinutes": 300
+          Facebook Limit:
+            description: |
+              This example demonstrates the application of daily usage limit against a platform
+            value:
+              name: "User defined access profile name"
+              timeZone: "America/Phoenix"
+              deviceIds:
+                - 345327
+                - 432424
+              policies:
+                - name: "2 hours of FB"
+                  categories:
+                    - "platform:facebook"
+                  action: BLOCK
+                  limit:
+                    dailyUsage:
+                      durationMinutes: 120
+          Pause Internet:
+            description: |
+              This example shows how to use an access policy to pause the internet.
+              To remove the pause, the policy needs to be removed.
+            value:
+              name: "User defined access profile name"
+              timeZone: "America/Phoenix"
+              deviceIds:
+                - 245274
+                - 773334
+              policies:
+                - name: "User defined policy name"
+                  categories:
+                    - category:*
+                  action: BLOCK
+          Block Cnn:
+            description: |
+              This example shows how to use an access policy to block access to a website
+            value:
+              name: "User defined access profile name"
+              timeZone: "America/Phoenix"
+              deviceIds:
+                - 245274
+                - 773334
+              policies:
+                - name: "User defined policy name"
+                  categories:
+                    - domain:cnn.com
+                  action: BLOCK
+          Whitelist facebook:
+            description: |
+              This example shows how to add platform exception when specific category should be blocked
+            value:
+              name: "User defined access profile name"
+              timeZone: "America/Phoenix"
+              deviceIds:
+                - 245274
+                - 773334
+              policies:
+                - name: "Policy to block social sites"
+                  categories:
+                    - category:social
+                  action: BLOCK
+                - name: "Policy to allow facebook platform"
+                  categories:
+                    - platform:facebook
+                  action: ALLOW
+    required: true
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger-parental-draft.yaml#/components/schemas/AccessProfile"
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            profileLimitReached:
+              value:
+                error: Maximum access profile limit ({limit}) is reached
+            nameNotUnique:
+              value:
+                error: Access profile with name "{name}" already exists
+            devicesUsed:
+              value:
+                error: Some devices are already in another profile
+            invalidDeviceIds:
+              value:
+                error: Request is invalid. Request should contain only valid device IDs
+            invalidPausePolicy:
+              value:
+                error: Request is invalid. Internet pause policy does not support schedules and limits
+            emptyPolicyName:
+              value:
+                error: Policy name cannot be empty
+            invalidPolicyName:
+              value:
+                error: Policy name length must be between 1 and 40 characters
+            emptyProfileName:
+              value:
+                error: Profile name cannot be empty
+            invalidProfileName:
+              value:
+                error: Profile name length must be between 1 and 40 characters
+            invalidWeekDays:
+              value:
+                error: Weekdays parameter contains incorrect name
+            invalidTimeStart:
+              value:
+                error: Incorrect timeStart value. Value should contain only numeric characters and should not exceed the time range between 00:00 and 23:59
+            overlappingSchedules:
+              value:
+                error: There is a conflict with other Schedules. Schedules cannot overlap
+            invalidDuration:
+              value:
+                error: Duration is too long. It cannot exceed the time left for the day
+            invalidDomain:
+              value:
+                error: "Domain: {domain} is invalid"
+    404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            agentNotFound:
+              value:
+                error: Agent with such ID was not found
+            profileNotFound:
+              value:
+                error: "Could not find profile by id: {profileId}"
+    409:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            profileLimitReached:
+              value:
+                error: Maximum access profile limit ({limit}) is reached
+  security:
+    - AccessToken: []
+delete:
+  tags:
+    - Parental controls
+  summary: Delete access profile
+  description: Delete access profile
+  operationId: DeleteAccessProfile
+  responses:
+    204:
+      description: No response. Profile is deleted.
+    404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            agentNotFound:
+              value:
+                error: Agent with such ID was not found
+            profileNotFound:
+              value:
+                error: "Could not find profile by id: {profileId}"
+  security:
+    - AccessToken: []

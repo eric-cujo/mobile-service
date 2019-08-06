@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Firmware API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get the current and available firmware agent versions
+  description:
+    Receive the current agent firmware version with the list of available
+    versions to upgrade, if any available
+  operationId: GetCurrentAndAvailableFirmwareAgentVersions
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ShowFirmwareVersionResponse"
+          examples:
+            firmware:
+              value:
+                currentVersion: 66
+                message:
+                  Firmware Upgrade Available. Upgrade your CUJO to get
+                  the latest features and protection for your devices.
+                availableVersions:
+                  - message: Other upgrade message
+                    version: 67
+  security:
+    - AccessToken: []
+post:
+  deprecated: true
+  tags:
+    - Firmware API(PA)
+    - GENERAL/CORE(PA)
+  summary: Initiate agent firmware upgrade
+  description:
+    initiate the upgrade to specified version or to the latest if no
+    version specified
+  operationId: InitiateAgentFirmwareUpgrade
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/UpgradeAgentFirmwareRequest"
+        examples:
+          version:
+            value:
+              version: "2004"
+    required: true
+  responses:
+    204:
+      description: OK
+  security:
+    - AccessToken: []
+parameters:
+  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"

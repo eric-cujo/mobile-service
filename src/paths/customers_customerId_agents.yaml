@@ -1,0 +1,84 @@
+get:
+  tags:
+    - Customers API(PA)
+    - GENERAL/CORE(PA)
+  summary: Get the list of customer agents
+  description: "Returns the list of all customer agents "
+  operationId: ListCustomerAgents
+  responses:
+    200:
+      description: the list of customer agents
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/CustomerAgent"
+          examples:
+            customerAgents:
+              value:
+                - id: 3156328
+                  online: false
+                  name: CUJO 5
+                  lastSeen: 1552565661882
+                  cloudMode: standby
+                  serialNumber: e4956e45a404
+                  agentMode: embedded
+                - id: 3156592
+                  online: false
+                  name: CUJO 6
+                  lastSeen: 1544804323695
+                  cloudMode: standby
+                  serialNumber: e4956e45a0c4
+                  agentMode: embedded
+                - id: 3156132
+                  online: false
+                  name: CUJO 4
+                  macAddress: cc:d3:1e:d0:58:0e
+                  lastSeen: 1544645560384
+                  cloudMode: standby
+                  serialNumber: 53819d2509e9106f0c965bd986606e0102
+                  agentMode: dhcp
+                - id: 3022251
+                  online: false
+                  name: test
+                  macAddress: cc:d3:1e:d0:0f:cb
+                  lastSeen: 1543651206724
+                  cloudMode: standby
+                  serialNumber: 5bf242797eb16d8d3cd1b45e26ad72c402
+                  agentMode: bridge
+                - id: 3124758
+                  online: false
+                  name: test
+                  macAddress: cc:d3:1e:fe:51:9e
+                  lastSeen: 1540913305629
+                  cloudMode: standby
+                  serialNumber: test00fake20181030t1723
+                  agentMode: embedded
+    400:
+      description: Invalid customer id
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            invalidCustomerId:
+              value:
+                error:
+                  'Failed to convert value of type ''java.lang.String'' to
+                      required type ''long''; nested exception is java.lang.NumberFormatException:
+                      For input string: "348962ee"'
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source:
+        "curl \"https://api.cujo.io/v1/customers/401786/agents\" \\\n-H 'Authorization:\
+            \ Bearer eyJh...'        "
+parameters:
+  - name: customerId
+    in: path
+    description: The customer id
+    required: true
+    schema:
+      type: integer

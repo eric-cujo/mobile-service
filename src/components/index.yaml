@@ -1,0 +1,3349 @@
+schemas:
+  CreateCustomerRequest:
+    title: Root Type for CreateCustomerRequest
+    description: The root of the CreateCustomerRequest type's schema.
+    required:
+      - partnerUserId
+      - email
+    type: object
+    properties:
+      email:
+        description:
+          The customer email address, `optional if partnerUserId is not
+          blank`
+        maxLength: 255
+        type: string
+      phoneCountry:
+        description: Customer phone number country code
+        type: string
+      phone:
+        description: The customer phone number. Valid phone number if provided
+        type: string
+      partnerUserId:
+        description:
+          "Some partner user ID stored with customer data. Can be used\
+                \ to store\r\npartner user id. Must be `unique per partner`, if left blank,\r\
+                \nemail is used. `optional if email is not blank`"
+        maxLength: 255
+        type: string
+      password:
+        description:
+          Customer password. If not specified, you wont be able to login
+          with this customer via mobile API
+        type: string
+    example:
+      email: some text
+      phoneCountry: some text
+      phone: some text
+      partnerUserId: some text
+      password: some text
+  CreatedCustomer:
+    title: CreatedCustomer
+    description: Customer info
+    required:
+      - email
+      - id
+      - partnerUserId
+      - phone
+      - phoneCountry
+      - timeZone
+    type: object
+    properties:
+      id:
+        description: The customer id
+        type: integer
+      partnerUserId:
+        description: Some partner user ID stored with customer data
+        type: string
+      phoneCountry:
+        description: Customer phone number country code
+        type: string
+      phone:
+        description: The customer phone number
+        type: string
+      email:
+        description: The customer email address
+        type: string
+      timeZone:
+        description: Customer timezone
+        type: string
+  ShowCustomerResponse:
+    title: ShowCustomerResponse
+    description: Customer info
+    required:
+      - email
+      - id
+      - partnerUserId
+      - phone
+      - phoneCountry
+      - timezone
+    type: object
+    properties:
+      id:
+        description: The customer id
+        type: integer
+      partnerUserId:
+        description: Some partner user ID stored with customer data
+        type: string
+      phoneCountry:
+        description: Customer phone number country code
+        type: string
+      phone:
+        description: The customer phone number
+        type: string
+      email:
+        description: The customer email address
+        type: string
+      timezone:
+        description: Customer timezone
+        type: string
+      password:
+        description: Customer password
+        type: string
+  UpdateCustomerResponse:
+    title: UpdateCustomerResponse
+    description: The UpdateCustomerResponse type's schema.
+    required:
+      - email
+      - id
+      - partnerUserId
+      - phone
+      - phoneCountry
+      - timezone
+    type: object
+    properties:
+      id:
+        description: The customer id
+        type: integer
+      partnerUserId:
+        description: Some partner user ID stored with customer data
+        type: string
+      phoneCountry:
+        description: Customer phone number country code
+        type: string
+      phone:
+        description: The customer phone number
+        type: string
+      email:
+        description: The customer email address
+        type: string
+      timezone:
+        description: Customer timezone
+        type: string
+  UpdateCustomerRequest:
+    title: Root Type for CreateCustomerRequest
+    description: The root of the CreateCustomerRequest type's schema.
+    required:
+      - partnerUserId
+      - email
+    type: object
+    properties:
+      email:
+        description:
+          The customer email address, `optional if partnerUserId is not
+          blank`
+        maxLength: 255
+        type: string
+      phoneCountry:
+        description: Customer phone number country code. `Required with phone`
+        type: string
+      phone:
+        description: The customer phone number. Valid phone number if provided
+        type: string
+      partnerUserId:
+        description:
+          "Some partner user ID stored with customer data. Can be used\
+            \ to store\r\npartner user id. Must be `unique per partner`, if left blank,\r\
+            \nemail is used. `optional if email is not blank`"
+        maxLength: 255
+        type: string
+      password:
+        description:
+          Customer password. If not specified, you wont be able to login
+          with this customer via mobile API
+        type: string
+  CustomerAgent:
+    title: CustomerAgent
+    description: The CustomerAgent type's schema.
+    required:
+      - agentMode
+      - cloudMode
+      - lastSeen
+      - macAddress
+      - name
+      - online
+      - serialNumber
+    type: object
+    properties:
+      id:
+        description: the agent id
+        type: integer
+      online:
+        description: true or false, whether agent online or not
+        type: boolean
+      name:
+        description: the agent name
+        type: string
+      macAddress:
+        description: mac address of an agent
+        type: string
+      lastSeen:
+        format: int64
+        description: the agent last seen time in milliseconds
+        type: integer
+      cloudMode:
+        description:
+          the agent mode which is currently configured (see modes in
+          API generic section)
+        type: string
+      serialNumber:
+        description: the serial number of an agent
+        type: string
+      agentMode:
+        description: the agent mode (see modes in API generic section)
+        type: string
+  CreateTokenResponse:
+    title: Root Type for CreateTokenResponse
+    description: The access token
+    required:
+      - access_token
+      - expires_in
+      - jti
+      - partner
+      - scope
+      - token_type
+    type: object
+    properties:
+      access_token:
+        type: string
+      token_type:
+        type: string
+      expires_in:
+        format: int32
+        type: integer
+      scope:
+        type: string
+      partner:
+        type: string
+      jti:
+        type: string
+    example:
+      access_token: some text
+      token_type: some text
+      expires_in: 92
+      scope: some text
+      partner: some text
+      jti: some text
+  TokenInfoResponse:
+    title: Root Type for TokenInfoResponse
+    description: The root of the TokenInfoResponse type's schema.
+    required:
+      - expiresInSeconds
+    type: object
+    properties:
+      expiresInSeconds:
+        format: int32
+        type: integer
+    example:
+      expiresInSeconds: 3
+  AuthErrorResponse:
+    title: AuthErrorResponse
+    description: Client ID and client secret combination not found
+    required:
+      - error
+      - error_description
+    type: object
+    properties:
+      error:
+        type: string
+      error_description:
+        type: string
+    example:
+      error: some text
+      error_description: some text
+  ErrorResponse:
+    title: ErrorResponse
+    description: ErrorResponse type's schema.
+    required:
+      - error
+    type: object
+    properties:
+      error:
+        description: The error message
+        type: string
+  RegisterAgentRequest:
+    title: RegisterAgentRequest
+    description: Register the agent
+    required:
+      - customerId
+      - gatewayMacAddress
+      - gatewayPublicIp
+    type: object
+    properties:
+      gatewayMacAddress:
+        description: The mac address for customer gateway. Valid mac with columns
+        type: string
+      gatewayPublicIp:
+        description:
+          The ip address (public ip) for the customer gateway. Valid
+          IP address
+        type: string
+      partnerUserId:
+        description:
+          "User ID in the partner system. \nMust be not blank if `customerId`\
+            \ is not provided. \nIf this parameter is used instead of `customerId`,\
+            \ a new dummy customer is created instead of returning `404` if no such\
+            \ customer exists"
+        type: string
+      customerId:
+        description:
+          The ID of the customer. Must be >= 0, if partnerUserId is not
+          provided
+        minimum: 0
+        type: integer
+  RegisterAgentResponse:
+    title: RegisterAgentResponse
+    description: Activated agent
+    required:
+      - agentMode
+      - cloudMode
+      - id
+      - lastSeen
+      - macAddress
+      - name
+      - online
+      - partnerAgentId
+    type: object
+    properties:
+      id:
+        format: int32
+        description: the agent id
+        type: integer
+      partnerAgentId:
+        description: external agent/gateway id, used in partner's system
+        type: string
+      name:
+        description: the agent name
+        type: string
+      macAddress:
+        type: string
+      cloudMode:
+        description: the agent mode (see modes in API generic section)
+        type: string
+      agentMode:
+        description:
+          the current agent mode, can be different to mode in case mode
+          changes requested but not applied yet
+        type: string
+      online:
+        description: yes or no whether agent online or not
+        type: boolean
+      lastSeen:
+        format: int32
+        description: the agent last seen time in seconds.
+        type: integer
+  ShowAgentResponse:
+    title: ShowAgentResponse
+    description: Show activated agent
+    required:
+      - agentMode
+      - cloudMode
+      - id
+      - lastSeen
+      - macAddress
+      - name
+      - online
+      - partnerAgentId
+      - customerId
+      - partnerUserId
+    type: object
+    properties:
+      id:
+        format: int64
+        description: the agent id
+        type: integer
+      partnerAgentId:
+        description: external agent/gateway id, used in partner's system
+        type: string
+      name:
+        description: the agent name
+        type: string
+      macAddress:
+        type: string
+      cloudMode:
+        description: the agent mode (see modes in API generic section)
+        type: string
+      agentMode:
+        description:
+          the current agent mode, can be different to mode in case mode
+          changes requested but not applied yet
+        type: string
+      online:
+        description: yes or no whether agent online or not
+        type: boolean
+      lastSeen:
+        format: int32
+        description: the agent last seen time in seconds.
+        type: integer
+      customerId:
+        type: integer
+      partnerUserId:
+        type: string
+  DeviceCapabilities:
+    title: DeviceCapabilitiesResponse
+    description: The root of the DeviceCapabilitiesResponse type's schema.
+    required:
+      - 4k
+      - streaming
+    type: object
+    properties:
+      streaming:
+        type: boolean
+      4k:
+        type: boolean
+    example: |-
+      {
+          "streaming": false,
+          "4k": false
+      }
+  DeviceMeta:
+    title: DeviceMeta
+    description: The root of the DeviceMeta type's schema.
+    required:
+      - itemType
+      - score
+    type: object
+    properties:
+      score:
+        type: integer
+      itemType:
+        type: string
+    example: |-
+      {
+          "score": 0,
+          "itemType": "CompleteDevice"
+      }
+  SearchDevice:
+    title: SearchDevice
+    description: The root of the SearchDevice type's schema.
+    required:
+      - data
+      - meta
+    type: object
+    properties:
+      meta:
+        $ref: "/src/swagger.yaml#/components/schemas/DeviceMeta"
+      data:
+        $ref: "/src/swagger.yaml#/components/schemas/SearchedDeviceData"
+  ChangeModeRequest:
+    title: Root Type for ChangeModeRequest
+    description: Change the agent mode
+    required:
+      - mode
+    type: object
+    properties:
+      mode:
+        description:
+          The new agent mode. Can be one of standby, dhcp, gateway Switch
+          to DHCP will set default DHCP settings.
+        type: string
+    example: |-
+      {
+          "mode": "dhcp"
+      }
+  RebootAgentRequest:
+    title: RebootAgentRequest
+    description: Initiate the agent reboot. Only works with Cujo Applicance
+    type: object
+    properties:
+      delayTime:
+        description: The reboot delay time in seconds
+        type: integer
+    example: |-
+      {
+          "delayTime": 360
+      }
+  SetupAgentNetwork:
+    title: Root Type for SetupAgentNetRequest
+    description: Setup network configuration for agent
+    required:
+      - agentIp
+      - broadcast
+      - gatewayIp
+      - networkMask
+    type: object
+    properties:
+      gatewayIp:
+        description: the gateway IP
+        type: string
+      agentIp:
+        description: the agent IP
+        type: string
+      networkMask:
+        description: the network mask
+        type: string
+      broadcast:
+        description: the broadcast
+        type: string
+    example: |-
+      {
+          "gatewayIp": "10.0.0.1",
+          "agentIp": "10.0.0.2",
+          "networkMask": "255.0.0.0",
+          "broadcast": "10.0.0.255"
+      }
+  RouterNetwork:
+    title: RouterNetwork
+    description: the router-agent network configuration
+    required:
+      - agentIp
+      - networkMask
+      - routerIp
+    type: object
+    properties:
+      routerIp:
+        description: the router ip
+        type: string
+      agentIp:
+        description: the cujo-agent ip
+        type: string
+      networkMask:
+        description: the router network mask
+        type: string
+    example: |-
+      {
+          "routerIp": "10.0.0.1",
+          "agentIp": "10.0.0.2",
+          "networkMask": "255.0.0.0"
+      }
+  AgentDHCPSettings:
+    title: AgentDHCPSettings
+    description: The root of the AgentDHCPSettings type's schema.
+    required:
+      - routerNetwork
+      - endIp
+      - leaseTime
+      - networkMask
+      - primaryDnsIp
+      - secondaryDnsIp
+      - serverIp
+      - startIp
+    type: object
+    properties:
+      leaseTime:
+        description: the lease time in seconds
+        type: integer
+      serverIp:
+        description: the address for the DHCP server (cujo device ip)
+        type: string
+      networkMask:
+        description: the network mask
+        type: string
+      startIp:
+        description: the start IP address for DHCP leases
+        type: string
+      endIp:
+        description: the end IP address for DHCP leases
+        type: string
+      secondaryDnsIp:
+        description: the address for secondary DNS server
+        type: string
+      primaryDnsIp:
+        description: the address for primary DNS server ip
+        type: string
+      routerNetwork:
+        $ref: "/src/swagger.yaml#/components/schemas/RouterNetwork"
+        description: the router-agent network configuration
+  UpdateAgentDHCPSettings:
+    title: AgentDHCPSettings
+    description: The root of the AgentDHCPSettings type's schema.
+    required:
+      - endIp
+      - leaseTime
+      - networkMask
+      - primaryDnsIp
+      - secondaryDnsIp
+      - serverIp
+      - startIp
+    type: object
+    properties:
+      leaseTime:
+        description: the lease time in seconds
+        maximum: 604800
+        minimum: 60
+        type: integer
+      serverIp:
+        description: the address for the DHCP server (cujo device ip)
+        type: string
+      networkMask:
+        description: the network mask
+        type: string
+      startIp:
+        description:
+          the start IP address for DHCP leases. Valid IP address within
+          network mask. Smaller than `endIp`
+        type: string
+      endIp:
+        description:
+          the end IP address for DHCP leases. Valid IP address within
+          network mask. Greater than `startIp`
+        type: string
+      secondaryDnsIp:
+        description: the address for secondary DNS server
+        type: string
+      primaryDnsIp:
+        description: the address for primary DNS server ip
+        type: string
+      routerNetwork:
+        $ref: "/src/swagger.yaml#/components/schemas/RouterNetwork"
+        description: Router network configuration properties to change
+  StaticIp:
+    title: StaticIp
+    description: The root of the StaticIp type's schema.
+    required:
+      - id
+      - mac
+      - name
+      - staticIp
+    type: object
+    properties:
+      id:
+        description: the ID of device
+        type: integer
+      name:
+        description: the name of the device
+        type: string
+      mac:
+        description: the mac addresses of the device
+        type: string
+      staticIp:
+        description: the static IP assigned
+        type: string
+    example: |-
+      {
+          "id": 1,
+          "name": "Test name",
+          "mac": "aabbccddee",
+          "staticIp": "192.168.0.1"
+      }
+  UpdateStaticIp:
+    title: UpdateStaticIp
+    description: The root of the UpdateStaticIp type's schema.
+    required:
+      - id
+      - staticIp
+    type: object
+    properties:
+      id:
+        description: the ID of device; valid device ID
+        type: integer
+      staticIp:
+        description:
+          "the static IP assigned; valid IP address which matched DHCP
+            settings as for IP range and network mask "
+        type: string
+    example: |-
+      {
+          "id": 1,
+          "staticIp": "192.168.0.1"
+      }
+  UpdateStaticIpRequest:
+    title: UpdateStaticIpRequest
+    description: The root of the UpdateStaticIpRequest type's schema.
+    required:
+      - devices
+    type: object
+    properties:
+      devices:
+        type: array
+        items:
+          $ref: "/src/swagger.yaml#/components/schemas/UpdateStaticIp"
+    example: |-
+      {
+          "devices": [
+              {
+                  "id": 1,
+                  "staticIp": "192.168.0.1"
+              }
+          ]
+      }
+  AgentFeatures:
+    title: AgentFeatures
+    description: The root of the AgentFeaturesResponse type's schema.
+    required:
+      - security
+    type: object
+    properties:
+      security:
+        description: Is security enabled or disabled for agent
+        type: boolean
+  ListenOnlyModeResponse:
+    title: ListenOnlyModeResponse
+    description: Get listen only mode status for agent
+    required:
+      - enabled
+      - netflowData
+    type: object
+    properties:
+      enabled:
+        description: "`true` if agent is working in listen only mode"
+        type: boolean
+      netflowData:
+        description:
+          "`true` if recent agent netflow activity was registered (default
+            timespan is 3 days)"
+        type: boolean
+    example: |-
+      {
+          "enabled": true,
+          "netflowData": true
+      }
+  ToggleLOM:
+    title: Toggle listen only mode for a batch of agents
+    description:
+      Enables or disables listen only mode for a batch of agents, identified
+      by partner agent id.
+    required:
+      - agents
+      - enabled
+    type: object
+    properties:
+      enabled:
+        description: should given agents be set to listen-only mode
+        type: boolean
+      agents:
+        description:
+          batch of agents for which to toggle the feature. A batch of
+          partner agent ids. Batch size is not larger than 5000
+        type: array
+        items:
+          type: string
+  SearchedDeviceData:
+    title: SearchDeviceData
+    description: Device information returned by search.
+    required:
+      - capabilities
+      - accurate
+      - id
+      - feedback
+      - brand
+      - dhcpHostname
+      - hidden
+      - ip
+      - lastSeen
+      - mac
+      - model
+      - modelAccuracyLevel
+      - monitored
+      - operatingSystem
+      - quarantine
+      - secured
+      - type
+      - gatewayMac
+    type: object
+    properties:
+      id:
+        description: Device id
+        type: integer
+      modelAccuracyLevel:
+        format: int32
+        description: |-
+          ##### Accuracy level of model finger printing (0-10).
+
+          - `Level 0`: No model found
+          - `Level 1`: Vendor: `{vendor}`
+          - `Level 2`: Vendor generic
+          - `Level 3`: type
+          - `Level 4`: Vendor type
+          - `Level 5`: WURFL
+          - `Level 6`: more concrete generic prediction
+          - `Level 7`: Model of a series
+          - `Level 8`: Computer OS
+          - `Level 9`: Concrete model
+          - `Level 10`: Concrete model (Specified)
+        maximum: 10
+        minimum: 0
+        type: integer
+      quarantine:
+        description: If all traffic from device should be blocked
+        type: boolean
+      monitored:
+        description: Is device set to monitored. If CUJO should monitor device
+        type: boolean
+      secured:
+        description:
+          If true CUJO will block automatically when threat detected.
+          Otherwise just threat is created and user notified.
+        type: boolean
+      hidden:
+        description:
+          Is device hidden or not. Set to `true`, if user hide this device
+          until it comes online.
+        type: boolean
+      operatingSystem:
+        description: Device operating system
+        type: string
+      dhcpHostname:
+        description: Hostname (network name)
+        type: string
+        nullable: true
+      gatewayMac:
+        type: string
+      feedback:
+        description: Feedback about device fingerprinting
+        maxLength: 255
+        type: string
+        nullable: true
+      model:
+        description: Device model
+        maxLength: 255
+        type: string
+      brand:
+        description: Device brand
+        maxLength: 255
+        type: string
+      type:
+        description: Device type
+        maxLength: 255
+        enum:
+          - Game Console
+          - Phone
+          - Alarm System
+          - Baby Monitor
+          - Web Camera
+          - Key Lock / E-doors
+          - Computer
+          - Other
+          - Router
+          - Tablet
+        type: string
+      mac:
+        description: Device mac address
+        type: string
+      ip:
+        description: Device IP address
+        type: string
+      lastSeen:
+        description: When was the last time we received traffic from this device
+        type: integer
+        nullable: true
+      accurate:
+        description: Is device fingerprint accurate or not
+        type: boolean
+        nullable: true
+      capabilities:
+        $ref: "/src/swagger.yaml#/components/schemas/DeviceCapabilities"
+        description: Device capabilities based on device model
+        properties:
+          streaming:
+            type: boolean
+          4k:
+            type: boolean
+    example: |-
+      {
+          "id": 2295046,
+          "modelAccuracyLevel": 0,
+          "quarantine": false,
+          "monitored": true,
+          "secured": true,
+          "hidden": true,
+          "operatingSystem": "RemixOS",
+          "dhcpHostname": "android-df183f7b1a5a3ba8",
+          "gatewayMac": "a0:f3:c1:b7:72:0a",
+          "feedback": null,
+          "model": "model",
+          "brand": "brand",
+          "type": null,
+          "mac": "9c:5c:f9:8d:bb:10",
+          "ip": "192.168.0.2",
+          "lastSeen": 1507796547362,
+          "accurate": null,
+          "capabilities": {
+              "streaming": false,
+              "4k": false
+          }
+      }
+  DeviceData:
+    title: DeviceData
+    description: Device information.
+    required:
+      - capabilities
+      - accurate
+      - id
+      - feedback
+      - brand
+      - dhcpHostname
+      - hidden
+      - ip
+      - lastSeen
+      - mac
+      - model
+      - modelAccuracyLevel
+      - monitored
+      - operatingSystem
+      - quarantine
+      - secured
+      - type
+      - gatewayMac
+      - ipv6
+    type: object
+    properties:
+      id:
+        description: Device id
+        type: integer
+      modelAccuracyLevel:
+        format: int32
+        description: |-
+          ##### Accuracy level of model finger printing (0-10).
+
+          - `Level 0`: No model found
+          - `Level 1`: Vendor: `{vendor}`
+          - `Level 2`: Vendor generic
+          - `Level 3`: type
+          - `Level 4`: Vendor type
+          - `Level 5`: WURFL
+          - `Level 6`: more concrete generic prediction
+          - `Level 7`: Model of a series
+          - `Level 8`: Computer OS
+          - `Level 9`: Concrete model
+          - `Level 10`: Concrete model (Specified)
+        maximum: 10
+        minimum: 0
+        type: integer
+      quarantine:
+        description: If all traffic from device should be blocked
+        type: boolean
+      monitored:
+        description: Is device set to monitored. If CUJO should monitor device
+        type: boolean
+      secured:
+        description:
+          If true CUJO will block automatically when threat detected.
+          Otherwise just threat is created and user notified.
+        type: boolean
+      hidden:
+        description:
+          Is device hidden or not. Set to `true`, if user hide this device
+          until it comes online.
+        type: boolean
+      operatingSystem:
+        description: Device operating system
+        type: string
+      dhcpHostname:
+        description: Hostname (network name)
+        type: string
+        nullable: true
+      gatewayMac:
+        type: string
+      feedback:
+        description: Feedback about device fingerprinting
+        maxLength: 255
+        type: string
+        nullable: true
+      model:
+        description: Device model
+        maxLength: 255
+        type: string
+      brand:
+        description: Device brand
+        maxLength: 255
+        type: string
+      type:
+        description: Device type
+        maxLength: 255
+        enum:
+          - Game Console
+          - Phone
+          - Alarm System
+          - Baby Monitor
+          - Web Camera
+          - Key Lock / E-doors
+          - Computer
+          - Other
+          - Router
+          - Tablet
+        type: string
+      mac:
+        description: Device mac address
+        type: string
+      ip:
+        description: Device IP address
+        type: string
+      ipv6:
+        description: Device IP address
+        type: string
+        nullable: true
+      lastSeen:
+        description: When was the last time we received traffic from this device
+        type: integer
+        nullable: true
+      accurate:
+        description: Is device fingerprint accurate or not
+        type: boolean
+        nullable: true
+      capabilities:
+        $ref: "/src/swagger.yaml#/components/schemas/DeviceCapabilities"
+        description: Device capabilities based on device model
+        properties:
+          streaming:
+            type: boolean
+          4k:
+            type: boolean
+    example: |-
+      {
+          "id": 3156134,
+          "modelAccuracyLevel": 10,
+          "quarantine": false,
+          "monitored": true,
+          "secured": true,
+          "hidden": false,
+          "operatingSystem": "N/A",
+          "dhcpHostname": null,
+          "gatewayMac": "b0:6e:bf:96:45:a8",
+          "feedback": null,
+          "model": "RT-N11P",
+          "brand": "ASUS",
+          "type": "Router",
+          "ipv6": null,
+          "mac": "b0:6e:bf:96:45:a8",
+          "ip": "192.168.2.1",
+          "lastSeen": null,
+          "accurate": null,
+          "capabilities": {
+              "streaming": false,
+              "4k": false
+          }
+      }
+  UpdateDeviceDataRequest:
+    title: UpdateDeviceDataRequest
+    description: Change the information for a device.
+    required:
+      - accurate
+      - brand
+      - feedback
+      - hidden
+      - model
+      - monitored
+      - quarantine
+      - secured
+      - type
+    type: object
+    properties:
+      quarantine:
+        description: If all traffic from device should be blocked
+        type: boolean
+      monitored:
+        description: Is device set to monitored. If CUJO should monitor device
+        type: boolean
+      secured:
+        description:
+          If `true` CUJO will block automatically when threat detected.
+          Otherwise just threat is created and user notified.
+        type: boolean
+      hidden:
+        description:
+          Is device hidden or not. Set to `true`, if user hide this device
+          until it comes online.
+        type: boolean
+      feedback:
+        description: Feedback about device fingerprinting
+        maxLength: 255
+        type: string
+        nullable: true
+      model:
+        description: Device model
+        maxLength: 255
+        type: string
+      brand:
+        description: Device brand
+        maxLength: 255
+        type: string
+      type:
+        description: Device type
+        maxLength: 255
+        enum:
+          - Game Console
+          - Phone
+          - Alarm System
+          - Baby Monitor
+          - Web Camera
+          - Key Lock / E-doors
+          - Computer
+          - Other
+          - Router
+          - Tablet
+        type: string
+      accurate:
+        description: Is device fingerprint accurate or not
+        type: boolean
+        nullable: true
+  SourceDestinationIp:
+    title: SourceDestinationIp
+    description: Source and destination IP's
+    required:
+      - collectionTime
+      - destinationIp
+      - sourceIp
+    type: object
+    properties:
+      collectionTime:
+        description: Collection timestamp in `UUID` format
+        type: string
+      sourceIp:
+        description: Source IP address
+        type: string
+      destinationIp:
+        description: Destination IP addess
+        type: string
+    example: |-
+      {
+          "collectionTime": "1f1d1fe4-cb64-11e7-ac1d-67f1fff69572",
+          "sourceIp": "10.0.0.1",
+          "destinationIp": "192.168.0.3"
+      }
+  CombinedDeviceTrafficStatisticsResponse:
+    title: Root Type for CombinedDeviceTrafficStatisticsResponse
+    description: Combined device traffic statistics for last 24h
+    required:
+      - combined
+      - in
+      - out
+      - ips
+    type: object
+    properties:
+      mac:
+        description: Device mac address
+        type: string
+      in:
+        $ref: "/src/swagger.yaml#/components/schemas/SizePacket"
+        description: Incomming traffic
+        properties:
+          size:
+            format: int64
+            type: integer
+          packets:
+            format: int32
+            type: integer
+      out:
+        $ref: "/src/swagger.yaml#/components/schemas/SizePacket"
+        description: Outgoing traffic
+        properties:
+          size:
+            format: int32
+            type: integer
+          packets:
+            format: int32
+            type: integer
+      combined:
+        $ref: "/src/swagger.yaml#/components/schemas/SizePacket"
+        description: Combined (incomming + outgoing) traffi
+        properties:
+          size:
+            format: int64
+            type: integer
+          packets:
+            format: int32
+            type: integer
+      ips:
+        description: List of source and destination IP's
+        type: array
+        items:
+          $ref: "/src/swagger.yaml#/components/schemas/SourceDestinationIp"
+    example: |-
+      {
+          "mac": "00:14:22-01:23:45",
+          "in": {
+              "size": 3201106316,
+              "packets": 2189114
+          },
+          "out": {
+              "size": 53101400,
+              "packets": 908440
+          },
+          "combined": {
+              "size": 3254207716,
+              "packets": 3097554
+          },
+          "ips": [
+              {
+                  "collectionTime": "1f1d1fe4-cb64-11e7-ac1d-67f1fff69572",
+                  "sourceIp": "10.0.0.1",
+                  "destinationIp": "192.168.0.3"
+              },
+              {
+                  "collectionTime": "1f1d1fe3-cb64-11e7-ac1d-67f1fff69572",
+                  "sourceIp": "10.0.0.1",
+                  "destinationIp": "192.168.0.3"
+              },
+              {
+                  "collectionTime": "1f1d1fe2-cb64-11e7-ac1d-67f1fff69572",
+                  "sourceIp": "10.0.0.1",
+                  "destinationIp": "192.168.0.3"
+              }
+          ]
+      }
+  SizePacket:
+    title: SizePacket
+    description: Size and Packets
+    required:
+      - packets
+      - size
+    type: object
+    properties:
+      size:
+        description: Number of packets
+        type: integer
+      packets:
+        description: Traffic in bytes
+        type: integer
+    example: |-
+      {
+          "size": 3254207716,
+          "packets": 3097554
+      }
+  AvailableVersion:
+    title: AvailableVersion
+    description: available version, if any available
+    required:
+      - message
+      - version
+    type: object
+    properties:
+      message:
+        type: string
+      version:
+        format: int32
+        type: integer
+    example: |-
+      {
+          "message": "Other upgrade message",
+          "version": 67
+      }
+  ShowFirmwareVersionResponse:
+    title: ShowFirmwareVersionResponse
+    description:
+      The current agent firmware version with the list of available versions
+      to upgrade
+    required:
+      - currentVersion
+      - message
+      - availableVersions
+    type: object
+    properties:
+      message:
+        type: string
+      currentVersion:
+        format: int32
+        description: the current firmware version
+        type: integer
+      availableVersions:
+        description: the list of available version, if any available
+        type: array
+        items:
+          $ref: "/src/swagger.yaml#/components/schemas/AvailableVersion"
+    example: |-
+      {
+          "message": "Upgrade message.",
+          "currentVersion": 66,
+          "availableVersions": [
+              {
+                  "message": "Other upgrade message",
+                  "version": 67
+              }
+          ]
+      }
+  UpgradeAgentFirmwareRequest:
+    title: UpgradeAgentFirmwareRequest
+    description: Upgrade Agent Firmware Request
+    required:
+      - version
+    type: object
+    properties:
+      version:
+        description:
+          The version to upgrade to. (Optional) the valid firmware version
+          from /firmware GET
+        type: string
+    example: |-
+      {
+          "version": "2004"
+      }
+  ThreatDetailsMetadata:
+    title: ThreatDetailsMetadata
+    description: Threat details metadata
+    required:
+      - ip
+      - port
+    type: object
+    properties:
+      ip:
+        type: string
+      port:
+        format: int32
+        type: integer
+    example:
+      ip: 42.7.26.16
+      port: 22
+  ThreatDetails:
+    title: Root Type for ThreatDetails
+    description: Threat details
+    required:
+      - metadata
+    type: object
+    properties:
+      partnerAgentId:
+        description: External agent/gateway id, used in partner's system
+        type: string
+      deviceId:
+        description: Device, to which threat is generated for, id
+        type: integer
+      deviceMac:
+        description: Device, to which threat is generated for, mac
+        type: string
+      seen:
+        description: Has customer seen the threat
+        type: boolean
+      metadata:
+        $ref: "/src/swagger.yaml#/components/schemas/ThreatDetailsMetadata"
+        description: |-
+          #### For Safe Browsing type threats:
+          - url: <string> ("http://www.hostname.com")
+          - categories: [<string>] (Spam Source, BotNet, Scanner, Phishing, ...)
+
+          #### For Ip Reputation type threats:
+          - inbound: <boolean>
+          - ip: <string>
+          - category: <string> (Spam Source, BotNet, Scanner, Phishing, ...)
+
+          #### For DOS type threats:
+          - ip: <string>
+
+          #### For Remote Access type threats:
+          - ip: <string>
+          - port: <integer>
+
+          #### For Model Profile type threats:
+          - ip: <string>
+          - port: <integer>
+          - asn: <string>
+          - broadcast: <boolean>
+          - multicast: <boolean>
+        properties:
+          ip:
+            type: string
+          port:
+            format: int32
+            type: integer
+      id:
+        description: Threat id
+        type: integer
+      agentId:
+        description: Agent id
+        type: integer
+      type:
+        description: Threat type
+        type: string
+      interactionType:
+        description: Interaction type
+        enum:
+          - INTERACTIVE
+          - NOTIFICATION
+        type: string
+      direction:
+        description: Direction
+        enum:
+          - IN
+          - OUT
+        type: string
+      description:
+        description: Threat description
+        type: string
+      level:
+        description: Threat level
+        type: string
+      action:
+        description: Is blocking threat
+        enum:
+          - block
+          - ignore
+        type: string
+      geolocation:
+        description: Country
+        type: string
+      customerAction:
+        description: Customer action for threat
+        enum:
+          - NO_ACTION
+          - BLOCK
+          - UNBLOCK
+        type: string
+      startedAt:
+        format: int64
+        description: Threat started timestamp
+        type: integer
+      endedAt:
+        format: int64
+        description: Threat ended timestamp
+        type: integer
+    example: |-
+      {
+          "partnerAgentId": "6742b3bc41692673c83385235484030b02",
+          "deviceId": 2797216,
+          "deviceMac": "b8:27:eb:29:77:4b",
+          "seen": false,
+          "metadata": {
+              "ip": "42.7.26.16",
+              "port": 22
+          },
+          "id": 343859,
+          "agentId": 2797203,
+          "type": "REMOTE_ACCESS",
+          "interactionType": "NOTIFICATION",
+          "direction": "IN",
+          "description": "We detected an unauthorized attempt to access your device \"Generic CUJO IoT device\" on port 22 from an IP 42.7.26.16 which originates from China.",
+          "level": "CRITICAL",
+          "action": "block",
+          "geolocation": "China",
+          "customerAction": "NO_ACTION",
+          "startedAt": 1524133474538,
+          "endedAt": 1524133474538
+      }
+  UpdateThreatActionRequest:
+    title: UpdateThreatAction
+    description: Change the action (ignore or block) for some specific threat
+    required:
+      - action
+    type: object
+    properties:
+      action:
+        description: The action to take for threats
+        enum:
+          - ignore
+          - block
+        type: string
+    example: |-
+      {
+          "action": "ignore"
+      }
+  UpdateThreatActionResponse:
+    title: UpdateThreatActionResponse
+    description: ACK
+    required:
+      - action
+      - agentId
+      - description
+      - id
+      - interactionType
+      - level
+      - partnerAgentId
+      - type
+    type: object
+    properties:
+      partnerAgentId:
+        description: External agent/gateway id, used in partner's system
+        type: string
+      id:
+        description: Threat id
+        type: integer
+      agentId:
+        description: Agent id
+        type: integer
+      type:
+        description: Threat type
+        type: string
+      interactionType:
+        description: Interaction type
+        enum:
+          - INTERACTIVE
+          - NOTIFICATION
+        type: string
+      description:
+        description: Threat description
+        type: string
+      level:
+        description: Threat level
+        type: string
+      action:
+        description: Is blocking threat
+        enum:
+          - block
+          - ignore
+        type: string
+    example: |-
+      {
+          "id": 28,
+          "agentId": 456,
+          "partnerAgentId": "04:23:dd:67:89:ab",
+          "type": "remote access",
+          "interactionType": "INTERACTIVE",
+          "description": "We blocked an unauthorized attempt to access device \"IP Camera\" from IP \"111.111.65.1\"",
+          "level": "critical",
+          "action": "ignore"
+      }
+  AgentStatsResponse:
+    title: AgentStatsResponse
+    description: Current state statistics for the agent
+    required:
+      - disabled
+      - enabled
+      - modeArp
+      - modeBridge
+      - modeDhcp
+      - modeGateway
+      - modeStandby
+      - modeUnspecified
+      - offline
+      - online
+      - security
+      - total
+    type: object
+    properties:
+      online:
+        format: int32
+        description: the current number of agent online
+        type: integer
+      offline:
+        format: int32
+        description: the current number of offline agents
+        type: integer
+      enabled:
+        format: int32
+        description: the current number of enabled agents
+        type: integer
+      disabled:
+        format: int32
+        description: the current number of disabled agents
+        type: integer
+      security:
+        format: int32
+        description: number of agent with security enabled
+        type: integer
+      total:
+        format: int32
+        description: the total number of activated agents at the current time
+        type: integer
+      modeArp:
+        format: int32
+        description: the current number of agents in ARP mode
+        type: integer
+      modeDhcp:
+        format: int32
+        description: the current number of agents in DHCP mode
+        type: integer
+      modeBridge:
+        format: int32
+        description: the current number of agents in Bridge mode
+        type: integer
+      modeStandby:
+        format: int32
+        description: the current number of agents in Standby mode
+        type: integer
+      modeGateway:
+        format: int32
+        description: the current number of agents in gateway mode
+        type: integer
+      modeUnspecified:
+        format: int32
+        description: the current number of agents in Unspecified mode
+        type: integer
+    example: |-
+      {
+          "disabled": 100,
+          "enabled": 200,
+          "security": 22,
+          "offline": 100,
+          "online": 200,
+          "total": 300,
+          "modeUnspecified": 0,
+          "modeStandby": 120,
+          "modeGateway": 120,
+          "modeBridge": 60,
+          "modeDhcp": 120,
+          "modeArp": 0
+      }
+  ThreatStatsResponse:
+    title: ThreatStatsResponse
+    description: The statistics for the threats for the selected time period
+    type: object
+    properties:
+      total:
+        format: int32
+        description: the total number of threats detected
+        type: integer
+      actionBlock:
+        format: int32
+        description: the number of blocked threats
+        type: integer
+      actionIgnore:
+        format: int32
+        description: the number of ignored threats
+        type: integer
+      typeDdos:
+        format: int32
+        description: the number of DDOS threats detected
+        type: integer
+      typeSafeBrowsing:
+        format: int32
+        description: the number of safe browsing threats detected
+        type: integer
+      typeDnsReputation:
+        format: int32
+        description: the number of DNS threats detected
+        type: integer
+      typeIpReputation:
+        format: int32
+        description: the number of IP threats detected
+        type: integer
+      typeRemoteAccess:
+        format: int32
+        description: the number of "remote access" threats detected
+        type: integer
+      typeMalware:
+        format: int32
+        description: the number of malware threats detected
+        type: integer
+      typeSuspiciousActivity:
+        format: int32
+        description: the number of suspicious activity threats detected
+        type: integer
+      typeSuspiciousConnection:
+        format: int32
+        description: the number of suspicious connection threats detected
+        type: integer
+      typeVulnerability:
+        format: int32
+        description: the number of vulnerabilities detected
+        type: integer
+    example: |-
+      {
+          "actionBlock": 9947,
+          "actionIgnore": 170,
+          "total": 10117,
+          "typeDdos": 0,
+          "typeDnsReputation": 0,
+          "typeIpReputation": 0,
+          "typeRemoteAccess": 0,
+          "typeSafeBrowsing": 0,
+          "typeMalware": 0,
+          "typeSuspiciousActivity": 0,
+          "typeSuspiciousConnection": 0,
+          "typeVulnerability": 0
+      }
+  IpReputationRequest:
+    title: Root Type for IpReputationRequest
+    description: "IP reputation request \r\n"
+    required:
+      - ip
+    type: object
+    properties:
+      ip:
+        description: IP address to query
+        type: string
+    example: |-
+      {
+          "ip": "123.123.123.123"
+      }
+  IpReputationResponse:
+    title: Root Type for IpReputationResponse
+    description: the result
+    required:
+      - data
+      - status
+    type: object
+    properties:
+      status:
+        enum:
+          - VALID
+          - INVALID
+      data:
+        $ref: "/src/swagger.yaml#/components/schemas/IpReputationData"
+        properties:
+          threatCategories:
+            type: array
+            items: {}
+          threatLevel:
+            format: int32
+            type: integer
+    example: |-
+      {
+          "status": "INVALID",
+          "data": {
+              "threatCategories": [
+                  "Proxy",
+                  "Botnets"
+              ],
+              "threatLevel": 95
+          }
+      }
+  IpReputationData:
+    title: Root Type for IpReputationData
+    description: The root of the IpReputationData type's schema.
+    type: object
+    properties:
+      threatCategories:
+        description:
+          "Spam Sources, Windows Exploits, Web Attacks, Botnets, Scanners,\
+            \ Denial of\r\nService, Reputation, Phishing, Proxy, Mobile Threats, Tor\
+            \ proxy"
+        type: array
+        items:
+          type: string
+      threatLevel:
+        format: int32
+        type: integer
+    example: |-
+      {
+          "threatCategories": [
+              "Proxy",
+              "Botnets"
+          ],
+          "threatLevel": 95
+      }
+  ScanScheduleItem:
+    title: ScanScheduleItem
+    description: The root of the ScanScheduleItem type's schema.
+    required:
+      - scanFinishTime
+      - scanStartTime
+      - weekDays
+    type: object
+    properties:
+      weekDays:
+        type: array
+        items:
+          type: integer
+      scanStartTime:
+        type: string
+      scanFinishTime:
+        type: string
+    example:
+      weekDays:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      scanStartTime: 180
+      scanFinishTime: 420
+  CreateScanScheduleItem:
+    title: CreateScanScheduleItem
+    description: Creates scan schedules by partner id
+    required:
+      - scanFinishTime
+      - scanStartTime
+      - weekDays
+      - deviceId
+    type: object
+    properties:
+      weekDays:
+        type: array
+        items:
+          type: integer
+      scanStartTime:
+        type: string
+      scanFinishTime:
+        type: string
+      deviceId:
+        type: integer
+    example:
+      deviceId: 1
+      weekDays:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      scanStartTime: 180
+      scanFinishTime: 420
+  ScanResult:
+    title: Root Type for ScanResult
+    description: The root of the ScanResult type's schema.
+    required:
+      - vulnerabilities
+      - deviceId
+      - date
+      - agentId
+    type: object
+    properties:
+      date:
+        format: int32
+        type: integer
+      agentId:
+        format: int32
+        type: integer
+      deviceId:
+        format: int32
+        type: integer
+      vulnerabilities:
+        type: array
+        items:
+          $ref: "/src/swagger.yaml#/components/schemas/Vulnerability"
+    example: |-
+      {
+          "date": 1475148966,
+          "agentId": 1,
+          "deviceId": 1,
+          "vulnerabilities": []
+      }
+  AgentScanResult:
+    title: AgentScanResult
+    description: The root of the AgentScanResult type's schema.
+    required:
+      - vulnerabilities
+      - deviceId
+      - date
+      - agentId
+    type: object
+    properties:
+      date:
+        format: int32
+        type: integer
+      deviceId:
+        format: int32
+        type: integer
+      vulnerabilities:
+        type: array
+        items:
+          $ref: "/src/swagger.yaml#/components/schemas/Vulnerability"
+    example: |-
+      {
+          "date": 1475148966,
+          "deviceId": 1,
+          "vulnerabilities": []
+      }
+  OnDemandInfo:
+    title: OnDemandInfo
+    description: Information about on-demand vulnerability scan status
+    required:
+      - state
+      - lastScan
+      - deviceId
+    type: object
+    properties:
+      state:
+        enum:
+          - SCHEDULED
+          - FINISHED
+          - NONE
+      deviceId:
+        description: device ID
+        type: integer
+      lastScan:
+        description: last scan time
+        type: integer
+    example: |-
+      {
+          "state": "SCHEDULED|FINISHED|NONE",
+          "deviceId": 12,
+          "lastScan": 1475148966
+      }
+  EnableOnDemandRequest:
+    title: Root Type for EnableOnDemandRequest
+    description: Enable on-demand vulnerability scan for given agent
+    required:
+      - deviceIds
+    type: object
+    properties:
+      deviceIds:
+        description: list of device ID or empty list to scan all
+        type: array
+        items:
+          type: integer
+    example: |-
+      {
+          "deviceIds": [
+              12,
+              15,
+              90
+          ]
+      }
+  Vulnerability:
+    title: Vulnerability
+    description: Vulnerability
+    required:
+      - cve
+      - name
+      - nvtFamily
+      - port
+      - recommendation
+      - severity
+      - threat
+      - xref
+    type: object
+    properties:
+      threat:
+        enum:
+          - HIGH
+          - MEDIUM
+          - LOW
+          - LOG
+          - DEBUG
+          - UNKNOWN
+      severity:
+        format: int32
+        type: integer
+      port:
+        type: string
+      name:
+        type: string
+      recommendation:
+        type: string
+      nvtFamily:
+        type: string
+      cve:
+        type: string
+      xref:
+        type: string
+    example: |-
+      {
+          "threat": "HIGH|MEDIUM|LOW|LOG|DEBUG|UNKNOWN",
+          "severity": 2,
+          "port": "",
+          "name": "",
+          "recommendation": "",
+          "nvtFamily": "",
+          "cve": "",
+          "xref": ""
+      }
+  CreatedWebhook:
+    title: CreatedWebhook
+    description: Created web-hook
+    required:
+      - fullData
+      - event
+      - id
+      - object
+      - url
+    type: object
+    properties:
+      fullData:
+        description:
+          Wether full object data should be included when sending notification
+          via web-hook or only minimal details.
+        type: boolean
+      object:
+        description: Which object is the web-hook subscribed to.
+        enum:
+          - DEVICE
+          - THREAT
+          - FINGERPRINTED_DEVICE
+          - PARENTAL
+      event:
+        description: Specific event to listen to
+        enum:
+          - CREATE
+          - UPDATE
+          - ALL
+      url:
+        format: uri
+        description: Where to send data via HTTP request.
+        type: string
+      id:
+        description: Unique internal web-hook id
+        type: integer
+    example: |-
+      {
+          "fullData": true,
+          "object": "DEVICE",
+          "event": "ALL",
+          "url": "https://www.example.com",
+          "id": 121
+      }
+  CreateWebhookRequest:
+    title: CreateWebhookRequest
+    description: Create web-hook request
+    required:
+      - fullData
+      - event
+      - object
+      - url
+    type: object
+    properties:
+      fullData:
+        description:
+          Wether full object data should be included when sending notification
+          via web-hook or only minimal details.
+        type: boolean
+      object:
+        description: Which object is the web-hook subscribed to.
+        enum:
+          - DEVICE
+          - THREAT
+          - FINGERPRINTED_DEVICE
+          - PARENTAL
+      event:
+        description: Specific event to listen to
+        enum:
+          - CREATE
+          - UPDATE
+          - ALL
+      url:
+        format: uri
+        description: Where to send data via HTTP request.
+        type: string
+    example: |-
+      {
+          "fullData": true,
+          "object": "DEVICE",
+          "event": "CREATE",
+          "url": "https://www.example.com"
+      }
+  DeviceEventData:
+    title: DeviceEventData
+    description:
+      Data which will be specific to subscribed object, for any object
+      there will always be included an object id and `agentId`. Based on web-hook
+      configuration, the `data` object may or may not include full details of the
+      subscribed object. For example full threat or device details.
+    required:
+      - capabilities
+      - accurate
+      - agentId
+      - brand
+      - dhcpHostname
+      - feedback
+      - gatewayMac
+      - hidden
+      - id
+      - ip
+      - lastSeen
+      - mac
+      - model
+      - modelAccuracyLevel
+      - monitored
+      - operatingSystem
+      - partnerAgentId
+      - quarantine
+      - secured
+      - type
+    type: object
+    properties:
+      agentId:
+        type: integer
+      partnerAgentId:
+        type: string
+      id:
+        type: integer
+      quarantine:
+        type: boolean
+      monitored:
+        type: boolean
+      secured:
+        type: boolean
+      hidden:
+        type: boolean
+      dhcpHostname:
+        type: string
+      mac:
+        type: string
+      lastSeen:
+        type: integer
+      modelAccuracyLevel:
+        type: integer
+      model:
+        type: string
+      brand:
+        type: string
+      type:
+        type: string
+      operatingSystem:
+        type: string
+      gatewayMac:
+        type: string
+      feedback:
+        type: string
+      ip:
+        type: string
+      accurate:
+        type: boolean
+      capabilities:
+        $ref: "/src/swagger.yaml#/components/schemas/DeviceCapabilities"
+        properties:
+          streaming:
+            type: boolean
+          4k:
+            type: boolean
+    example: |-
+      {
+          "agentId": 1,
+          "partnerAgentId": "48:47:8f:9r",
+          "id": 2,
+          "quarantine": true,
+          "monitored": true,
+          "secured": true,
+          "hidden": false,
+          "dhcpHostname": "hostname",
+          "mac": "aa:bb:cc:dd:ee:ff",
+          "lastSeen": 1499061855,
+          "modelAccuracyLevel": 2,
+          "model": "Some model",
+          "brand": "Some brand",
+          "type": "Some type",
+          "operatingSystem": "Some system",
+          "gatewayMac": "64:d1:54:ce:fa:52",
+          "feedback": "some feedback",
+          "ip": "10.2.1.175",
+          "accurate": true,
+          "capabilities": {
+              "streaming": true,
+              "4k": true
+          }
+      }
+  EventChanges:
+    title: Root Type for EventChanges
+    description:
+      This indicates changes that were made to the subscribed object.
+      The `changes` object will include property names of subscribed object and
+      will show the changes that were made to this object. These details will only
+      be included in `UPDATE` notifications.
+    type: object
+    properties:
+      old:
+        type: object
+        properties:
+          quarantine:
+            type: boolean
+      new:
+        type: object
+        properties:
+          quarantine:
+            type: boolean
+    example: |-
+      {
+          "old": {
+              "quarantine": false
+          },
+          "new": {
+              "quarantine": true
+          }
+      }
+  DeviceEventUpdateResponse:
+    title: DeviceEventUpdateResponse
+    description: DeviceEventUpdateResponse
+    required:
+      - data
+      - event
+      - object
+      - changes
+    type: object
+    properties:
+      object:
+        description: Object which generated the notification.
+        enum:
+          - DEVICE
+      event:
+        description: What type of event was generated.
+        default: UPDATE
+        type: string
+      data:
+        $ref: "/src/swagger.yaml#/components/schemas/DeviceEventData"
+        description:
+          Data which will be specific to subscribed object, for any object
+          there will always be included an object id and `agentId`. Based on web-hook
+          configuration, the `data` object may or may not include full details of
+          the subscribed object. For example full threat or device details.
+        properties:
+          agentId:
+            format: int32
+            type: integer
+          partnerAgentId:
+            type: string
+          id:
+            format: int32
+            type: integer
+          quarantine:
+            type: boolean
+          monitored:
+            type: boolean
+          secured:
+            type: boolean
+          hidden:
+            type: boolean
+          dhcpHostname:
+            type: string
+          mac:
+            type: string
+          lastSeen:
+            format: int32
+            type: integer
+          modelAccuracyLevel:
+            format: int32
+            type: integer
+          model:
+            type: string
+          brand:
+            type: string
+          type:
+            type: string
+          operatingSystem:
+            type: string
+          gatewayMac:
+            type: string
+          feedback:
+            type: string
+          ip:
+            type: string
+          accurate:
+            type: boolean
+          capabilities:
+            type: object
+            properties:
+              streaming:
+                type: boolean
+              4k:
+                type: boolean
+      changes:
+        $ref: "/src/swagger.yaml#/components/schemas/EventChanges"
+        description:
+          This indicates changes that were made to the subscribed object.
+          The `changes` object will include property names of subscribed object
+          and will show the changes that were made to this object. These details
+          will only be included in `UPDATE` notifications.
+        properties:
+          old:
+            type: object
+            properties:
+              quarantine:
+                type: boolean
+          new:
+            type: object
+            properties:
+              quarantine:
+                type: boolean
+    example:
+      "object": "DEVICE"
+      "event": "UPDATE"
+      "data":
+        "agentId": 1
+        "partnerAgentId": "48:47:8f:9r"
+        "id": 2
+        "quarantine": true
+        "monitored": true
+        "secured": true
+        "hidden": false
+        "dhcpHostname": "hostname"
+        "mac": "aa:bb:cc:dd:ee:ff"
+        "lastSeen": 1499061855
+        "modelAccuracyLevel": 2
+        "model": "Some model"
+        "brand": "Some brand"
+        "type": "Some type"
+        "operatingSystem": "Some system"
+        "gatewayMac": "64:d1:54:ce:fa:52"
+        "feedback": "some feedback"
+        "ip": "10.2.1.175"
+        "accurate": true
+        "capabilities":
+          "streaming": true
+          "4k": true
+      "changes":
+        "old":
+          "quarantine": false
+        "new":
+          "quarantine": true
+  DeviceEventCreateResponse:
+    title: DeviceEventCreateResponse
+    description: DeviceEventCreateResponse
+    required:
+      - data
+      - event
+      - object
+    type: object
+    properties:
+      object:
+        description: Object which generated the notification.
+        enum:
+          - DEVICE
+      event:
+        description: What type of event was generated.
+        default: CREATE
+        type: string
+      data:
+        $ref: "/src/swagger.yaml#/components/schemas/DeviceEventData"
+        description:
+          Data which will be specific to subscribed object, for any object
+          there will always be included an object id and `agentId`. Based on web-hook
+          configuration, the `data` object may or may not include full details of
+          the subscribed object. For example full threat or device details.
+        properties:
+          agentId:
+            format: int32
+            type: integer
+          partnerAgentId:
+            type: string
+          id:
+            format: int32
+            type: integer
+          quarantine:
+            type: boolean
+          monitored:
+            type: boolean
+          secured:
+            type: boolean
+          hidden:
+            type: boolean
+          dhcpHostname:
+            type: string
+          mac:
+            type: string
+          lastSeen:
+            format: int32
+            type: integer
+          modelAccuracyLevel:
+            format: int32
+            type: integer
+          model:
+            type: string
+          brand:
+            type: string
+          type:
+            type: string
+          operatingSystem:
+            type: string
+          gatewayMac:
+            type: string
+          feedback:
+            type: string
+          ip:
+            type: string
+          accurate:
+            type: boolean
+          capabilities:
+            type: object
+            properties:
+              streaming:
+                type: boolean
+              4k:
+                type: boolean
+    example:
+      "object": "DEVICE"
+      "event": "CREATE"
+      "data":
+        "agentId": 1
+        "partnerAgentId": "48:47:8f:9r"
+        "id": 2
+        "quarantine": true
+        "monitored": true
+        "secured": true
+        "hidden": false
+        "dhcpHostname": "hostname"
+        "mac": "aa:bb:cc:dd:ee:ff"
+        "lastSeen": 1499061855
+        "modelAccuracyLevel": 2
+        "model": "Some model"
+        "brand": "Some brand"
+        "type": "Some type"
+        "operatingSystem": "Some system"
+        "gatewayMac": "4d:f7:d5:sf:47"
+        "feedback": "feedback"
+        "ip": "192.168.50.50"
+        "accurate": false
+        "capabilities":
+          "streaming": true
+          "4k": true
+  ThreatEventCreateResponse:
+    title: ThreatEventCreateResponse (In Progress)
+    description: ThreatEventCreateReseponse
+    required:
+      - data
+      - event
+      - object
+    type: object
+    properties:
+      object:
+        description: Object which generated the notification.
+        enum:
+          - THREAT
+      event:
+        description: What type of event was generated.
+        default: CREATE
+        type: string
+      data:
+        $ref: "/src/swagger.yaml#/components/schemas/ThreatDetails"
+        description:
+          Data which will be specific to subscribed object, for any object
+          there will always be included an object id and `agentId`. Based on web-hook
+          configuration, the `data` object may or may not include full details of
+          the subscribed object. For example full threat or device details.
+    example:
+      "partnerAgentId": "6742b3bc41692673c83385235484030b02"
+      "deviceId": 2797216
+      "deviceMac": "b8:27:eb:29:77:4b"
+      "seen": false
+      "metadata":
+        "ip": "42.7.26.16"
+        "port": 22
+      "id": 343859
+      "agentId": 2797203
+      "type": "REMOTE_ACCESS"
+      "description": "We detected an unauthorized attempt to access your device \"Generic CUJO IoT device\" on port 22 from an IP 42.7.26.16 which originates from China."
+      "level": "CRITICAL"
+      "action": "block"
+      "geolocation": "China"
+      "customerAction": "NO_ACTION"
+      "startedAt": 1524133474538
+      "endedAt": 1524133474538
+  DeviceFingerprint:
+    title: DeviceFingerprint
+    description: The root of the DeviceFingerprint type's schema.
+    required:
+      - type
+      - value
+    type: object
+    properties:
+      type:
+        enum:
+          - MAC
+          - USER_AGENT
+          - DHCP
+          - DHCP_VENDOR
+          - DHCP_HOSTNAME
+          - VENDOR
+          - DNS
+          - SSDP_HEADER
+          - SSDP_RESPONSE
+          - HTTP
+          - MDNS
+          - ROUTER
+      value:
+        type: string
+    example: |-
+      {
+          "type": "MAC",
+          "value": "4c:8d:79:99:99:99"
+      }
+  FingerprintResponse:
+    title: FingerprintResponse
+    description: The root of the FingerprintResponse type's schema.
+    type: object
+    properties:
+      vendor:
+        type: string
+      model:
+        type: object
+        properties:
+          name:
+            type: string
+          description:
+            type: string
+          defaultName:
+            type: string
+          brandName:
+            type: string
+          deviceTypeName:
+            type: string
+          deviceTypeDescription:
+            type: string
+    example: |-
+      {
+          "vendor": "Apple",
+          "model": {
+              "name": "iPhone 5",
+              "description": "Apple iPhone 5",
+              "defaultName": "Apple iPhone 5",
+              "brandName": "Apple",
+              "deviceTypeName": "Phone",
+              "deviceTypeDescription": "Phone"
+          }
+      }
+  Country:
+    title: Country
+    description: Country.
+    required:
+      - name
+      - id
+    type: object
+    properties:
+      name:
+        description: Formatted country name
+        type: string
+      id:
+        description: Internal country id
+        type: integer
+    example: |-
+      {
+          "name": "Some name",
+          "id": 123
+      }
+
+  ActivityLogDevice:
+    title: ActivityLogDevice
+    description: The root of the ActivityLogDevice type's schema.
+    required:
+      - icon
+      - id
+      - name
+      - selected
+      - ip
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      name:
+        type: string
+      icon:
+        $ref: "/src/swagger.yaml#/components/schemas/IconJson"
+        properties:
+          id:
+            format: int32
+            type: integer
+          name:
+            type: string
+          prefix:
+            type: string
+          icons:
+            type: object
+            properties:
+              laptop@2x:
+                type: string
+              laptop@3x:
+                type: string
+              laptop:
+                type: string
+      selected:
+        type: boolean
+      ip:
+        type: string
+    example:
+      id: 151150
+      selected: false
+      name: OpenWRT System Router
+      ip: 192.168.169.134
+      icon:
+        id: 75
+        name: Router
+        prefix: router
+        icons:
+          router: http://test-node-01.c.cujo-test-210114.internal:10004/icons/router/ic_device_router.png
+          router@2x: http://test-node-01.c.cujo-test-210114.internal:10004/icons/router/ic_device_router@2x.png
+          router@3x: http://test-node-01.c.cujo-test-210114.internal:10004/icons/router/ic_device_router@3x.png
+  IconJson:
+    title: IconJson
+    description: The root of the IconJson type's schema.
+    required:
+      - icons
+      - id
+      - name
+      - prefix
+    type: object
+    properties:
+      id:
+        format: int32
+        type: integer
+      name:
+        type: string
+      prefix:
+        type: string
+      icons:
+        properties:
+          laptop@2x:
+            type: string
+          laptop@3x:
+            type: string
+          laptop:
+            type: string
+    example: |-
+      {
+          "id": 73,
+          "name": "Laptop",
+          "prefix": "laptop",
+          "icons": {
+              "laptop@2x": "http://test-node-02.c.cujo-test-210114.internal:10004/icons/laptop/ic_device_laptop@2x.png",
+              "laptop@3x": "http://test-node-02.c.cujo-test-210114.internal:10004/icons/laptop/ic_device_laptop@3x.png",
+              "laptop": "http://test-node-02.c.cujo-test-210114.internal:10004/icons/laptop/ic_device_laptop.png"
+          }
+      }
+  ActivityLogDeviceItem:
+    title: ActivityLogDeviceItem
+    description: The root of the ActivityLogDeviceItem type's schema.
+    required:
+      - device
+      - allowed
+      - categories
+      - createdOn
+      - domain
+      - id
+    type: object
+    properties:
+      allowed:
+        type: boolean
+      domain:
+        type: string
+      id:
+        type: string
+      createdOn:
+        type: integer
+      device:
+        $ref: "/src/swagger.yaml#/components/schemas/ActivityLogDevice"
+        properties:
+          id:
+            format: int32
+            type: integer
+          name:
+            type: string
+          icon:
+            type: object
+            properties:
+              id:
+                format: int32
+                type: integer
+              name:
+                type: string
+              prefix:
+                type: string
+              icons:
+                type: object
+                properties:
+                  laptop@2x:
+                    type: string
+                  laptop@3x:
+                    type: string
+                  laptop:
+                    type: string
+      categories:
+        description: ""
+        type: array
+        items:
+          type: string
+    example: |-
+      {
+          "allowed": false,
+          "domain": "facebook.com",
+          "id": "94lUm2kBE6FtLDwNZqYW",
+          "createdOn": 1553089193487,
+          "device": {
+              "id": 151101,
+              "name": "CbNbWLTK001",
+              "icon": {
+                  "id": 73,
+                  "name": "Laptop",
+                  "prefix": "laptop",
+                  "icons": {
+                      "laptop@2x": "http://test-node-02.c.cujo-test-210114.internal:10004/icons/laptop/ic_device_laptop@2x.png",
+                      "laptop@3x": "http://test-node-02.c.cujo-test-210114.internal:10004/icons/laptop/ic_device_laptop@3x.png",
+                      "laptop": "http://test-node-02.c.cujo-test-210114.internal:10004/icons/laptop/ic_device_laptop.png"
+                  }
+              }
+          },
+          "categories": []
+      }
+  ActiveSchedule:
+    title: ActiveSchedule
+    description: The root of the ActiveSchedule type's schema.
+    required:
+      - id
+      - name
+      - type
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      type:
+        type: string
+    example: |-
+      {
+          "id": 5221,
+          "name": "TEST ACTIVE SCHEEDULE",
+          "type": "CUSTOM"
+      }
+  ChangeBlockedAllowedDomains:
+    title: ChangeBlockedAllowedDomains
+    description: The root of the ChangeBlockedAllowedDomains type's schema.
+    required:
+      - allowed
+      - blocked
+    type: object
+    properties:
+      blocked:
+        type: array
+        items:
+          type: string
+      allowed:
+        type: array
+        items:
+          type: string
+    example: |-
+      {
+          "blocked": [
+              "www.amazon.com",
+              "www.wikipedia.org"
+          ],
+          "allowed": [
+              "www.facebook.com"
+          ]
+      }
+
+
+  # Copied from CC_Parental
+  DeviceProperties:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: CUJO unique device id
+      mac:
+        type: string
+        description: Device MAC address
+    description: Device Properties, enhanced with MAC addresses
+    example:
+      id: 12345
+      mac: ab:cd:ef:12:34:56
+      quarantine: true
+      monitored: true
+      secured: true
+      hidden: false
+      dhcpHostname: Chromecast
+      lastSeen: 1478761546
+      modelAccuracyLevel: 8
+      accurate: true
+      operatingSystem: Windows 8.1
+      model: abc
+      feedback: feedback
+      brand: generic
+      type: computer
+      capabilities:
+        streaming: true
+        4k: true
+  BlockList:
+    type: array
+    example:
+      - platform:google_plus
+      - category:adult
+    items:
+      $ref: '#BlockListEntry'
+  BlockListEntry:
+    type: string
+    description: Identifies the category, platform or domain to be blocked
+  AccessProfileDescriptor:
+    type: object
+    properties:
+      blacklist:
+        type: array
+        items:
+          type: string
+      whitelist:
+        type: array
+        items:
+          type: string
+    example:
+      blacklist:
+        - category:adult
+        - category:violence
+      whitelist:
+        - domain:cdn.facebook.com
+  TrackingEnablement:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+      timeZone:
+        type: string
+        description: a time zone identifier provided by IANA https://www.iana.org/time-zones registry
+        example: Europe/London
+  UsageNotificationPayload:
+    type: object
+    properties:
+      object:
+        type: string
+        enum:
+          - PARENTAL
+      event:
+        type: string
+        enum:
+          - UPDATE
+      id:
+        type: string
+        description: Unique identifier for the notification
+      data:
+        type: array
+        items:
+          $ref: '#UsageStats'
+    # UsageNotificationPayload example
+    example:
+      object: PARENTAL
+      event: UPDATE
+      data:
+        windowStartTime: 1540395900
+        windowEndTime: 15403396800
+        statistics:
+          agentId: 98765
+          partnerAgentId: aa:bb:cc:dd:ee:ff
+          devices:
+            - deviceId: 123456
+              partnerDeviceId: 11:22:33:44:55:66
+              usage:
+                category:user_generated:
+                  timeSeconds: 600
+                platform:wikipedia:
+                  timeSeconds: 300
+                  tags:
+                    - category:social
+                    - category:news
+                platform:facebook:
+                  timeSeconds: 300
+                  tags:
+                    - category:social
+            - deviceId: 10
+              partnerDeviceId: 52044024131
+              usage:
+                category:user_generated:
+                  timeSeconds: 900
+                platform:wikipedia:
+                  timeSeconds: 300
+                  tags:
+                    - category:social
+                    - category:news
+                platform:instagram:
+                  timeSeconds: 900
+                  tags:
+                    - category:social
+                domain:cujo.ai:
+                  timeSeconds: 300
+                domain:ebay.com:
+                  timeSeconds: 300
+                  tags:
+                    - category:shopping
+  UsageStats:
+    required:
+      - agentId
+      - deviceId
+      - statistics
+      - windowEndTime
+      - windowStartTime
+    type: object
+    properties:
+      deviceId:
+        type: integer
+        description: Cujo identifier for the user device
+        example: 87654
+      agentId:
+        type: integer
+        description: Cujo identifier for the router agent
+        example: 12345
+      windowStartTime:
+        type: integer
+        description: Unix Timestamp for the start of aggregation interval
+      windowEndTime:
+        type: integer
+        description: Unix Timestamp for the end of aggregation interval
+      statistics:
+        type: array
+        items:
+          $ref: '#UsageStats_statistics'
+  UsageWebHookInput:
+    allOf:
+      - $ref: '#UsageWebHookDescriptor'
+      - type: object
+        properties:
+          authentication:
+            $ref: '#UsageWebHookInput_authentication'
+  UsageWebHookDescriptor:
+    type: object
+    properties:
+      fullData:
+        type: boolean
+      object:
+        type: string
+        enum:
+          - PARENTAL
+      event:
+        type: string
+        enum:
+          - UPDATE
+      properties:
+        $ref: '#UsageWebHookDescriptor_properties'
+      url:
+        type: string
+        description: The URL of the webhook (receiver) endpoint
+  ParentalCategoryDescriptor:
+    type: object
+    properties:
+      id:
+        type: string
+        description: |
+          Immutable identifier for a well known category; unique across all category classes. Examples:  "category:violence"
+      title:
+        type: string
+        description: Human readable category label
+    description: A traffic/content categorization descriptor
+  ParentalPlatformDescriptor:
+    type: object
+    properties:
+      id:
+        type: string
+        description: |
+          Immutable identifier for a well known platform; unique across all category classes. Examples: "application:facebook", "category:violence"
+      title:
+        type: string
+        description: Human readable platform label
+      description:
+        type: string
+        description: Human readable platform description
+      tags:
+        type: array
+        description: List of related categorization identifiers
+        items:
+          type: string
+    description: A traffic/content categorization descriptor
+  UsageStats_statistics:
+    type: object
+    properties:
+      deviceId:
+        type: integer
+      agendId:
+        type: integer
+      partnerAgentId:
+        type: string
+        description: Partner's identifier for the agent (CMMAC)
+      partnerDeviceId:
+        type: string
+        description: Partner's identifier for the device (deviceMAC)
+      usage:
+        type: array
+        items:
+          $ref: '#StatsItem_statistics'
+  StatsItem_statistics:
+    type: object
+    description: A hashmap with usage identifier (platform, category, domain) as a key and the object as the value
+    properties:
+      timeSeconds:
+        type: integer
+      tags:
+        type: array
+        description: List of related categorization identifiers
+        items:
+          type: string
+    example:
+      category:social:
+        timeSeconds: 300
+      platform:facebook:
+        timeSeconds: 300
+        tags:
+          - category:social
+      category:shopping:
+        timeSeconds: 300
+      domain:slickdeals.net:
+        timeSeconds: 300
+        tags:
+          - category:shopping
+      domain:www.instructure.com:
+        timeSeconds: 300
+      domain:www.canvaslms.com:
+        timeSeconds: 300
+
+  UsageWebHookInput_authentication:
+    type: object
+    properties:
+      type:
+        type: string
+        description: Authentication type
+        enum:
+          - OAUTH
+      apiKey:
+        type: string
+        description: The API authentication key
+      apiSecret:
+        type: string
+        description: The API authentication secret
+  UsageWebHookDescriptor_properties:
+    type: object
+    properties:
+      batchSize:
+        type: integer
+        description: How big are the request batches, how many device statistics are delivered in a single call
+        example: 1000
+      rps:
+        type: integer
+        description: Request per second limit for this webhook
+        example: 500
+  securitySchemes:
+  AccessToken:
+    type: http
+    description: JWT Token
+    scheme: bearer
+  AgentIdOrPartnerAgentIdParameter:
+  AgentNameRequest:
+    title: Root Type for AgentNameRequest
+    description: Change the agent name
+    required:
+      - name
+    type: object
+    properties:
+      name:
+        description:
+          The new agent name
+        maxLength: 255
+        type: string
+    example: |-
+      {
+          "name": "test"
+      }
+  PartnerAgentIdParameter:
+    name: partnerAgentId
+    in: path
+    description: Partner agent ID
+    required: true
+    style: simple
+    explode: false
+    schema:
+      type: string
+  PartnerDeviceIdParameter:
+    name: partnerDeviceId
+    in: path
+    description: Partner device ID
+    required: true
+    style: simple
+    explode: false
+    schema:
+      type: string
+  DeviceIdParameter:
+    name: deviceId
+    in: path
+    description: CUJO device ID
+    required: true
+    style: simple
+    explode: false
+    schema:
+      type: integer
+
+  ScheduleRequest:
+    title: ScheduleRequest
+    description: The root of the ScheduleRequest type's schema.
+    required:
+      - weekDay
+    type: object
+    properties:
+      weekDay:
+        description: Day of the week
+        type: Set<Integer>
+      startTime:
+        description: Start Time
+        type: Date
+      endTime:
+        description: End Time
+        type: Date
+      title:
+        description: Title
+        type: String
+      enabled:
+        description: Is this profile enabled?
+        type: boolean
+      pauseInternet:
+        description: Is Internet Pause enabled?
+        type: boolean
+
+  ScheduleResponse:
+    title: ScheduleResponse
+    description: The root of the AgentFeaturesResponse type's schema.
+    required:
+      - security
+    type: object
+    properties:
+      id:
+        description: Customer ID
+        type: long
+      profileId:
+        description: Profile ID
+        type: long
+      agentId:
+        description: Agent ID
+        type: long
+      title:
+        description: Title
+        type: String
+      enabled:
+        description: Is this profile enabled?
+        type: boolean
+      scheduleType:
+        description: Schedule Type
+        type: ScheduleType
+      startTime:
+        description: Start Time
+        type: Date
+      endTime:
+        description: End Time
+        type: Date
+      weekDay:
+        description: Day of the week
+        type: Set<Integer>
+      pauseInternet:
+        description: Is Internet Pause enabled?
+        type: boolean
+      categories:
+        description: List of categories
+        type: List<AccessProfileContentCategory>
+      platforms:
+        description: List of Platform Responses
+        type: List<PlatformResponse>
+      allowedDomains:
+        description: Allowed Domains
+        type: Set<String>
+      blockedDomains:
+        description: Blocked Domains
+        type: Set<String>
+
+  TokenType:
+    title: TokenType
+    description: Type of token. This will also create a new token for if no existing token is found.
+    required:
+      - type
+      - token
+    type: object
+    properties:
+      type:
+        description: Type (either ANDROID or IOS, in caps)
+        type: long
+      token:
+        description: Token
+        type: long
+
+  CountryAPI:
+    title: Country API
+    description: Get country code and name information. This call does not require authentication.
+    type: object
+    properties:
+      countryCode:
+        description: Country Code
+        type: String
+      areaCode:
+        description: Area Code
+        type: String
+      name:
+        description: Name
+        type: String
+
+  CountryBlacklistReq:
+    title: Country API
+    description: Get country code and name information. This call does not require authentication.
+    type: object
+    properties:
+      countryCode:
+        description: Country Code
+        type: String
+      areaCode:
+        description: Area Code
+        type: String
+      name:
+        description: Name
+        type: String
+
+  CountryBlacklistResp:
+    title: CountryBlacklist
+    description: Blacklisted countries for some specific customer agent.
+    type: array
+    properties:
+      id:
+        description: id
+        type: long
+      blacklisted:
+        description: blacklisted
+        type: boolean
+      name:
+        description: Name
+        type: String
+
+  AppSettings:
+    title: AppSettings
+    description: Get common settings for the mobile application.
+    type: object
+    properties:
+      allowedUpgradePeriod:
+        description: Allowed upgrade period.
+        type: long
+      supportAvailabilityInHours:
+        description: Support availability in hours.
+        type: long
+      defaultAccessProfileAvatarId:
+        description: Default access profile avatar ID.
+        type: long
+      defaultAccessProfileAvatar:
+        description: Default access profile avatar.
+        type: String
+      serviceActivationUrl:
+        description: Service activation URL.
+        type: String
+      newSubscriptionUrl:
+        description: New subscription URL.
+        type: String
+      mySubscriptionUrl:
+        description: My subscription URL.
+        type: String
+      redeemCodeUrl:
+        description: Redeem code URL.
+        type: String
+      webBackToApp:
+        description: Default access profile avatar ID.
+        type: String
+      reviewUrl:
+        description: Review URL.
+        type: String
+
+  AppSettings2:
+    title: AppSettings
+    description: Get common settings for the mobile application.
+    type: object
+    properties:
+      allowedUpgradePeriod:
+        description: Allowed upgrade period.
+        type: long
+
+  InitiateRecurringScanReq:
+    title: InitiateRecurringScanReq
+    description: Initiate reccuring scan for agent.
+    type: object
+    properties:
+      agentId:
+        description: Allowed upgrade period.
+        type: long
+      weekDays:
+        description: Days of the week.
+        type: array
+        items:
+          type: integer
+      scanStartTime:
+        description: Start time of scan.
+        type: string
+      scanFinishTime:
+        description: End time of scan.
+        type: string
+
+  InitiateRecurringScanResp:
+    title: InitiateRecurringScanResp
+    description: Initiate reccuring scan for agent.
+    type: object
+    properties:
+      scansSchedulerName:
+        description: Scans scheduler name.
+        type: string
+      deviceId:
+        description: Device ID.
+        type: integer
+      weekDays:
+        description: Days of the week.
+        type: array
+        items:
+          type: integer
+      scanStartTime:
+        description: Start time of scan.
+        type: string
+      scanFinishTime:
+        description: End time of scan.
+        type: string
+
+  InitiateOnDemandScan:
+    title: InitiateOnDemandScan
+    description: Initiate scan for a given agent on given time (recurring, all devices)
+    type: object
+    properties:
+      state:
+        description: Allowed upgrade period - SCHEDULED|FINISHED|NONE
+        type: string
+      deviceId:
+        description: Device ID.
+        type: integer
+      lastScan:
+        description: Default access profile avatar ID.
+        type: long
+
+
+  ScanResultsDevice:
+    title: ScanResultsDevice
+    description: Access vulnerability scan results of agent's device.
+    type: object
+    properties:
+      type: array
+      properties:
+        id:
+          description: id
+          type: integer
+        scanTime:
+          description: Scan time.
+          type: long
+        totalVulnerabilities:
+          description: Total number of vulnerabilities.
+          type: long
+
+  ScanResultsReport:
+    title: ScanResultsReport
+    description: Access vulnerability scan results of a given report.
+    type: object
+    properties:
+      allowedUpgradePeriod:
+        description: Allowed upgrade period.
+        type: long
+      supportAvailabilityInHours:
+        description: Support availability in hours.
+        type: long
+      defaultAccessProfileAvatarId:
+        description: Default access profile avatar ID.
+        type: long
+
+  Features:
+    title: Agent Features
+    description: Agent features.
+    type: object
+    properties:
+      deviceNotifications:
+        description: Allowed upgrade period.
+        type: boolean
+      threatDetailsStats:
+        description: Threat detail statistics.
+        type: boolean
+      accessSchedule:
+        description: Access schedules
+        type: boolean
+      accessStats:
+        description: Access statistics.
+        type: boolean
+      adoptDhcp:
+        description: DHCP.
+        type: boolean
+      arpAlerts:
+        description: ARP alerts.
+        type: boolean
+      wildcardSupport:
+        description: Wild card support
+        type: boolean
+
+  ContentCategories:
+    title: Content Categories
+    description: Content categories
+    type: object
+    properties:
+      id:
+        description: ID of category. (the other ID field under icon is for the ID of the icon)
+        type: integer
+      name:
+        description: Name of category. (the other name field under Icon is for the name of the Icon)
+        type: string
+      prefix:
+        description: Prefix of icon.
+        type: string
+      icons:
+        description: URI of icon file.
+        type: array
+
+  DeviceGroup:
+    title: Device Group
+    description: Device Group
+    type: object
+    properties:
+      name:
+        description: Name of device group.
+        type: string
+
+  DeviceGroupPosition:
+    title: Device Group position
+    description: Device Group position.
+    type: object
+    properties:
+      position:
+        description: Position of device group. Note, only device groups that are under the same agent (if group G is on agent A, then only groups on agent A will be moved according to the position change).
+        type: integer

@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Device Groups API
+  summary: Get list of groups associated with specified agent.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
+  security:
+    - AccessToken: []
+
+
+post:
+  tags:
+    - Device Groups API
+  summary: To create a new group, post to the following.
+  description: To create a new group, post to the following.
+  operationId:
+  requestBody:
+        examples:
+          devicegroup:
+            value:
+              - name: Group1
+  responses:
+    200:
+      description: Created a new device group successfully.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceGroup"
+          examples:
+            schedule:
+              value:
+                - scanSchedulerName: 2903593
+                  deviceId: 2903589
+                  weekDays:
+                    - 1
+                    - 2
+                    - 3
+                  scanStartTime: 01:00
+                  scanFinishTime: 02:00
+                - scanSchedulerName: 2903593                -
+                  deviceId: 2903589
+                  weekDays:
+                    - 1
+                    - 2
+                    - 3
+                  scanStartTime: 01:00
+                  scanFinishTime: 02:00

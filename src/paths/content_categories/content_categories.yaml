@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Content Categories API
+  summary: Get all content categories.
+  description: Get all content categories.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/ContentCategories"
+          examples:
+            content-categories:
+              value:
+              - id: 16
+                name: AD BLOCKER
+                icon:
+                  id: 0
+                  prefix: none
+                  name: None
+                  icons:
+                    none@3x: "http://localhost:10004/icons/additional/other/none/none@3x.png"
+                    none@2x: "http://localhost:10004/icons/additional/other/none/none@2x.png"
+                    none: "http://localhost:10004/icons/additional/other/none/none.png"
+
+              - id: 17
+                name: ADULT
+                icon:
+                  id: 0
+                  prefix: none
+                  name: None
+                  icons:
+                    none@3x: "http://localhost:10004/icons/additional/other/none/none@3x.png"
+                    none@2x: "http://localhost:10004/icons/additional/other/none/none@2x.png"
+                    none: "http://localhost:10004/icons/additional/other/none/none.png"

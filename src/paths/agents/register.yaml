@@ -1,0 +1,82 @@
+post:
+  tags:
+    - Agents API(PA)
+    - GENERAL/CORE(PA)
+  summary: Register the new agent
+  description: Register the agent and return the agent information in response
+  operationId: CreateAgent
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/RegisterAgentRequest"
+        examples:
+          registerAgent:
+            value:
+              gatewayMacAddress: e4:95:6e:45:a4:88
+              gatewayPublicIp: 85.206.14.226
+              customerId: 348962
+    required: true
+  responses:
+    200:
+      description: Agent successfully activated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/RegisterAgentResponse"
+          examples:
+            activatedAgent:
+              value:
+                id: 2379
+                partnerAgentId: f9:8b:fc:da:da:1d
+                name: Gradma cujo
+                macAddress: f9:8b:fc:da:da:1d
+                cloudMode: dhcp
+                agentMode: dhcp
+                online: false
+                lastSeen: 129600
+    400:
+      description: Mac address or IP address is not in correct format
+      content:
+        application/json:
+          examples:
+            invalidMacAndIp:
+              value:
+                error: Input parameters are not correct in format
+                errors:
+                  - gatewayMacAddress: must match "^([0-9A-Fa-f]^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$[:]){5}([0-9A-Fa-f]^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$)$"
+                  - gatewayPublicIp: Invalid IP address
+    404:
+      description: Agent with passed and mac was not foundip
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            notFound:
+              value:
+                error: Agent not found by the MAC and IP
+    409:
+      description: Such IP and Mac belongs to agent, which was already activated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+          examples:
+            alreadyActivated:
+              value:
+                error: IP and MAC belongs to the agent which is already activated
+  security:
+    - AccessToken: []
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl -X POST \
+          https://api.cujo.io/v1/agents/register \
+          -H 'Authorization: Bearer eyJh...' \
+          -H 'Content-Type: application/json' \
+          -d $'{
+          "gatewayMacAddress": "e4:95:6e:45:a4:88",
+          "gatewayPublicIp": "85.206.14.226",
+          "customerId": "401786"
+        }'

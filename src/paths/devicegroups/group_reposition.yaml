@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Country API
+  summary: Get all available countries (POC)
+  description: Retrieve all available countries
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/CountryAPI"
+          examples:
+            countries:
+              value:
+                - countryCode: Some name
+                  areaCode: 123
+                  name:
+  security:
+    - AccessToken: []

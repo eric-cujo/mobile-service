@@ -1,0 +1,20 @@
+description: |
+   API providing access control for a group of devices via definition of access profile.
+   An access profile defines a group of devices that are owned by a single person and a set of policies.
+   Applying an access profile for a set of devices starts tracking activity for the access profile.
+
+   Traffic and activity is grouped based on:
+   - category (i.e. social category, news category)
+   - platform (i.e. facebook, youtube)
+   - websites (i.e. wikipedia.org)
+
+   Policies are used to set up restrictions that can be:
+   - permanently applied (basic blocking)
+   - applied based on time of day and day of the week (schedules)
+   - applied based on use (time limit)
+
+   Profiles that are configured reflect current state of the agent.
+   Sample workflow with this api would start with creating an access profile with a set of devices,
+   and optionally a list of policies that must be applied.
+   Later on, once policies have to be adjusted an update request with updated policy configuration has to be made.
+   New policy configuration will override all of the data that was stored and updates will come into effect.
