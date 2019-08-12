@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Devices API
+  summary: Get a list of device icons.
+  description: Get a list of device icons.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
+          examples:
+            device:
+              value:
+                id: tbd

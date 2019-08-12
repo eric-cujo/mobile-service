@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Agents API
+  summary: Change agent mode from to plug and play or vice versa.
+  description: Change agent mode from to plug and play or vice versa.
+  operationId:
+  requestBody:
+      description:
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentMode"
+          examples:
+            schedule:
+              value:
+                  mode: DHCP
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref:

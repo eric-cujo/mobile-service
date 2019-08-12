@@ -1,0 +1,66 @@
+get:
+  tags:
+    - Devices API
+  summary: Get device data
+  description: Get all available data for a specific agent device.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: 
+          examples:
+            device:
+              value:
+                id: tbd
+                recentlyAdded:
+                markedAsSeen:
+                quarantine:
+                paused:
+                monitored:
+                secured:
+                  - description:
+                fingerprintStatus:
+                placeholderName:
+                dhcpHostname:
+                modelModel:
+                brandName:
+                groupName:
+                name:
+                osName:
+                type:
+                mac:
+                ip:
+                ipv6:
+                customerId:
+                lastDhcp:
+                lastMac:
+                agentId:
+                modelId:
+                lastSeen:
+                groupId:
+                iconId:
+                added:
+                position:
+                deviceIcon:
+                  properties:
+                    id:
+                    prefix:
+                    name:
+                    icons:
+                customerPreference:
+                    brand:
+                    model:
+                    type:
+                agentSortProperties:
+                    sortOrder:
+                    sortType:
+                notificationSettings:
+                  properties:
+                profileName:
+                profileColor:
+                endpointSecurityInstalled:

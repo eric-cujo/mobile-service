@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Events API
+  summary: Latest group ids and names
+  description: Get list of device group ids and names whose devices had new events withing specified number of days.If a device who had a new event, has no group assigned to it, it will return an entry whose id is 0 and name is null. For example, one device has a group and one has no group response:|
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/GroupIDs"
+          examples:
+            device:
+              value:
+                  - id: 0
+                    name: null
+                  - id: 2916
+                    name: Garage

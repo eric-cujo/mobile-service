@@ -1,0 +1,27 @@
+get:
+  tags:
+    - Devices API
+  summary: Query device models
+  description: "To query device models, perform the following request.
+
+  \r\n  Parameter descriptions -
+
+\r\ntype - will look for types whose names contain the provided string.
+
+\r\nmodel - if empty will be ignored, else will match exact models.
+
+\r\nbrand - if empty will be ignored, else will match exact brand names."
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
+          examples:
+            device:
+              value:
+                id: tbd

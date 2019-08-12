@@ -1,0 +1,28 @@
+put:
+  tags:
+    - Devices API
+  summary: Update agent device notification settings.
+  description: Update agent device notification settings.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/DeviceNotifications"
+        examples:
+          notifications:
+            value:
+              notifications: yes
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceNotifications"
+          examples:
+            schedule:
+              value:
+                - notifications: yes

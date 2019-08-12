@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Devices API
+  summary: Search all device fields
+  description: Search all fields - model, brand and type and also return a constructed name.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceModels"
+          examples:
+            device:
+              value:
+                - id: 122533
+                  model: Apple iPhone 4
+                  type: Phone
+                  brand: Apple

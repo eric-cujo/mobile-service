@@ -1,0 +1,42 @@
+get:
+  tags:
+    - Agents API
+  summary: Get information about agent.
+  description: Get information about agent.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref:
+
+post:
+  tags:
+    - Agents API
+  summary: Change agent name and sorting.
+  description: Change agent name and sorting. Properties that are omitted are not updated including sortProperties object values.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AgentName"
+        examples:
+          agent:
+            value:
+              email: TBD
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
+          examples:
+            agent:
+              value:
+                - state: TBD

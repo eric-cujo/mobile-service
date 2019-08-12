@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Users API
+  summary: Register a user.
+  description: Register a user.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/UsersRegisterReq"
+        examples:
+          users:
+            value:
+              email:
+              country:
+              phone:
+              phoneCountry:
+              password:
+              timeZone:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:  "/src/swagger.yaml#/components/schemas/UsersRegisterReq"
+          examples:
+            schedule:
+              value:
+                email:
+                country:
+                phone:
+                phoneCountry:
+                password:
+                timeZone:

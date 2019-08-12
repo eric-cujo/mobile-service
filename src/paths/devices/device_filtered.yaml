@@ -1,0 +1,43 @@
+get:
+  tags:
+    - Devices API
+  summary: Devices filtered by mac and host-name
+  description: "Allows to get list of customer devices, filtered by mac and DHCP host-name. Returned list of devices will contain minimal agent and access profile data.
+
+  Note at least one query parameter must not be blank present. However, all parameters must be present in request."
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceFilteredResp"
+          examples:
+            device:
+              value:
+                id: tbd
+                quarantine:
+                paused:
+                name:
+                agent:
+                    id:
+                    name:
+                deviceIcon:
+                    id:
+                    prefix:
+                    name:
+                    icons:
+                profile:
+                    internetPausedUntil:
+                    id:
+                    color:
+                    name:
+                    avatar:
+                        id:
+                        modifiable:
+                        url:
+                    activeSchedule:
+                        id:
+                        name:
+                        type:

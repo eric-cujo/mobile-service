@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Devices API
+  summary: Change the position of a device.
+  description: Change the position of a device. Note, if the device is located in a group, only device positions in that group will be affected. If the device has no group, only devices with no group will be affected.
+  operationId:
+  requestBody:
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DevicePosition"
+          examples:
+            device:
+              value:
+                position: 2
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:

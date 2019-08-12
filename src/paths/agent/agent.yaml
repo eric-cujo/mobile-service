@@ -1,0 +1,45 @@
+get:
+  tags:
+    - Agents API
+  summary: Get the list of agents for the logged in customer.
+  description: Get the list of agents for the logged in customer.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentList"
+          examples:
+            agent:
+              value:
+              - id: 2647970
+                name: CUJO 1
+                position: 1
+                remoteAddress: 82.135.136.83
+                mode: BRIDGE
+                status: ACTIVE
+                activityStatus: ACTIVE
+                inactivityReason: null
+                enabled: true
+                deleted: false
+                online: true
+                dhcpServer: false
+                flowData: true
+                eyeStatus: true
+                customerId: 361920
+                lastSeen: 1512478642245
+                sortProperties:
+                    sortType: IP
+                    sortOrder: ASC
+                    filterHidden: true
+                    filterGroups: true
+                rebootState: FINISHED
+                labels:
+                accessScheduleEnabled: false
+                version: 7001
+                positionSort: false
+                macAddress: "c0:56:27:72:4e:f7"
+                deviceCount: 9
+                paid: true

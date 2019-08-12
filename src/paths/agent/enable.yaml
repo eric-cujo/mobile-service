@@ -1,0 +1,13 @@
+post:
+  tags:
+    - Agents API
+  summary: Enable or disable an agent.
+  description: To enable or disable a agent, post to the following . If the agent was previously disabled it will or disabled if it was enabled (toggle). The response will contain agent status, enabled status and message based on agent status. if is INACTIVE and is waiting for payment, the message will say so.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref:

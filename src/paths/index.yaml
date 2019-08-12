@@ -1,3 +1,146 @@
+/agent/{agentId}/event/{days}:
+  $ref: events/listevents.yaml
+/agent/{agentId}/event/{days}/filter:
+  $ref: events/filteredlistevents.yaml
+/agent/{agentId}/unread-count/{days}:
+  $ref: events/eventcount.yaml
+/agent/{agentId}/event/{eventId}:
+  $ref: events/markasread.yaml
+/agent/{agentId}/event:
+  $ref: events/markmultiple.yaml
+/agent/{agentId}/event-all:
+  $ref: events/markallasread.yaml
+/agent/{agentId}/event/{eventId}/block:
+  $ref: events/blockthreat.yaml
+/agent/{agentId}/event/{eventId}/ignore:
+  $ref: events/ignorethreat.yaml
+/agent/{agentId}/event/{eventId}/details:
+  $ref: events/detailedthreat.yaml
+/agent/{agentId}/event/{days}/statistics:
+  $ref: events/eventstats.yaml
+/agent/{agentId}/latest-devices/{days}:
+  $ref: events/latestdevices.yaml
+/agent/{agentId}/latest-groups/{days}:
+  $ref: events/latestgroupids.yaml
+/agent/profile/{profileId}/event-count/{days}/{dayCount}:
+  $ref: events/eventstatstimeinterval.yaml
+
+/device/{id}:
+  $ref: devices/device.yaml
+/device/{deviceId}:
+  $ref: devices/device_id.yaml
+/device/{id}/notifications:
+  $ref: devices/device_notifications.yaml
+/device/icon:
+  $ref: devices/device_icon.yaml
+/device/{deviceId}/statistics/bundle:
+  $ref: devices/device_statistics.yaml
+/device/{id}/reposition:
+  $ref: devices/device_reposition.yaml
+/device/type?type=<String>&model=<String>&brand=<String>&pageNumber=<Integer>&pageSize=<Integer>:
+  $ref: devices/device_types.yaml
+/device/brand?type=<String>&model=<String>&brand=<String>&pageNumber=<Integer>&pageSize=<Integer>:
+  $ref: devices/device_brands.yaml
+/device/model?type=<String>&model=<String>&brand=<String>&pageNumber=<Integer>&pageSize=<Integer>:
+  $ref: devices/device_models.yaml
+/device/search?search=<String>&pageNumber=<Integer>&pageSize=<Integer>:
+  $ref: devices/device_fields.yaml
+/device?mac={mac}&dhcpHostname={hostname}:
+  $ref: devices/device_filtered.yaml
+
+/agent:
+  $ref: agent/agent.yaml
+/agent/activate:
+  $ref: agent/activate.yaml
+/agent/{agentId}:
+  $ref: agent/agentdetails.yaml
+/agent/{agentId}/statistics/{days}:
+  $ref: agent/statistics.yaml
+/agent/{agentId}/enable:
+  $ref: agent/enable.yaml
+/agent/{id}/reposition:
+  $ref: agent/reposition.yaml
+/agent/:id/device?noProfile=boolean&hidden=boolean:
+  $ref: agent/profile_hidden.yaml
+/agent/:id/device-filtered:
+  $ref: agent/device_filtered.yaml
+/agent/:id/device-grouped:
+  $ref: agent/device_grouped.yaml
+/agent/:id/device-rescan:
+  $ref: agent/device_rescan.yaml
+/agent/:id/reboot:
+  $ref: agent/reboot.yaml
+/agent/{id}/rebooted?seconds={int}:
+  $ref: agent/rebooted.yaml
+/agent/:id/mode:
+  $ref: agent/agent_mode.yaml
+/mode/:id:
+  $ref: agent/mode_id.yaml
+/mode:
+  $ref: agent/mode.yaml
+/agent/{id}/firmware-upgrade:
+  $ref: agent/firmware-upgrade.yaml
+/agent/{id}/setup:
+  $ref: agent/setup.yaml
+
+/access-profiles/{profileId}/statistics?days={days}:
+  $ref: access_profiles/access_stats.yaml
+/access-profiles/avatars:
+  $ref: access_profiles/avatars.yaml
+/access-profiles/avatars/{id}:
+  $ref: access_profiles/avatars_id.yaml
+/access-profiles/avatars?includeModifiable={includeModifiable}:
+  $ref: access_profiles/avatars_modifiable.yaml
+/access-profiles/{id}/bulk-domains:
+  $ref: access_profiles/bulk_domains.yaml
+/access-profiles/{id}/domain/blocked:
+  $ref: access_profiles/blocked_domains.yaml
+/access-profiles/{id}/domain/allowed:
+  $ref: access_profiles/activity_logs.yaml
+/access-profiles/{id}/activity-logs:
+  $ref: access_profiles/activity_logs.yaml
+/access-profiles/{id}/devices:
+  $ref: access_profiles/access_profile_devices.yaml
+/access-profiles/{id}/categories:
+  $ref: access_profiles/access_profile_categories.yaml
+/access-profiles:
+  $ref: access_profiles/access_profile_agent.yaml
+/access-profiles/{id}:
+  $ref: access_profiles/single_access_profile.yaml
+/access-profiles?agentId={agentId}:
+  $ref: access_profiles/all_access_profiles.yaml
+
+/register:
+  $ref: users/register.yaml
+/login:
+  $ref: users/login.yaml
+/logout:
+  $ref: users/logout.yaml
+/profile:
+  $ref: users/profile.yaml
+/profile/settings:
+  $ref: users/profilesettings.yaml
+/details:
+  $ref: users/details.yaml
+/forgot-password:
+  $ref: users/forgotpassword.yaml
+/profile/password:
+  $ref: users/profilepassword.yaml
+/send-code:
+  $ref: users/send-code.yaml
+/verify-code:
+  $ref: users/verify-code.yaml
+/agreement:
+  $ref: users/agreement.yaml
+/promo:
+  $ref: users/promo.yaml
+/phone/send-code:
+  $ref: users/phone-send-code.yaml
+/phone/verify-code:
+  $ref: users/phone-verify-code.yaml
+/phone/validate:
+  $ref: users/phone-validate.yaml
+
 /agent/:id/group:
   $ref: devicegroups/devicegroups.yaml
 /group/:id:

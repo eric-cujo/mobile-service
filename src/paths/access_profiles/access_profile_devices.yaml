@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get a list of assigned devices assigned to a specific access profile under a specific agent.
+  description: Get a list of assigned devices assigned to a specific access profile under a specific agent.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileDevices"
+          examples:
+            profile:
+              value:
+                - id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:
+
+put:
+  tags:
+    - Access Profiles
+  summary: Add or remove devices from a specific access profile.
+  description: Add or remove devices from a specific access profile..
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref:
+        examples:
+          category:
+            value:
+                devices: TBD
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileCategory"
+          examples:
+            profile:
+              value:
+                - id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:

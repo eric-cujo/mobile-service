@@ -1,0 +1,15 @@
+post:
+  tags:
+    - Agents API
+  summary: Reposition agent
+  description: To change position parameter of an agent post to the following endpoint. Note, when changing the position of an agent, other agent positions will be affected.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AgentReposition"
+        examples:
+          agent:
+            value:
+              position: 2

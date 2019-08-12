@@ -1,0 +1,73 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get list of allowed domains for an access profile.
+  description: Get list of allowed domains for an access profile.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAllowedDomains"
+          examples:
+            domain:
+              value:
+                  domains: TBD
+
+post:
+  tags:
+    - Access Profiles
+  summary: Add allowed domain for an access profile.
+  description: Add allowed domain for an access profile.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAllowedDomains"
+        examples:
+          domain:
+            value:
+                domain: test.com
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAllowedDomains"
+          examples:
+            domain:
+              value:
+                  domain: TBD
+
+delete:
+  tags:
+    - Access Profiles
+  summary: Remove allowed domain from access profile.
+  description: Remove allowed domain from access profile.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAllowedDomains"
+        examples:
+          domain:
+            value:
+                domain: test.com
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: 

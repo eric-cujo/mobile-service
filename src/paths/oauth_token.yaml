@@ -3,7 +3,7 @@ description:
   an access token.
 post:
   tags:
-    - Auth Partner API(PA)
+    - Auth Mobile API(PA)
     - GENERAL/CORE(PA)
   summary: Creates the new access tokn
   description:

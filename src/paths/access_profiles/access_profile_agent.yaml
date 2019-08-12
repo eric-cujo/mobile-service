@@ -1,0 +1,48 @@
+post:
+  tags:
+    - Access Profiles
+  summary: Forgot password
+  description: To change the password of existing and verified customer. The customer will receive an email containing a unique link. The link will take the customer to password change page.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileReq"
+        examples:
+          agent:
+            value:
+                agentId: TBD
+                color: TBD
+                name: TBD
+                avatarId:
+                pauseInternetSeconds:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfile"
+          examples:
+            schedule:
+              value:
+                  id: TBD
+                  categoryCount: TBD
+                  deviceCount: TBD
+                  allowedDomainCount:
+                  blockedDomainCount:
+                  color:
+                  name:
+                  internetPausedUntil:
+                  avatar:
+                    id:
+                    modifiable:
+                    url:
+                  scheduleCount:
+                  activeSchedule:
+                    id:
+                    name:
+                    type:

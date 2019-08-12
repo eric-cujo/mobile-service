@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Agents API
+  summary: Check whether an agent was rebooted.
+  description: Check whether an agent was rebooted based on provided time interval in seconds. It will give true if agent was rebooted "seconds" ago and false if agent was not rebooted.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentRebooted"
+          examples:
+            schedule:
+              value:
+                 rebooted: true

@@ -1,0 +1,16 @@
+post:
+  tags:
+    - Events API
+  summary: Mark all events as read.
+  description: Mark all events as read.
+  operationId:
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:

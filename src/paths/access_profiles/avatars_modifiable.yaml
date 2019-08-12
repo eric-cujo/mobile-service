@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get access profile avatars
+  description: Get all available access profile avatars.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAvatarsResp"
+          examples:
+            schedule:
+              value:
+                  id: 123
+                  url: http://www.avatar.com
+                  modifiable: no

@@ -1,0 +1,31 @@
+post:
+  tags:
+    - Access Profiles
+  summary: Create a new access profile avatar under customer account.
+  description: Create a new access profile avatar under customer account.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAvatarsImage"
+        examples:
+          domain:
+            value:
+                image: image.jpg
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAvatarsResp"
+          examples:
+            domain:
+              value:
+                  id: 123
+                  url: http://www.avatar.com
+                  modifiable: no

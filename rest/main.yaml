@@ -1,9 +1,9 @@
 openapi: 3.0.0
 servers: []
 info:
-  description: CUJO Partner API
+  description: CUJO Mobile API
   version: "1.0.0"
-  title: CUJO Partner API
+  title: CUJO Mobile API
   contact:
     email: developer@cujo.com
   license:

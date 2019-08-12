@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Events API
+  summary: Event statistics
+  description: Get event statistics based on a given time window. The returned object will contain date strings as keys and threat severity level as value. Example response for time window and a test agent, example created at 21st of December.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/EventStatistics"
+          examples:
+            events:
+              value:
+                "2015-12-15": 2
+                "2015-15-16": 0
+                "2015-12-17": 0
+                "2015-12-18": 0
+                "2015-12-19": 1
+                "2015-12-20": 0
+                "2015-12-21": 1

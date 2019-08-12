@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Events API
+  summary: Filtered list of events
+  description: Get list of events by specifying filtering.
+  operationId:
+  requestBody:
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/EventsListFiltered"
+          examples:
+            events:
+              value:
+                filterBy: devices
+                ids:
+                -  126176,152136
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:

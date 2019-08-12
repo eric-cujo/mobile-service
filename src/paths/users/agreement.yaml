@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Users API
+  summary: Get agreement file form.
+  description: Get agreement file form. Note the file is a raw text file.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: 
+          examples:
+            schedule:
+              value:
+                - id: TBD

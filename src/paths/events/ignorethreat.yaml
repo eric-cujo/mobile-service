@@ -1,0 +1,16 @@
+post:
+  tags:
+    - Events API
+  summary: Ignore(Unblock) Threat
+  description: Ignore event (threat) if it is in blocking mode
+  operationId:
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:

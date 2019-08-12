@@ -1,0 +1,16 @@
+post:
+  tags:
+    - Events API
+  summary: Mark as read
+  description: If the event was marked as unread, after performing post request it will be marked as read. if it was read, it will be marked as unread. Toggles the read state.
+  operationId:
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:

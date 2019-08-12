@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Agents API
+  summary: Get information about currently scheduled firmware update or firmware update reminder
+  description: Get information about currently scheduled firmware update or firmware update reminder
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentList"
+          examples:
+            schedule:
+              value:
+                - id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:

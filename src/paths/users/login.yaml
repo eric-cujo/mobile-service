@@ -1,0 +1,71 @@
+post:
+  tags:
+    - Users API
+  summary: Login
+  description: Login to an existing user.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/UsersLogin"
+        examples:
+          login:
+            value:
+              email: "p.api@cujot.com"
+              password: "12345678"
+              deviceToken: "1122334455"
+              type: "ANDROID"
+              timeZone: "Asia/Singapore"
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/UsersLoginResponse200"
+          examples:
+            schedule:
+              value:
+                  token: eyJhbGciOiJIUzUxMiJ9.eyJ2ZXIiOiI3NjIwNzViNy1kY2E0LTRiNjItYTA0MC0xNGQxYmQ2MzVjMDkiLCJpZCI6NDgyNjk2MCwiZXhwIjoxNTczMDg0MjE4LCJ1c2VybmFtZSI6InAuYXBpQGN1am90LmNvbSIsImRldmljZVRva2VuIjoiMTEyMjMzNDQ1NSJ9.-tle2TYCdmaLKZs284YBwVbQ0fkolngGSuPcwko9PmjnrIbjHt2M_eAsidXdt0C4bF9JFownOczb5mfocW7lGg
+                  expires: 1573084218889
+                  customerId: 4826960
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/UsersLoginResponse401"
+          examples:
+            schedule:
+              value:
+                 message: "The email or password is incorrect."
+                 status: 401
+    500:
+      description: Internal Server Error.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/UsersLoginResponse500"
+          examples:
+            schedule:
+              value:
+                 message: "Unhandled server error"
+                 status: 500
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl -X POST \
+        https://mobile.cujo.io/login \
+        -H 'Accept: */*' \
+        -H 'Accept-Encoding: gzip, deflate' \
+        -H 'Cache-Control: no-cache' \
+        -H 'Connection: keep-alive' \
+        -H 'Content-Length: 132' \
+        -H 'Content-Type: application/json' \
+        -H 'Host: mobile.cujo.io' \
+        -H 'Postman-Token: fc35d7d1-fa19-4477-b4f8-36d014a3d2c1,60e44ed2-d4a1-4ef4-8062-f9a2534aac55' \
+        -H 'User-Agent: PostmanRuntime/7.15.2' \
+        -H 'cache-control: no-cache' \
+        -d '{"email":"test1@softbank.co.jp","password":"cujo1234","deviceToken":"1122334455","type":"ANDROID","timeZone":"Asia/Singapore"}'

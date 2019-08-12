@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Events API
+  summary: Event count
+  description: Get unread event count for a CUJO device that happened within the specified amount of days.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/EventCount"
+          examples:
+            events:
+              value:
+                updateAvailable: yes
+                update: yes
+                count: 5

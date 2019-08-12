@@ -1,0 +1,102 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get access profile
+  description: Get a single access profile object.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfile"
+          examples:
+            schedule:
+              value:
+                  id: TBD
+                  categoryCount: TBD
+                  deviceCount: TBD
+                  allowedDomainCount:
+                  blockedDomainCount:
+                  color:
+                  name:
+                  internetPausedUntil:
+                  avatar:
+                    id:
+                    modifiable:
+                    url:
+                  scheduleCount:
+                  activeSchedule:
+                    id:
+                    name:
+                    type:
+
+put:
+  tags:
+    - Access Profiles
+  summary: Update a specific access profile details.
+  description: Update a specific access profile details.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileIDReq"
+        examples:
+          agent:
+            value:
+                color: TBD
+                name: TBD
+                avatarId:
+                pauseInternetSeconds:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfile"
+          examples:
+            schedule:
+              value:
+                  id: TBD
+                  categoryCount: TBD
+                  deviceCount: TBD
+                  allowedDomainCount:
+                  blockedDomainCount:
+                  color:
+                  name:
+                  internetPausedUntil:
+                  avatar:
+                    id:
+                    modifiable:
+                    url:
+                  scheduleCount:
+                  activeSchedule:
+                    id:
+                    name:
+                    type:
+
+delete:
+  tags:
+    - Access Profiles
+  summary: Delete a specific access profile.
+  description: Delete a specific access profile.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: 
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:

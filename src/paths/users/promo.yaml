@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Users API
+  summary: Get promotional video url.
+  description: Get promotional video url.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/Promo"
+          examples:
+            schedule:
+              value:
+                "url": "https://www.youtube.com/watch?v=7Pq-S557XQU"

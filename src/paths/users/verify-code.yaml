@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Users API
+  summary: Verify code.
+  description: After receiving the verification code, it must be entered in the following endpoint.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/PhoneVerifyCodeReq"
+        examples:
+          login:
+            value:
+              phone: "1234567"
+              phoneCountry: "+65"
+              verificationCode: "123456"
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
+          examples:
+            schedule:
+              value:
+                - state: TBD

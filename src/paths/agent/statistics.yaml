@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Agents API
+  summary: Get agent statistics
+  description: Get agent statistics for the last days of specified interval. Value of days can be from 1 to 30 inclusive. e.g. GET /agent/123/statistics/7
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentStatistics"
+          examples:
+            statistics:
+              value:
+                  protectedDevices: 2
+                  threats: 2
+                  packets: 22
+                  size: 530

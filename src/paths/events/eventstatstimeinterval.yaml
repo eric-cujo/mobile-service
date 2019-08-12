@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Events API
+  summary: Event statistics of access profile for given time interval
+  description:
+    "Get event count, Map(device + events), Map(device + traffic in bytes) of all devices that are associated with given access profile for specified time period.
+
+\r\n {profileId} - access profile ID;
+
+\r\n{days} - number of days back from today;
+
+\r\n{dayCount} - number of days from {days};
+
+\r\nExample to get results of 7 days that starts 14 back from today:
+
+\r\n
+GET /agent/profile/31/event-count/14/7
+
+    "
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/EventStatisticsTimeInterval"
+          examples:
+            device:
+              value:
+                threatCount: 23
+                threatMap:
+                    2295272: 15
+                    2295274: 8
+                trafficMap:
+                    2295272: 26531974226
+                    2295274: 661180205

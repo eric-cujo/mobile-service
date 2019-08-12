@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get agreement file form.
+  description: Get agreement file form. Note the file is a raw text file.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/UsersLoginResponse200"
+          examples:
+            schedule:
+              value:
+                  token: eyJhbGciOiJIUzUxMiJ9.eyJ2ZXIiOiI3NjIwNzViNy1kY2E0LTRiNjItYTA0MC0xNGQxYmQ2MzVjMDkiLCJpZCI6NDgyNjk2MCwiZXhwIjoxNTczMDg0MjE4LCJ1c2VybmFtZSI6InAuYXBpQGN1am90LmNvbSIsImRldmljZVRva2VuIjoiMTEyMjMzNDQ1NSJ9.-tle2TYCdmaLKZs284YBwVbQ0fkolngGSuPcwko9PmjnrIbjHt2M_eAsidXdt0C4bF9JFownOczb5mfocW7lGg
+                  expires: 1573084218889
+                  customerId: 4826960

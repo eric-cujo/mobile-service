@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Users API
+  summary: View customer's data.
+  description: View currently authenticated customer's data.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/ProfileData"
+          examples:
+            data:
+              value:

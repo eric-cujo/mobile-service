@@ -1,0 +1,31 @@
+get:
+  tags:
+    - Agents API
+  summary: Get mode of a specific agent by id.
+  description: Get mode of a specific agent by id.
+  operationId:
+  requestBody:
+      description:
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentModeID"
+          examples:
+            schedule:
+              value:
+                  mode: DHCP
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentList"
+          examples:
+            schedule:
+              value:
+                  id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:

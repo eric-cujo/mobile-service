@@ -1,0 +1,29 @@
+post:
+  tags:
+    - Users API
+  summary: Send code to user.
+  description: Send code to user's phone number. Once posted to a verification endpoint, the verification code will be sent to the phone of current logged in customer.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/PhoneSendCodeReq"
+        examples:
+          login:
+            value:
+              phone: "1234567"
+              phoneCountry: "+65"
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
+          examples:
+            schedule:
+              value:
+                - verificationCode: TBD

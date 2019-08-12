@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get specified access profile statistics.
+  description: Get specified access profile statistics. Response body consist of map with date string as key and deviceCount as a value.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileAccessStats"
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref:
+          examples:
+            schedule:
+              value:
+                  2017-03-23: 5
+                  2017-03-22: 12

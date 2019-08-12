@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Events API
+  summary: Latest device ids
+  description: Get list of device ids and names that had new events within the specified number of days.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref:
+          examples:
+            device:
+              value:
+                id: tbd

@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Agents API
+  summary: Gets agent setup status and begins firmware update if needed.
+  description: Gets agent setup status and begins firmware update if needed.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentSetupResp"
+          examples:
+            schedule:
+              value:
+                  retryInSeconds: TBD
+                  message:

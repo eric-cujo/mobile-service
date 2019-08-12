@@ -1,0 +1,24 @@
+get:
+  tags:
+    - Events API
+  summary: Threat - detailed information
+  description: To get detailed information about threat such as description, perform the following request. This will return with extra information about it in the \"information\" field, example response, if field is not set it will be null.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/ThreatInfo"
+          examples:
+            device:
+              value:
+                id: 104
+                agentId: 22
+                information:
+                    name: Undefined
+                    identifier: UNDEFINED
+                    description: This threat is undefined.

@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Access Profiles
+  summary: Get content categories of a specific access profile.
+  description: Get content categories of a specific access profile.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileCategory"
+          examples:
+            schedule:
+              value:
+                - id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:
+
+put:
+  tags:
+    - Access Profiles
+  summary: Add or remove content categories from a specific access profile.
+  description: Add or remove content categories from a specific access profile.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/AccessProfileCategory"
+        examples:
+          category:
+            value:
+                categories: TBD
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/AccessProfileCategory"
+          examples:
+            profile:
+              value:
+                - id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:

@@ -1,0 +1,29 @@
+post:
+  tags:
+    - Users API
+  summary: Validate customer phone number.
+  description: Before registering a customer account, the customer phone number can be validated with Twilio. This call does not require authentication.
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/PhoneValidateReq"
+        examples:
+          login:
+            value:
+              phone: "1234567"
+              phoneCountry: "+65"
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/PhoneValidateResp"
+          examples:
+            schedule:
+              value:
+                 status: TBD

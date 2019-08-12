@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Agents API
+  summary: To get current reboot state of the agent.
+  description: To get current reboot state of the agent.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentReboot"
+          examples:
+            schedule:
+              value:
+                 id: 12345
+                 rebootState:
+
+post:
+  tags:
+    - Agents API
+  summary: To reboot a specific agent.
+  description: To reboot a specific agent. This will return the same object as in the Agent reboot state call indicating the agent is rebooting or not. If reboot fails, a 500 response will be returned with a message.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/AgentReboot"
+          examples:
+            schedule:
+              value:
+                 id: 12345
+                 rebootState:

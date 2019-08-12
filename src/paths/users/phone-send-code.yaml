@@ -1,0 +1,32 @@
+post:
+  tags:
+    - Vulnerability API
+  summary: Initiate scan for a given agent on given time (recurring)
+  description: Initiate scan for a given agent on given time (recurring, all devices)
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "/src/swagger.yaml#/components/schemas/InitiateOnDemandScan"
+          examples:
+            schedule:
+              value:
+                - state: SCHEDULED
+                  deviceId: 12
+                  lastScan: 1475148966
+                - state: FINISHED
+                  deviceId: 13
+                  lastScan: 1475148961
+                - state: NONE
+                  deviceId: 14
+                  lastScan: 1475148969

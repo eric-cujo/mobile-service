@@ -3347,3 +3347,1312 @@ schemas:
       position:
         description: Position of device group. Note, only device groups that are under the same agent (if group G is on agent A, then only groups on agent A will be moved according to the position change).
         type: integer
+
+  CategoryId:
+    title: CategoryId
+    description: CategoryId
+    type: object
+    properties:
+      position:
+        description: CategoryId
+        type: long
+
+  AccessProfileContentCategory:
+    title: AccessProfileContentCategory
+    description: AccessProfileContentCategory
+    type: object
+    properties:
+      position:
+        description: CategoryId
+        type: long
+
+  PlatformResponse:
+    title: PlatformResponse
+    description: PlatformResponse
+    type: List<PlatformResponse>
+    properties:
+      position:
+        description: List of Platform Responses
+        type: List<PlatformResponse>
+
+  BulkDomains:
+    title: BulkDomains
+    description: BulkDomains
+    type: List<BulkDomains>
+    properties:
+      position:
+        description: List of Bulk Domains
+        type: List<BulkDomains>
+
+  UsersRegisterReq:
+    title: Register customer
+    description: Register a customer.
+    required:
+      - email
+      - country
+      - phone
+      - phoneCountry
+      - password
+      - timeZone
+    type: object
+    properties:
+        email:
+          description: email
+          type: string
+        country:
+          description: country
+          type: string
+        phone:
+          description: phone
+          type: string
+        phoneCountry:
+          description: phoneCountry
+          type: string
+        password:
+          description: password
+          type: string
+        timeZone:
+          description: timeZone
+          type: string
+
+  UsersLogin:
+    title: Login
+    description: Login to an existing user
+    required:
+      - email
+      - password
+      - deviceToken
+      - type
+      - timeZone
+    type: object
+    properties:
+        email:
+          description: email
+          type: string
+        password:
+          description: password
+          type: string
+        deviceToken:
+          description: Type of the device token, it is used to determine what type of device it belongs to. It can have one of the following values. IOS - for IOS devices, ANDROID - for android devices.
+          type: string
+        type:
+          description: type
+          type: string
+        timeZone:
+          description: Time zone id from tz database, ie "Pacific/Kiritimati"
+          type: string
+
+  UsersLoginResponse200:
+    title: Login
+    description: Login to an existing user
+    required:
+      - token
+      - expires
+      - customerId
+    type: object
+    properties:
+        token:
+          description: Type of the device token, it is used to determine what type of device it belongs to. It can have one of the following values. IOS - for IOS devices, ANDROID - for android devices.
+          type: string
+        expires:
+          description: Expiration date of token.
+          type: string
+        customerId:
+          description: ID of customer account.
+          type: string
+
+  UsersLoginResponse401:
+    title: Login
+    description: Incorrect email or password.
+    required:
+      - message
+      - status
+    type: object
+    properties:
+        message:
+          description: Reason for error
+          type: string
+        status:
+          description: Error code
+          type: string
+
+  UsersLoginResponse500:
+    title: Login
+    description: Internal server error
+    required:
+      - message
+      - status
+    type: object
+    properties:
+      message:
+        description: Reason for error
+        type: string
+      status:
+        description: Error code
+        type: string
+
+  ProfileData:
+    title: Profile Data
+    description: View currently authenticated customers data.
+    required:
+      - message
+      - status
+    type: object
+    properties:
+      id:
+        description: Customer ID
+        type: long
+      verified:
+        description: Verified?
+        type: boolean
+      locked:
+        description: Locked?
+        type: boolean
+      phoneCountry:
+        description: Phone country code
+        type: string
+      firstName:
+        description: First name
+        type: string
+      lastName:
+        description: Last name
+        type: string
+      country:
+        description: Country
+        type: string
+      email:
+        description: Email address
+        type: string
+      phone:
+        description: Phone number
+        type: string
+      cujoEmailUpdates:
+        description: Enable email updates from CUJO?
+        type: boolean
+      emailAlerts:
+        description: Enable email alerts?
+        type: boolean
+      appAlerts:
+        description: Enable app alerts?
+        type: boolean
+      flowData:
+        description: Flow data?
+        type: boolean
+      pinCode:
+        description: Pin code?
+        type: boolean
+      name:
+        description: Banner name
+        type: string
+      url:
+        description: Banner URL
+        type: string
+
+  ProfileSettings:
+    title: Profile settings
+    description: Profile settings.
+    type: object
+    properties:
+      cujoEmailUpdates:
+        description: Enable email updates from CUJO?
+        type: boolean
+      emailAlerts:
+        description: Enable email alerts?
+        type: boolean
+      appAlerts:
+        description: Enable app alerts?
+        type: boolean
+      flowData:
+        description: Flow data?
+        type: boolean
+      pinCode:
+        description: Pin code?
+        type: boolean
+      cujoStatusLights:
+        description: Status lights?
+        type: boolean
+
+  UserDetails:
+    title: User details
+    description: User details
+    type: object
+    properties:
+      name:
+        description: Name
+        type: string
+      email:
+        description: Email address
+        type: string
+      firstName:
+        description: First name
+        type: string
+      lastName:
+        description: Last name
+        type: string
+
+  ForgotPassword:
+    title: Forgot password
+    description: To change the password of existing and verified customer.
+    type: object
+    properties:
+      email:
+        description: Email address of the account whose password is to be changed.
+        type: string
+
+  ChangePassword:
+    title: Change password
+    description: To change the password of existing and verified customer. Note, "currentPassword" must match currently authenticated customers password.
+    type: object
+    properties:
+      currentPassword:
+        description: Note, "currentPassword" must match currently authenticated customers password.
+        type: string
+      newPassword:
+        description: New password.
+        type: string
+
+  SendCode:
+    title: Send code
+    description: After receiving the verification code, it must be entered in the following endpoint.
+    type: object
+    properties:
+      verificationCode:
+        description: \"verificationCode\" must contain only numbers, of the verification code is six characters.
+        type: string
+
+  Promo:
+    title: Promotional video URL
+    description: Promotional video URL.
+    type: object
+    properties:
+      url:
+        description: URL of promotional video.
+        type: string
+
+  PhoneSendCodeReq:
+    title: Send code
+    description: Send code
+    type: object
+    properties:
+      phone:
+        description: Phone number
+        type: string
+      phoneCountry:
+        description: Country code of phone.
+        type: string
+
+  PhoneVerifyCodeReq:
+    title: Verify code
+    description: Verify code
+    type: object
+    properties:
+      phone:
+        description: Phone number
+        type: string
+      phoneCountry:
+        description: Country code of phone.
+        type: string
+      verificationCode:
+        description: The verification code will be 6 characters long.
+        type: string
+
+  PhoneValidateReq:
+    title: Validate phone number
+    description: Validate phone number
+    type: object
+    properties:
+      phone:
+        description: Phone number
+        type: string
+      phoneCountry:
+        description: Country code of phone.
+        type: string
+
+  PhoneValidateResp:
+    title: Validate phone number
+    description: Validate phone number
+    type: object
+    properties:
+      status:
+        description: Status
+        type: string
+
+  AccessProfile:
+    title: Access Profile
+    description: List of access profile objects. Note that device and category count properties represent selected devices and categories, not total count.
+    type: object
+    properties:
+        id:
+          description: Access profile ID
+          type: long
+        categoryCount:
+          description: Category count
+          type: int
+        deviceCount:
+          description: Device count
+          type: int
+        allowedDomainCount:
+          description: Count of allowed domains
+          type: int
+        blockedDomainCount:
+          description: Count of blocked domains
+          type: int
+        color:
+          description: Color
+          type: string
+        name:
+          description: Name
+          type: string
+        internetPausedUntil:
+          description: Until when the internet is paused for this access profile
+          type: long
+        avatar:
+          properties:
+            id:
+              description: Avatar ID
+              type: long
+            modifiable:
+              description: Modifiable?
+              type: boolean
+            url:
+              description: URL
+              type: string
+        scheduleCount:
+          description: Count of schedule
+          type: int
+        activeSchedule:
+          description: Schedule which is currently active for this profile
+          properties:
+            id:
+              description: Active schedule ID
+              type: long
+            name:
+              description: Schedule name
+              type: string
+            type:
+              description: Schedule type
+              type: string
+
+  AccessProfileReq:
+    title: Access Profile
+    description: List of access profile objects
+    type: object
+    properties:
+        agentId:
+          description: Agent ID
+          type: long
+        color:
+          description: Color
+          type: string
+        name:
+          description: Name
+          type: string
+        avatarId:
+          description: Avatar ID
+          type: long
+        pauseInternetSeconds:
+          description: Pause internet in seconds
+          type: int
+
+  AccessProfileIDReq:
+    title: Access Profile
+    description: List of access profile objects
+    type: object
+    properties:
+        color:
+          description: Color
+          type: string
+        name:
+          description: Name
+          type: string
+        avatarId:
+          description: Avatar ID
+          type: long
+        pauseInternetSeconds:
+          description: Pause internet in seconds
+          type: int
+
+  AccessProfileCategory:
+    title: Access Profile
+    description: List of access profile categories
+    type: object
+    properties:
+        id:
+          description: Profile ID
+          type: long
+        selected:
+          description: Selected?
+          type: boolean
+        description:
+          description: Profile description
+          type: string
+        name:
+          description: Profile name
+          type: string
+        icon:
+          description: Standard icon object.
+          type: string
+
+  ManageAccessProfileCategoryReq:
+    title: Access Profile
+    description: List of access profile categories
+    type: object
+    properties:
+        categories:
+          description: (TBD) Include the list of preferred content categories for this profile, all previous categories will be replaced by the provided ones.
+          type: long
+
+  AccessProfileDevices:
+    title: Access Profile
+    description: List of access profile devices
+    type: object
+    properties:
+        id:
+          description: Profile ID
+          type: long
+        selected:
+          description: Selected?
+          type: boolean
+        description:
+          description: Profile description
+          type: string
+        name:
+          description: Profile name
+          type: string
+        ip:
+          description: IP address
+          type: string
+        icon:
+          description: Standard icon object
+          type: string
+
+  AccessProfileActivityLogs:
+    title: Profile activity logs
+    description: Profile activity logs
+    type: object
+    properties:
+        profileName:
+          description: Access profile name
+          type: string
+        domain:
+          description: Blocked domain name
+          type: string
+        categories:
+          description: Array of content category ids
+          type: long
+        fromDays:
+          description: Start of the interval, from where to query the blocked domains in days
+          type: integer
+        toDays:
+          description: End of the interval in days
+          type: integer
+
+  AccessProfileAllowedDomains:
+    title: List of allowed domains
+    description: List of allowed domains
+    type: object
+    properties:
+        domain:
+          description: Blocked domain name
+          type: string
+
+  AccessProfileBlockedDomains:
+    title: List of blocked domains
+    description: List of blocked domains
+    type: object
+    properties:
+        domain:
+          description: Blocked domain name
+          type: string
+
+  AccessProfileAvatarsReq:
+    title: List of access profile avatars
+    description: List of access profile avatars
+    type: object
+    properties:
+        includeModifiable:
+          description: Should modifiable avatars be included (default is false)
+          type: boolean
+
+  AccessProfileAvatarsResp:
+    title: List of access profile avatars
+    description: List of access profile avatars
+    type: object
+    properties:
+        id:
+          description: ID
+          type: long
+        url:
+          description: URL
+          type: string
+        modifiable:
+          description: Indicates whether this avatar can be modified via PUT request (avatars with modifiable = false are default avatars).
+          type: boolean
+
+  AccessProfileAvatarsImage:
+    title: List of access profile avatars
+    description: List of access profile avatars
+    type: object
+    properties:
+        image:
+          description: The image property must be valid Base64 encoded image content, same as in access profile avatar creation.
+          type: string
+
+  AccessProfileAccessStats:
+    title: Access profile statistics.
+    description: access profile statistics.
+    type: object
+    properties:
+        profileId:
+          description: Profile, whose statistics to query, id
+          type: long
+        days:
+          description: Optional parameter which indicates how many days of statistics should be queried
+          type: long
+
+  AccessProfileBulkDomains:
+    title: List of allowed and blocked domains in bulk
+    description: List of allowed and blocked domains in bulk
+    type: object
+    properties:
+        allowed:
+          properties:
+            domain:
+              description: Allowed domain name
+              type: string
+        blocked:
+          properties:
+            domain:
+              description: Blocked domain name
+              type: string
+
+  AgentList:
+    title: Agent Info
+    description: Agent information
+    type: object
+    properties:
+          id:
+            description: Agent ID
+            type: string
+          name:
+            description: Agent name
+            type: string
+          position:
+            description: Agent position
+            type: int
+          remoteAddress:
+            description: Remote address
+            type: string
+          mode:
+            description: Agent Mode
+            type: string
+          status:
+            description: Agent status
+            type: string
+          activityStatus:
+            description: Activity status
+            type: string
+          inactivityReason:
+            description: Inactivity reason
+            type: string
+          enabled:
+            description: Enabled?
+            type: boolean
+          deleted:
+            description: Deleted?
+            type: boolean
+          online:
+            description: Online?
+            type: boolean
+          dhcpServer:
+            description: DHCP server?
+            type: boolean
+          flowData:
+            description: Flow data?
+            type: boolean
+          eyeStatus:
+            description: Eye status?
+            type: boolean
+          customerId:
+            description: Customer ID
+            type: long
+          lastSeen:
+            description: Last seen time
+            type: long
+          sortProperties:
+            properties:
+              sortType:
+                description: Sort by type. IP - sort by IP addresses. LAST_SEEN - sort by property. RECENTLY_ADDED - sort by property. ADDED - sort devices by the date they were added. POSITION, null - sort by position.
+                type: string
+              sortOrder:
+                description: Sort by ASC or DSC
+                type: string
+              filterHidden:
+                description: true - show hidden devices. false - do not show hidden devices.
+                type: boolean
+              filterGroups:
+                description: true - group device list by agent. false - do not group device list by agent.
+                type: boolean
+          rebootState:
+            description: Reboot state
+            type: string
+          labels:
+            description: Labels
+            type: string
+          accessScheduleEnabled:
+            description: Access schedule enabled?
+            type: boolean
+          version:
+            description: Version
+            type: string
+          positionSort:
+            description: Position sort?
+            type: boolean
+          macAddress:
+            description: MAC address
+            type: string
+          deviceCount:
+            description: Device count
+            type: int
+          paid:
+            description: Paid?
+            type: boolean
+
+  AgentActivateReq:
+    title: Activate agent
+    description: Activate agent
+    type: object
+    properties:
+         mac:
+            description: MAC address of the router or which is connected to both the mobile device and the agent.
+            type: string
+
+  AgentStatistics:
+    title: Activate agent
+    description: Activate agent
+    type: object
+    properties:
+         protectedDevices:
+            description: Protected devices
+            type: int
+         threats:
+            description: Threats
+            type: int
+         packets:
+            description: Packets
+            type: long
+         size:
+            description: Size.
+            type: long
+
+  AgentName:
+    title: Activate agent
+    description: Activate agent
+    type: object
+    properties:
+          name:
+            description: Agent name
+            type: string
+          flowData:
+            description: Flow data?
+            type: boolean
+          eyeStatus:
+            description: Eye status?
+            type: boolean
+          sortProperties:
+            properties:
+              sortType:
+                description: Sort by type. IP - sort by IP addresses. LAST_SEEN - sort by property. RECENTLY_ADDED - sort by property. ADDED - sort devices by the date they were added. POSITION, null - sort by position.
+                type: string
+              sortOrder:
+                description: Sort by ASC or DSC
+                type: string
+              filterHidden:
+                description: true - show hidden devices. false - do not show hidden devices.
+                type: boolean
+              filterGroups:
+                description: true - group device list by agent. false - do not group device list by agent.
+                type: boolean
+
+  AgentReposition:
+    title: Reposition agent
+    description: Reposition agent
+    type: object
+    properties:
+          position:
+            description: Position
+            type: int
+
+  DeviceDataResp:
+    title: Devices Data
+    description: Device information.
+    type: object
+    properties:
+      id:
+        description: Device id
+        type: integer
+      recentlyAdded:
+        description: Recently added?
+        type: boolean
+      markedAsSeen:
+        description: Marked as seen
+        type: boolean
+      quarantine:
+        description: If all traffic from device should be blocked
+        type: boolean
+      paused:
+        description: Is device pause in effect?
+        type: boolean
+      monitored:
+        description: Is device set to monitored. If CUJO should monitor device
+        type: boolean
+      secured:
+        description:
+          If true CUJO will block automatically when threat detected.
+          Otherwise just threat is created and user notified.
+        type: boolean
+      hidden:
+        description:
+          Is device hidden or not. Set to `true`, if user hide this device
+          until it comes online.
+        type: boolean
+      fingerprintStatus:
+        description: Fingerprint status.
+        type: string
+      placeholderName:
+        description: Placeholder name.
+        type: string
+      dhcpHostname:
+        description: Hostname (network name)
+        type: string
+      modelModel:
+        description: Device model
+        type: string
+      brandName:
+        description: Device brand
+        type: string
+      groupName:
+        description: Group name
+        type: string
+      name:
+        description: Device name
+        type: string
+      osName:
+        description: Device operating system
+        type: string
+      type:
+        description: Device type
+        enum:
+        type: string
+      mac:
+        description: Device mac address
+        type: string
+      ip:
+        description: Device IP address
+        type: string
+      ipv6:
+        description: Device IP address
+        type: string
+      customerId:
+        description: Customer ID
+        type: long
+      lastDhcp:
+        description: Last DHCP address
+        type: long
+      lastMac:
+        description: Last MAC address
+        type: long
+      agentId:
+        description: Agent ID
+        type: long
+      modelId:
+        description: Model ID
+        type: long
+      lastSeen:
+        description: When was the last time we received traffic from this device
+        type: long
+      groupId:
+        description: Group ID
+        type: long
+      iconId:
+        description: Icon ID
+        type: long
+      added:
+        description: When device was added
+        type: long
+      position:
+        description: Position of device
+        type: integer
+      deviceIcon:
+        properties:
+          id:
+            description: Device icon ID
+            type: long
+          prefix:
+            description: Prefix
+            type: string
+          name:
+            description: Icon name
+            type: string
+          icons:
+            description: Device icons.
+            type: string
+      customerPreference:
+        properties:
+          brand:
+            description: Brand
+            type: string
+          model:
+            description: Prefix
+            type: Model
+          type:
+            description: Type
+            type: string
+      agentSortProperties:
+        properties:
+          sortOrder:
+            description: Sort by order
+            type: string
+          sortType:
+            description: Sort by type
+            type: Model
+      notificationSettings:
+        properties:
+          notifications:
+            description: Notifications?
+            type: boolean
+      profileName:
+        description: Profile name
+        type: string
+      profileColor:
+        description: Profile color
+        type: string
+      endpointSecurityInstalled:
+        description: Endpoint security installed?
+        type: boolean
+
+  AgentReboot:
+    title: Agent reboot state
+    description: Agent reboot state
+    type: object
+    properties:
+          id:
+            description: Agent ID
+            type: long
+          rebootState:
+            description: "The rebootState parameter indicates the current agent reboot state, possible values for this parameter are:
+
+\r\n NONE - has never been rebooted, agent (default value for reboot state).
+
+\r\n REBOOTING - reboot is in progress.
+
+\r\n FINISHED - has finished, this state will be applied until next reboot.
+
+\r\n If is not found a 404 response will be returned."
+            type: string
+
+  AgentRebooted:
+    title: Agent reboot state
+    description: Agent reboot state
+    type: object
+    properties:
+          rebooted:
+            description: true if agent was rebooted "seconds" ago and false if agent was not rebooted.
+            type: boolean
+
+  AgentMode:
+    title: Agent reboot state
+    description: Agent reboot state
+    type: object
+    properties:
+          mode:
+            description: "The mode property must have one of the following values:
+
+\n\r PNP - enable plug and play mode
+
+\r\n DHCP - enable mode"
+            type: string
+
+  AgentModeID:
+    title: Mode of agent by ID
+    description: Mode of agent by ID
+    type: object
+    properties:
+          currentMode:
+            description: "The currentMode property describes in what mode the agent is actually running on (what agent has reported to the cloud), the possible vfirmware-upgradealues are:
+
+\r\nNOT_SPECIFIED - has not reported its mode to the cloud.
+
+\r\nDHCP_SERVER - server mode ().
+
+\r\nARP_MITM - mode ().
+
+\r\nBRIDGE - bridge mode ()."
+            type: boolean
+          mode:
+            description: "The mode property describes what mode the agent should be running on. Keep in mind that it might not be actually running in this since it can take a few seconds for the agent to sync with cloud and change its current mode value:
+
+\r\nPNP - enable plug and play mode
+
+\r\nDHCP - enable mode"
+            type: boolean
+
+  AgentModeUnassigned:
+    title: Agent mode
+    description: Agent mode.
+    type: object
+    properties:
+          mac:
+            description: true if agent was rebooted "seconds" ago and false if agent was not rebooted.
+            type: boolean
+          mode:
+            description: "The mode property must have one of the following values:
+
+\n\r PNP - enable plug and play mode
+
+\r\n DHCP - enable mode
+
+\r\n body will include the same properties as in mode call for unregistered agents."
+            type: string
+          ip:
+            description: IP address
+            type: string
+
+  AgentSetupResp:
+    title: Agent setup state
+    description: Agent setup state. If agent is setting up in some way, the response body will contain such info. HTTP status code will be 200. If agent is not setting up, the response body will be empty and the HTTP status code will be 204.
+    type: object
+    properties:
+          retryInSeconds:
+            description: After how many seconds should this call should be retried if needed.
+            type: int
+          message:
+            description: Message describing agent setup status.
+            type: string
+
+  DeviceDataReq:
+    title: Devices Data
+    description: Device information.
+    type: object
+    properties:
+      name:
+        description: Device name
+        type: string
+      deviceGroupId:
+        description: Group ID
+        type: long
+      activated:
+        description: Activated?
+        type: boolean
+      secured:
+        description:
+          If true CUJO will block automatically when threat detected.
+          Otherwise just threat is created and user notified.
+        type: boolean
+      deviceIconId:
+        description: Device icon ID
+        type: long
+      quarantine:
+        description: If all traffic from device should be blocked
+        type: boolean
+      monitored:
+        description: Is device set to monitored. If CUJO should monitor device
+        type: boolean
+      hidden:
+        description:
+          Is device hidden or not. Set to `true`, if user hide this device
+          until it comes online.
+        type: boolean
+      markedAsSeen:
+        description: Marked as seen
+        type: boolean
+      customerPreference:
+        properties:
+          brand:
+            description: Brand
+            type: string
+          model:
+            description: Prefix
+            type: Model
+          type:
+            description: Type
+            type: string
+
+  DeviceNotifications:
+    title: Devices notifications
+    description: Device notifications.
+    type: object
+    properties:
+      notifications:
+        description: Notifications enabled?
+        type: boolean
+
+  DeviceTrafficStatistics:
+    title: Device statistics
+    description: Device statistics.
+    type: object
+    properties:
+      in:
+        properties:
+          cnt:
+            description: Traffic count
+            type: long
+          size:
+            description: Traffic size
+            type: long
+          packets:
+            description: No. of packets
+            type: long
+      out:
+        properties:
+          cnt:
+            description: Traffic count
+            type: long
+          size:
+            description: Traffic size
+            type: long
+          packets:
+            description: No. of packets
+            type: long
+      combined:
+        properties:
+          cnt:
+            description: Traffic count
+            type: long
+          size:
+            description: Traffic size
+            type: long
+          packets:
+            description: No. of packets
+            type: long
+      ips:
+        properties:
+          collectionTime:
+            description: Collection time
+            type: long
+          sourceIp:
+            description: Source IP
+            type: string
+          destinationIp:
+            description: Destination IP
+            type: string
+
+  DevicePosition:
+    title: Devices position
+    description: Device position. Note, if the device is located in a group, only device positions in that group will be affected. If the device has no group, only devices with no group will be affected.
+    type: object
+    properties:
+      position:
+        description: Device position
+        type: integer
+
+  DeviceQueryResp:
+    title: Device search query response
+    description: Search all fields - model, brand and type and also return a constructed name.
+    type: object
+    properties:
+      id:
+        description: Device ID
+        type: long
+      model:
+        description: Device model
+        type: string
+      type:
+        description: Device type
+        type: string
+      brand:
+        description: Device brand
+        type: string
+
+
+  DeviceFilteredResp:
+    title: Device search query response
+    description: Search all fields - model, brand and type and also return a constructed name.
+    type: object
+    properties:
+      id:
+        description: Device ID
+        type: long
+      quarantine:
+        description: Device model
+        type: string
+      paused:
+        description: Device type
+        type: string
+      name:
+        description: Device brand
+        type: string
+      agent:
+        properties:
+          id:
+            description: Agent ID
+            type: long
+          name:
+            description: Agent name?
+            type: string
+      deviceIcon:
+        properties:
+          id:
+            description: Device icon ID
+            type: long
+          prefix:
+            description: Prefix
+            type: string
+          name:
+            description: Icon name
+            type: name
+          icons:
+            description: Icons
+            type: string
+      profile:
+        properties:
+          internetPausedUntil:
+            description: Until when the internet is paused for this access profile
+            type: long
+          id:
+            description: Profile ID
+            type: long
+          color:
+            description: Profile color
+            type: long
+          name:
+            description: Profile name
+            type: long
+          avatar:
+            properties:
+              id:
+                description: Avatar ID
+                type: long
+              modifiable:
+                description: Modifiable?
+                type: boolean
+              url:
+                description: URL
+                type: string
+          activeSchedule:
+            description: Schedule which is currently active for this profile
+            properties:
+              id:
+                description: Active schedule ID
+                type: long
+              name:
+                description: Schedule name
+                type: string
+              type:
+                description: Schedule type
+                type: string
+
+  DeviceModels:
+    title: Device models
+    description: Device models
+    type: object
+    properties:
+      id:
+        description: Device ID
+        type: long
+      model:
+        description: Device model
+        type: string
+      type:
+        description: Device type
+        type: string
+      brand:
+        description: Device brand
+        type: string
+
+  EventsListFiltered:
+    title:  List of events
+    description: List of events
+    type: object
+    properties:
+      filterBy:
+        description: "The filter by property must be one of these values, depending on what you want to filter by. Depending on that value, the array of ids will be treated accordingly, if the property is set to \"devices\" for example, the array of ids must be device ids. Same for \"group\" option:|
+
+\r\n devices - filter by devices.
+
+\r\n group - filter by group.
+\r\n
+
+Note on \"\". If you include \"0\" value in the ids array and set \"filterBy\" to \"group\". The list will also include devices whose \"deviceGroup\" is equal to null."
+        type: string
+      ids:
+        description: Array of IDs
+        type: long
+
+  EventCount:
+    title: Unread event count
+    description: Unread event count
+    type: object
+    properties:
+      updateAvailable:
+        description: Update available?
+        type: boolean
+      update:
+        description: Update
+        type: boolean
+      count:
+        description: Event count
+        type: int
+
+  ThreatInfo:
+    title: Threat information
+    description: Threat information
+    type: object
+    properties:
+      id:
+        description: Threat ID
+        type: long
+      agentId:
+        description: Update
+        type: long
+      information:
+        properties:
+          name:
+            description: Threat name
+            type: string
+          identifier:
+            description: Threat identifier
+            type: string
+          description:
+            description: Threat description
+            type: string
+
+  EventStatistics:
+    title: Event statistics
+    description: Event statistics. The returned object will contain date strings as keys and threat severity level as value.
+    type: object
+    properties:
+      dateString:
+        description: Date string (e.g. 2019-01-02) as keys, threat severity level as values.
+        type: int
+
+  GroupIDs:
+    title: List of device group IDs
+    description: List of device group IDs
+    type: object
+    properties:
+      id:
+        description: Device group ID
+        type: int
+      name:
+        description: Device group name (whose devices had new events within specified number of days.)
+        type: int
+
+  EventStatisticsTimeInterval:
+    title: Event statistics of access profile for given time interval
+    description: Event count, Map(device + events), Map(device + traffic in bytes) of all devices that are associated with given access profile for specified time period.
+    type: object
+    properties:
+      threatCount:
+        description: Device group ID
+        type: int
+      ThreatMap:
+        properties:
+          DeviceID:
+            description: Key - device ID. Value - count of events. e.g. \"2295272\":| 15
+            type: long
+      trafficMap:
+        properties:
+          DeviceID:
+            description: Key - device ID. Value - traffic in bytes. e.g. \"2295272\":| 26531974226
+            type: long

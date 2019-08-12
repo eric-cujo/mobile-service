@@ -1,6 +1,6 @@
 get:
   tags:
-    - Auth Partner API(PA)
+    - Auth Mobile API(PA)
     - GENERAL/CORE(PA)
   summary: Get the information about access token
   description: Get the information about access token, used mostly for token validations

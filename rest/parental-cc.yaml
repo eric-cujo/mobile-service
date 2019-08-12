@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: CUJO - Parental / Express
-  description: Parental Controls Extensions for CUJO Partner API
+  description: Parental Controls Extensions for CUJO Mobile API
   contact:
     email: andrius.dapsevicius@cujo.com
   license:

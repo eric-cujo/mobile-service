@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Agents API
+  summary: Re-scan device for specified agent.
+  description: Re-scan device for specified agent.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref:
+          examples:
+            schedule:
+              value:
+                 id: TBD

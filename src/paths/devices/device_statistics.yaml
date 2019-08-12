@@ -1,0 +1,32 @@
+get:
+  tags:
+    - Devices API
+  summary: Get combined device traffic statistics
+  description: Get combined device traffic statistics.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceTrafficStatistics"
+          examples:
+            device:
+              value:
+                in:
+                    cnt:
+                    size:
+                    packets:
+                out:
+                    cnt:
+                    size:
+                    packets:
+                combined:
+                    cnt:
+                    size:
+                    packets:
+                ips:
+                    collectionTime:
+                    sourceIp:
+                    destinationIp:

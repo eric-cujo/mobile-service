@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Users API
+  summary: Get raw privacy policy file.
+  description: Get raw privacy policy file in text format.
+  operationId:
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: 
+          examples:
+            schedule:
+              value:
+                - id: TBD

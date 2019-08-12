@@ -1,0 +1,37 @@
+post:
+  tags:
+    - Devices API
+  summary: Update device details
+  description: Update device details. At the moment only name and group can be changed.
+  operationId:
+  requestBody:
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceDataReq"
+          examples:
+            device:
+              value:
+                name:
+                deviceGroupId:
+                activated:
+                secured:
+                deviceIconId:
+                quarantine:
+                monitored:
+                hidden:
+                markedAsSeen:
+                customerPreference:
+                    brand:
+                    model:
+                    type:
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref:
