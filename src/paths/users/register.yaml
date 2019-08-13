@@ -3,7 +3,7 @@ post:
     - Users API
   summary: Register a user.
   description: Register a user.
-  operationId:
+  operationId: Register
   requestBody:
     content:
       application/json:

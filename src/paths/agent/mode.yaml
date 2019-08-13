@@ -1,9 +1,9 @@
 post:
   tags:
     - Agents API
-  summary: Change mode for which has not yet been assigned to any customer.
+  summary: Change mode for unregistered agent
   description: Change mode for which has not yet been assigned to any customer.
-  operationId:
+  operationId: ChangeModeUnregisteredAgent
   requestBody:
       description:
       content:

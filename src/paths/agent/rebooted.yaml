@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Check whether an agent was rebooted.
+  summary: Agent rebooted status
   description: Check whether an agent was rebooted based on provided time interval in seconds. It will give true if agent was rebooted "seconds" ago and false if agent was not rebooted.
-  operationId:
+  operationId: AgentRebootedStatus
   responses:
     200:
       description: OK.

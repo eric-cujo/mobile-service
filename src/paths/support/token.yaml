@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Support API
+  summary: Create video token
+  description: Create a video token which can be used in Twilio calls.
+  operationId: CreateVideoToken
+
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/VideoToken"
+          examples:
+            token:
+              value:
+                identity: TBD
+                token: TBD
+
+delete:
+  tags:
+    - Support API
+  summary: Delete video token
+  description: Cloud cannot know when a video call ends. In order to tell cloud that a customer has finished a video call, app must ping it manually. To do so the following endpoint must be called.
+  operationId: DeleteVideoToken
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+              $ref:

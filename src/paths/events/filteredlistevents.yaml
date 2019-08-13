@@ -3,7 +3,7 @@ post:
     - Events API
   summary: Filtered list of events
   description: Get list of events by specifying filtering.
-  operationId:
+  operationId: FilteredListofEvents
   requestBody:
       content:
         application/json:

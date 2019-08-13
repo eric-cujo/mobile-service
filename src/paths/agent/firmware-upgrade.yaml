@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Get information about currently scheduled firmware update or firmware update reminder
+  summary: Get firmware schedule information
   description: Get information about currently scheduled firmware update or firmware update reminder
-  operationId:
+  operationId: GetFirmwareScheduleInfo
   responses:
     200:
       description: OK.

@@ -17,7 +17,7 @@ get:
 GET /agent/profile/31/event-count/14/7
 
     "
-  operationId:
+  operationId: EventStatisticsTimeInterval
   responses:
     200:
       description: OK.

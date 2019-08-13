@@ -3,7 +3,7 @@ get:
     - Events API
   summary: Event count
   description: Get unread event count for a CUJO device that happened within the specified amount of days.
-  operationId:
+  operationId: EventCount
   responses:
     200:
       description: OK.

@@ -3,12 +3,12 @@ post:
     - Events API
   summary: Mark multiple events as read.
   description: Mark multiple events as read. The response will include events list of events which are unread.
-  operationId:
+  operationId: MarkMultipleasRead
   requestBody:
       content:
         application/json:
           schema:
-              $ref: 
+              $ref:
           examples:
             events:
               value:

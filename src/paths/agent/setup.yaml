@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Gets agent setup status and begins firmware update if needed.
+  summary: Setup agent
   description: Gets agent setup status and begins firmware update if needed.
-  operationId:
+  operationId: SetupAgent
   responses:
     200:
       description: OK.

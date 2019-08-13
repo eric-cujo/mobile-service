@@ -1,15 +1,22 @@
 get:
   tags:
     - Agents API
-  summary: Get the list of devices assigned to agent
-  description: "Get the list of devices assigned agent. If safeDevices is set to true than devices which type is not \"Router\" will be returned. Check device update section for property. The device list is sorted according to agent sort properties. The default sort method is sorting by device positions.
+  summary: Get all devices - GET /agent/:id/device-filtered
+
+  description:  "Get the list of devices assigned to agent. If safeDevices is set to true than devices which type is not \"Router\" will be returned. Check device update section for property. The device list is sorted according to agent sort properties. The default sort method is sorting by device positions.
+
+  \n__Endpoint__
 
   \r\n Note that safeDevices query parameter is optional. If specified with value false, \"Router\" devices will be included. Default value is true.
 
-  \r\n GET /agent/{agentId}/device-filtered?safeDevices=boolean
+  \r\n ```GET /agent/{agentId}/device-filtered?safeDevices=boolean```
 
-  \r\n Response will include an array of device objects, see here for device object format. In this call case, quarantine field value is not the real one, but calculated from itself and paused field value to represent final internet state (paused or not)."
-  operationId:
+  \r\n   __Response body__
+  \r\n Response will include an array of device objects.
+
+
+  "
+  operationId: GetAllDevices
   responses:
     200:
       description: OK.

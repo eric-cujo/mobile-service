@@ -3,7 +3,7 @@ get:
     - Devices API
   summary: Get combined device traffic statistics
   description: Get combined device traffic statistics.
-  operationId:
+  operationId: DeviceStatistics
   responses:
     200:
       description: OK.

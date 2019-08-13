@@ -3,7 +3,7 @@ post:
     - Events API
   summary: Mark all events as read.
   description: Mark all events as read.
-  operationId:
+  operationId: MarkAllasRead
 
   responses:
     200:

@@ -3,7 +3,7 @@ get:
     - Devices API
   summary: Search all device fields
   description: Search all fields - model, brand and type and also return a constructed name.
-  operationId:
+  operationId: SearchAllDeviceFields
   responses:
     200:
       description: OK.

@@ -1,23 +1,26 @@
-get:
+post:
   tags:
-    - Country API
-  summary: Get all available countries (POC)
-  description: Retrieve all available countries
-  operationId:
-  responses:
-    200:
-      description: OK.
+    - Device Groups API
+  summary: Change device group name
+  description: If you want to update existing group name.
+  operationId: UpdateGroupName
+  requestBody:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: "/src/swagger.yaml#/components/schemas/CountryAPI"
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceGroup"
           examples:
-            countries:
+          devicegroup:
+            value:
+              - name: Group2
+  responses:
+    200:
+      description: Updated new device group successfully.
+      content:
+        application/json:
+          schema:
+              $ref: "/src/swagger.yaml#/components/schemas/DeviceGroup"
+          examples:
+            schedule:
               value:
-                - countryCode: Some name
-                  areaCode: 123
-                  name:
-  security:
-    - AccessToken: []
+                - name: Group2

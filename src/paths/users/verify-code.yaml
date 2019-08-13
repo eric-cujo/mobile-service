@@ -3,7 +3,7 @@ post:
     - Users API
   summary: Verify code.
   description: After receiving the verification code, it must be entered in the following endpoint.
-  operationId:
+  operationId: VerifyCode
   requestBody:
     content:
       application/json:

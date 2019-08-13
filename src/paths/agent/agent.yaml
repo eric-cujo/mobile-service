@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Get the list of agents for the logged in customer.
+  summary: List agents
   description: Get the list of agents for the logged in customer.
-  operationId:
+  operationId: GetListofAgents
   responses:
     200:
       description: OK.

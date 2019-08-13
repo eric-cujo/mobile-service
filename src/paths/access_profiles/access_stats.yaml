@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get specified access profile statistics.
   description: Get specified access profile statistics. Response body consist of map with date string as key and deviceCount as a value.
-  operationId:
+  operationId: GetProfileStatistics
   requestBody:
     content:
       application/json:

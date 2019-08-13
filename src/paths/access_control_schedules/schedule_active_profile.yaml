@@ -2,7 +2,7 @@ get:
   tags:
     - Access Control Schedules
   summary: Get active schedule for profile
-  operationId:
+  operationId: GetActiveSchedule
   responses:
     200:
       description: OK.
@@ -13,9 +13,9 @@ get:
           examples:
               weekDay:
                 value:
-                  weekDay: tue
-                  startTime: tue
-                  endTime: tue
-                  title: tue
-                  enabled: tue
-                  pauseInternet: tue
+                  weekDay: TBD
+                  startTime: TBD
+                  endTime: TBD
+                  title: TBD
+                  enabled: TBD
+                  pauseInternet: TBD

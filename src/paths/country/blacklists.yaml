@@ -1,8 +1,9 @@
 get:
   tags:
     - Country API
-  summary: View blacklisted countries for some specific customer agent.
-  operationId:
+  summary: Agent country blacklist
+  description: View blacklisted countries for some specific customer agent.
+  operationId: ViewBlacklistedCountries
   responses:
     200:
       description: OK.
@@ -25,8 +26,9 @@ get:
 put:
   tags:
     - Country API
-  summary: Update specific agents country blacklist.
-  operationId:
+  summary: Update agent country blacklist
+  description: Update specific agents country blacklist.
+  operationId: UpdateCountryBlacklist
   requestBody:
     content:
       application/json:

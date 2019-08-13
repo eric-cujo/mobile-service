@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get a list of assigned devices assigned to a specific access profile under a specific agent.
   description: Get a list of assigned devices assigned to a specific access profile under a specific agent.
-  operationId:
+  operationId: GetListofAssignedDevices
   responses:
     200:
       description: OK.
@@ -25,7 +25,7 @@ put:
     - Access Profiles
   summary: Add or remove devices from a specific access profile.
   description: Add or remove devices from a specific access profile..
-  operationId:
+  operationId: UpdateListofAssignedDevices
   requestBody:
     content:
       application/json:

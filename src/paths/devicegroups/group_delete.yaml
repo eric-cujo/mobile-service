@@ -1,23 +1,15 @@
-get:
+post:
   tags:
-    - Country API
-  summary: Get all available countries (POC)
-  description: Retrieve all available countries
-  operationId:
+    - Device Groups API
+  summary: Delete device group
+  description: To delete device group post to the following. Body is empty.
+  operationId: DeleteDeviceGroup
+
   responses:
     200:
-      description: OK.
+      description: Deleted device group successfully.
       content:
         application/json:
-          schema:
-            type: array
-            items:
-              $ref: "/src/swagger.yaml#/components/schemas/CountryAPI"
           examples:
-            countries:
+            schedule:
               value:
-                - countryCode: Some name
-                  areaCode: 123
-                  name:
-  security:
-    - AccessToken: []

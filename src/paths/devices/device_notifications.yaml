@@ -3,7 +3,7 @@ put:
     - Devices API
   summary: Update agent device notification settings.
   description: Update agent device notification settings.
-  operationId:
+  operationId: DeviceNotifications
   requestBody:
     content:
       application/json:

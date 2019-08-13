@@ -1,9 +1,9 @@
 get:
   tags:
     - Users API
-  summary: View customer's data.
+  summary: View customer's data
   description: View currently authenticated customer's data.
-  operationId:
+  operationId: ViewData
   responses:
     200:
       description: OK.

@@ -1,8 +1,8 @@
 get:
   tags:
     - Access Control Schedules
-  summary: Get schedule by id
-  operationId:
+  summary: Get platforms for schedule
+  operationId: GetPlatformsforSchedule
   responses:
     200:
       description: OK.
@@ -23,17 +23,17 @@ get:
 put:
   tags:
     - Access Control Schedules
-  summary: Update schedule
-  operationId:
+  summary: Update platforms for schedule
+  operationId: UpdatePlatformsforSchedule
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "/src/swagger.yaml#/components/schemas/ScheduleRequest"
+          $ref:
         examples:
           features:
             value:
-              security: false
+              blocked: tbd
     required: true
   responses:
     200:
@@ -41,27 +41,8 @@ put:
       content:
         application/json:
           schema:
-            $ref: "/src/swagger.yaml#/components/schemas/AgentFeatures"
+            $ref:
           examples:
             features:
               value:
-                security: false
-  security:
-    - AccessToken: []
-parameters:
-  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"
-
-delete:
-  tags:
-    - Access Control Schedules
-  summary: Delete schedule
-  operationId:
-  responses:
-    200:
-      description: Agent successfully deleted
-    404:
-      description: Agent with passed id was not found
-      content:
-        application/json:
-          schema:
-            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+                blocked: tbd

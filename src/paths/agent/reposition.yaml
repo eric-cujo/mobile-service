@@ -3,7 +3,7 @@ post:
     - Agents API
   summary: Reposition agent
   description: To change position parameter of an agent post to the following endpoint. Note, when changing the position of an agent, other agent positions will be affected.
-  operationId:
+  operationId: RepositionAgent
   requestBody:
     content:
       application/json:

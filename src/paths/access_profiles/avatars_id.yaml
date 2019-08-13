@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get access profile avatar details or the avatar image itself.
   description: Get access profile avatar details or the avatar image itself. Note that the response body will vary based on provided Accept header. If Accept header is set to image/png, this call will return the image itself instead of JSON response. If no Accept header is provided, a regular JSON response will be returned.
-  operationId:
+  operationId: GetAvatarDetails
   responses:
     200:
       description: OK.
@@ -23,7 +23,7 @@ put:
     - Access Profiles
   summary: Update existing access profile avatar details.
   description: Update existing access profile avatar details.
-  operationId:
+  operationId: UpdateAvatarDetails
   requestBody:
     content:
       application/json:
@@ -55,7 +55,7 @@ delete:
     - Access Profiles
   summary: Delete existing access profile avatar.
   description: Delete existing access profile avatar.
-  operationId:
+  operationId: DeleteAvatarDetails
   responses:
     200:
       description: OK.

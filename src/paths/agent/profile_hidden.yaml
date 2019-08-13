@@ -1,10 +1,22 @@
 get:
   tags:
     - Agents API
-  summary: Get the list of devices assigned to an agent.
+  summary: Get all devices - GET /agent/:id/device?noProfile&hidden
   description: "Get the list of devices assigned to an agent. Devices which type is not \"Router\" will be returned. Check device update section for property. The device list is sorted according to agent sort properties. The default sort method is sorting by device positions.
-  \n\rNote that noProfile query parameter is optional. \n\rIf specified with value true, devices which have no access profile will be returned instead of all agent devices. \n\rGET /agent/{agentId}/device?noProfile=boolean \n\rAlso, hidden query parameter is optional. If specified with value true, all agent devices (including hidden) will be returned. \n\rGET /agent/{agentId}/device?hidden=boolean"
-  operationId:
+
+  \n__Endpoint__
+
+  \n\rNote that noProfile query parameter is optional. \n\rIf specified with value true, devices which have no access profile will be returned instead of all agent devices.
+
+  \n\r```GET /agent/{agentId}/device?noProfile=boolean ```
+
+  \n\rAlso, hidden query parameter is optional. If specified with value true, all agent devices (including hidden) will be returned.
+
+\n\r```GET /agent/{agentId}/device?hidden=boolean```
+
+
+"
+  operationId: GetAllDevicesHidden
   responses:
     200:
       description: OK.

@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get blocked domains by access profile id and additional query parameters.
   description: Get blocked domains by access profile id and additional query parameters.
-  operationId:
+  operationId: GetBlockedDomainsbyAccessProfile
   responses:
     200:
       description: OK.

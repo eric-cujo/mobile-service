@@ -3,12 +3,12 @@ post:
     - App API
   summary: Ping the cloud urls
   description: Ping the cloud urls
-  operationId:
+  operationId: PingCloudURLs
   requestBody:
     content:
       application/json:
         schema:
-          $ref: 
+          $ref:
   responses:
     204:
       description: (204 means that the cloud was successfully pinged. "The server has successfully fulfilled the request and that there is no content to send in the response payload body."")

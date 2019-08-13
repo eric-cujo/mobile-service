@@ -3,7 +3,7 @@ get:
     - Devices API
   summary: Get device data
   description: Get all available data for a specific agent device.
-  operationId:
+  operationId: GetDeviceData
   responses:
     200:
       description: OK.
@@ -12,7 +12,7 @@ get:
           schema:
             type: array
             items:
-              $ref: 
+              $ref:
           examples:
             device:
               value:

@@ -3,7 +3,7 @@ post:
     - Devices API
   summary: Change the position of a device.
   description: Change the position of a device. Note, if the device is located in a group, only device positions in that group will be affected. If the device has no group, only devices with no group will be affected.
-  operationId:
+  operationId: DeviceReposition
   requestBody:
       content:
         application/json:

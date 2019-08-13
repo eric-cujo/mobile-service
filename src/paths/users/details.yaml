@@ -1,9 +1,9 @@
 post:
   tags:
     - Users API
-  summary: Update user details.
+  summary: Update user details
   description: Update user details. Properties which are not to be updated must be omitted. When changing the email, back-end will also check if such email is not taken. After changing the email you have to refresh the authentication token. When changing phone number, both phone country and phone number must be specified.
-  operationId:
+  operationId: UserDetails
   requestBody:
     content:
       application/json:

@@ -11,7 +11,7 @@ get:
 \r\nmodel - if empty will be ignored, else will match exact models.
 
 \r\nbrand - will check for brands that contain the provided string."
-  operationId:
+  operationId: QueryDeviceBrands
   responses:
     200:
       description: OK.

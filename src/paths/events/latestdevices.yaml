@@ -3,7 +3,7 @@ get:
     - Events API
   summary: Latest device ids
   description: Get list of device ids and names that had new events within the specified number of days.
-  operationId:
+  operationId: LatestDeviceIDs
   responses:
     200:
       description: OK.

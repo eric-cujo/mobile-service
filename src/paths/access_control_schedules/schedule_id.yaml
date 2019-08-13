@@ -2,7 +2,7 @@ get:
   tags:
     - Access Control Schedules
   summary: Get schedule by id
-  operationId:
+  operationId: GetSchedulebyID
   responses:
     200:
       description: OK.
@@ -19,7 +19,7 @@ put:
   tags:
     - Access Control Schedules
   summary: Update schedule
-  operationId:
+  operationId: UpdateSchedulebyID
   requestBody:
     content:
       application/json:
@@ -50,7 +50,7 @@ delete:
   tags:
     - Access Control Schedules
   summary: Delete schedule
-  operationId:
+  operationId: DeleteSchedulebyID
   responses:
     200:
       description: Schedule successfully deleted

@@ -149,7 +149,6 @@
   $ref: devicegroups/group_delete.yaml
 /group/:id/reposition:
   $ref: devicegroups/group_reposition.yaml
-
 /content-categories:
   $ref: content_categories/content_categories.yaml
 /agent/{id}/features:
@@ -162,12 +161,10 @@
   $ref: vulnerability/scanresults_device.yaml
 /vulnerability/scans/report/{id}:
   $ref: vulnerability/scanresults_report.yaml
-
 /app/settings:
   $ref: app/settings.yaml
 /ping:
   $ref: app/ping.yaml
-
 /country/information:
   $ref: country/information.yaml
 /agents/{id}/countries/blacklists:
@@ -189,5 +186,93 @@
 /schedules/{scheduleId}/domains:
   $ref: access_control_schedules/schedule_domains.yaml
 
-/video/token:
-  $ref: support/token.yaml
+
+
+/token:
+  $ref: token.yaml
+/customers:
+  $ref: customers.yaml
+/customers/{customerId}:
+  $ref: customers_customerId.yaml
+/customers/{customerId}/agents:
+  $ref: customers_customerId_agents.yaml
+/agents/register:
+  $ref: agents/register.yaml
+/agents/{agentId}/devices/search:
+  $ref: agents/agent_id_devices_search.yaml
+/agents/{agentId}:
+  $ref: agents/agent_id.yaml
+/agents/{agentId}/name:
+  $ref: agents/agent_id_name.yaml
+/agents/{agentId}/mode:
+  $ref: agents/agent_id_mode.yaml
+/agents/{agentId}/reboot:
+  $ref: agents/agent_id_reboot.yaml
+/agents/{agentId}/network:
+  $ref: agents/agent_id_network.yaml
+/agents/{agentId}/dhcp:
+  $ref: agents/agent_id_dhcp.yaml
+/agents/{agentId}/static-ips:
+  $ref: agents/agent_id_static_ips.yaml
+/agents/{agentId}/features:
+  $ref: agents/agent_id_features.yaml
+/agents/{agentId}/listen-only-mode:
+  $ref: agents/agent_id_listen_only_mode.yaml
+/agents/listen-only-mode:
+  $ref: agents/listen_only_mode.yaml
+/agents/{agentId}/devices/{deviceId}:
+  $ref: agents/agent_id_devices_device_id.yaml
+/agents/{agentId}/devices:
+  $ref: agents/agent_id_devices.yaml
+/agents/{agentId}/devices/{deviceId}/stats/bundle:
+  $ref: agents/agent_id_devices_device.yaml
+/agents/{agentId}/firmware:
+  $ref: agents/agent_id_firmware.yaml
+/agents/{agentId}/threats/{threatId}:
+  $ref: agents/agent_id_threats_threat_id.yaml
+/agents/{agentId}/threats:
+  $ref: agents/agent_id_threats.yaml
+/stats/customers:
+  $ref: stats/customers.yaml
+/stats/agents:
+  $ref: stats/agents.yaml
+/stats/threats:
+  $ref: stats/threats.yaml
+/reputation/ip:
+  $ref: reputation/ip.yaml
+/scans/schedule:
+  $ref: scans/schedule.yaml
+/scans:
+  $ref: scans/index.yaml
+/agents/{agentId}/scans:
+  $ref: agents/agent_id_scans.yaml
+/agents/{agentId}/scans/schedule:
+  $ref: agents/agent_id_scans_schedule.yaml
+/webhooks:
+  $ref: webhooks/index.yaml
+/webhooks/{webhookId}:
+  $ref: webhooks/webhook_id.yaml
+/countries:
+  $ref: countries/index.yaml
+/agents/{agentId}/countries/blacklists:
+  $ref: agents/agent_id_countries_blacklists.yaml
+/parental/categories:
+  $ref: parental/categories.yaml
+/parental/platforms:
+  $ref: parental/platforms.yaml
+/parental/devices/{deviceId}/tracking:
+  $ref: parental/devices_device_id_tracking.yaml
+/parental/devices/{deviceId}/access-profile:
+  $ref: parental/devices_device_id_access_profile.yaml
+/parental/devices/{deviceId}/access-profile/temporary-blocks:
+  $ref: parental/devices_access_profile_temporary_blocks.yaml
+/parental/devices/{deviceId}/access-profile/temporary-blocks/{blockId}:
+  $ref: parental/devices_access_profile_temporary_blocks_block_id.yaml
+/parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/tracking:
+  $ref: parental/partner_devices_device_id_tracking.yaml
+/parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/access-profile:
+  $ref: parental/partner_devices_device_id_access_profile.yaml
+/parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/access-profile/temporary-blocks:
+  $ref: parental/partner_devices_access_profile_temporary_blocks.yaml
+/parental/agents/{partnerAgentId}/devices/{partnerDeviceId}/access-profile/temporary-blocks/{blockId}:
+  $ref: parental/partner_devices_access_profile_temporary_blocks_block_id.yaml

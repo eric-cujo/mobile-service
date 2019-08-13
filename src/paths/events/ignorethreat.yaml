@@ -3,7 +3,7 @@ post:
     - Events API
   summary: Ignore(Unblock) Threat
   description: Ignore event (threat) if it is in blocking mode
-  operationId:
+  operationId: IgnoreThreat
 
   responses:
     200:

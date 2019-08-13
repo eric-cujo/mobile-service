@@ -1,39 +1,34 @@
 get:
   tags:
     - Access Control Schedules
-  summary: Get schedule by id
-  operationId:
+  summary: Get domains for schedule
+  operationId: GetDomainsforSchedule
   responses:
     200:
       description: OK.
       content:
         application/json:
           schema:
-            $ref: "/src/swagger.yaml#/components/schemas/ScheduleResponse"
+            $ref:
           examples:
               weekDay:
                 value:
-                  weekDay: tue
-                  startTime: tue
-                  endTime: tue
-                  title: tue
-                  enabled: tue
-                  pauseInternet: tue
+                  domains: TBD
 
 put:
   tags:
     - Access Control Schedules
-  summary: Update schedule
-  operationId:
+  summary: Update domains for schedule
+  operationId: UpdateSchedule
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "/src/swagger.yaml#/components/schemas/ScheduleRequest"
+          $ref:
         examples:
           features:
             value:
-              security: false
+              domains: tbd
     required: true
   responses:
     200:
@@ -41,27 +36,8 @@ put:
       content:
         application/json:
           schema:
-            $ref: "/src/swagger.yaml#/components/schemas/AgentFeatures"
+            $ref:
           examples:
             features:
               value:
-                security: false
-  security:
-    - AccessToken: []
-parameters:
-  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"
-
-delete:
-  tags:
-    - Access Control Schedules
-  summary: Delete schedule
-  operationId:
-  responses:
-    200:
-      description: Agent successfully deleted
-    404:
-      description: Agent with passed id was not found
-      content:
-        application/json:
-          schema:
-            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"
+                domains: tbd

@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get list of allowed domains for an access profile.
   description: Get list of allowed domains for an access profile.
-  operationId:
+  operationId: GetListofAllowedDomains
   responses:
     200:
       description: OK.
@@ -21,7 +21,7 @@ post:
     - Access Profiles
   summary: Add allowed domain for an access profile.
   description: Add allowed domain for an access profile.
-  operationId:
+  operationId: AddAllowedDomain
   requestBody:
     content:
       application/json:
@@ -51,7 +51,7 @@ delete:
     - Access Profiles
   summary: Remove allowed domain from access profile.
   description: Remove allowed domain from access profile.
-  operationId:
+  operationId: DeleteAllowedDomain
   requestBody:
     content:
       application/json:
@@ -70,4 +70,4 @@ delete:
           schema:
             type: array
             items:
-              $ref: 
+              $ref:

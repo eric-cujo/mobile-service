@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Get mode of a specific agent by id.
+  summary: Get mode of agent
   description: Get mode of a specific agent by id.
-  operationId:
+  operationId: GetModebyID
   requestBody:
       description:
       content:

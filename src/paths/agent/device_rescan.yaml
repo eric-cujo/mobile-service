@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Re-scan device for specified agent.
+  summary: Re-scan agent devices
   description: Re-scan device for specified agent.
-  operationId:
+  operationId: RescanDevices
   responses:
     200:
       description: OK.

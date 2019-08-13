@@ -1,9 +1,9 @@
 post:
   tags:
     - Agents API
-  summary: Change agent mode from to plug and play or vice versa.
+  summary: Change mode for agent
   description: Change agent mode from to plug and play or vice versa.
-  operationId:
+  operationId: ChangeModeforAgent
   requestBody:
       description:
       content:

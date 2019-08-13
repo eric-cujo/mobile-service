@@ -1,9 +1,9 @@
 post:
   tags:
     - Users API
-  summary: Send code to user.
+  summary: Send code to user
   description: Send code to user's phone number. Once posted to a verification endpoint, the verification code will be sent to the phone of current logged in customer.
-  operationId:
+  operationId: SendCode
   requestBody:
     content:
       application/json:

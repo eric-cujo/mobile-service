@@ -2,29 +2,24 @@ get:
   tags:
     - Access Control Schedules
   summary: Get categories for schedule
-  operationId:
+  operationId: GetCategoriesforSchedule
   responses:
     200:
       description: OK.
       content:
         application/json:
           schema:
-            $ref: "/src/swagger.yaml#/components/schemas/ScheduleResponse"
+            $ref: "/src/swagger.yaml#/components/schemas/CategoryId"
           examples:
               weekDay:
                 value:
-                  weekDay: tue
-                  startTime: tue
-                  endTime: tue
-                  title: tue
-                  enabled: tue
-                  pauseInternet: tue
+                  categories: tbd
 
 put:
   tags:
     - Access Control Schedules
   summary: Update categories for schedule
-  operationId:
+  operationId: UpdateCategoriesforSchedule
   requestBody:
     content:
       application/json:
@@ -46,22 +41,3 @@ put:
             features:
               value:
                 security: false
-  security:
-    - AccessToken: []
-parameters:
-  - $ref: "/src/swagger.yaml#/components/schemas/AgentIdOrPartnerAgentIdParameter"
-
-delete:
-  tags:
-    - Access Control Schedules
-  summary: Delete schedule
-  operationId:
-  responses:
-    200:
-      description: Schedule successfully deleted
-    404:
-      description: Schedule with passed id was not found
-      content:
-        application/json:
-          schema:
-            $ref: "/src/swagger.yaml#/components/schemas/ErrorResponse"

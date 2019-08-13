@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Get information about agent.
+  summary: Agent details
   description: Get information about agent.
-  operationId:
+  operationId: AgentDetails
   responses:
     200:
       description: OK.
@@ -15,9 +15,9 @@ get:
 post:
   tags:
     - Agents API
-  summary: Change agent name and sorting.
+  summary: UpdateAgent
   description: Change agent name and sorting. Properties that are omitted are not updated including sortProperties object values.
-  operationId:
+  operationId: UpdateAgent
   requestBody:
     content:
       application/json:

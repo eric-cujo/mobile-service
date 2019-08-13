@@ -3,7 +3,7 @@ get:
     - Devices API
   summary: Get device data
   description: Get all available data for a specific agent device.
-  operationId:
+  operationId: DeviceData
   responses:
     200:
       description: OK.

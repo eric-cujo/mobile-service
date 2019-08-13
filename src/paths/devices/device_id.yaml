@@ -3,7 +3,7 @@ post:
     - Devices API
   summary: Update device details
   description: Update device details. At the moment only name and group can be changed.
-  operationId:
+  operationId: DeviceDetails
   requestBody:
       content:
         application/json:

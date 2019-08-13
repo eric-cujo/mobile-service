@@ -1,14 +1,36 @@
 post:
   tags:
-    - Vulnerability API
-  summary: Initiate scan for a given agent on given time (recurring)
-  description: Initiate scan for a given agent on given time (recurring, all devices)
-  operationId:
+    - Users API
+  summary: Change phone number
+  description: "
+  Phone number changing works by first verifying the number. To do so you must first get a phone message with code. To send the verification code do the following. The verification code will be 6 characters long.
+
+  \r\n```POST /phone/send-code```
+
+  \r\n```{
+    \"phone\": \"String\"
+    \"phoneCountry\": \"String\"
+  } ```
+
+
+  \r\nAfter getting the text message with code, you must enter it in order to change the phone number. To do so do the following.
+
+  \r\n```POST /phone/verify-code```
+
+  \r\n```{
+    \"phone\": \"String\"
+    \"phoneCountry\": \"String\"
+    \"verificationCode\": \"String\"
+  } ```
+
+
+  "
+  operationId: ChangePhoneNumber
   requestBody:
     content:
       application/json:
         schema:
-          $ref:
+          $ref: "/src/swagger.yaml#/components/schemas/PhoneSendCodeReq"
   responses:
     200:
       description: OK.
@@ -17,16 +39,8 @@ post:
           schema:
             type: array
             items:
-              $ref: "/src/swagger.yaml#/components/schemas/InitiateOnDemandScan"
+              $ref:
           examples:
             schedule:
               value:
-                - state: SCHEDULED
-                  deviceId: 12
-                  lastScan: 1475148966
-                - state: FINISHED
-                  deviceId: 13
-                  lastScan: 1475148961
-                - state: NONE
-                  deviceId: 14
-                  lastScan: 1475148969
+                - phone: TBD

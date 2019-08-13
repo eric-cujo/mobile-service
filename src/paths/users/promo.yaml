@@ -1,9 +1,9 @@
 get:
   tags:
     - Users API
-  summary: Get promotional video url.
+  summary: Get promotional video url
   description: Get promotional video url.
-  operationId:
+  operationId: Promo
   responses:
     200:
       description: OK.

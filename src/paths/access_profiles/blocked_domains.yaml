@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get list of blocked domains for an access profile.
   description: Get list of blocked domains for an access profile.
-  operationId:
+  operationId: GetListofBlockedDomainsforProfile
   responses:
     200:
       description: OK.
@@ -21,7 +21,7 @@ post:
     - Access Profiles
   summary: Add blocked domain for an access profile.
   description: Add blocked domain for an access profile.
-  operationId:
+  operationId: AddBlockedDomainforProfile
   requestBody:
     content:
       application/json:
@@ -50,7 +50,7 @@ delete:
     - Access Profiles
   summary: Remove blocked domain from access profile.
   description: Remove blocked domain from access profile.
-  operationId:
+  operationId: DeleteBlockedDomainfromProfile
   requestBody:
     content:
       application/json:

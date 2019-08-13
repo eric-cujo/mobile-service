@@ -3,7 +3,7 @@ get:
     - Content Categories API
   summary: Get all content categories.
   description: Get all content categories.
-  operationId:
+  operationId: GetAllContentCategories
   responses:
     200:
       description: OK.

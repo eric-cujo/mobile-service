@@ -3,7 +3,7 @@ post:
     - Access Profiles
   summary: Create a new access profile avatar under customer account.
   description: Create a new access profile avatar under customer account.
-  operationId:
+  operationId: CreateAvatar
   requestBody:
     content:
       application/json:

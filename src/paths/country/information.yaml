@@ -1,9 +1,9 @@
 get:
   tags:
     - Country API
-  summary: Get country code and name information.
+  summary: Country codes
   description: Get country code and name information. This call does not require authentication.
-  operationId:
+  operationId: GetCountryCode
   responses:
     200:
       description: OK.

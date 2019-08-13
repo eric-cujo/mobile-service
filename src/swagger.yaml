@@ -33,60 +33,43 @@ tags:
       \ Verbs\n\nWhere possible, API v3 strives to use appropriate HTTP verbs for each\
       \ action.\n\n|Verb|Description|\n|--|--|\n|GET| Used for retrieving resources.|\n\
       |POST| Used for creating resources.|\n|PUT| Used for updating resources.|\n|DELETE|Used\
-      \ for deleting resources.|\n\n### Pagination\n\nRequests that return multiple\
-      \ items will be paginated to 50 items by default. You can specify further pages\
-      \ with the `?page` parameter.\n\nExample\n\n```\ncurl 'https://api.cujo.io/v1/customers?page=2'\n\
-      \n```\n\nNote that page numbering is 0-based and that omitting the `?page` parameter\
-      \ should default to {{?page=0}}\n\n### Agent modes\n\nThe agent can have only\
-      \ such modes as\n\n- `dhcp` - the agent is working in DHCP mode.\n- `standby`\
-      \ - the agent working in Standby mode\n- `bridge` - the agent connected and working\
-      \ Bridge mode.at\n- `gateway` - the agent is working in gateway mode. Router is\
-      \ forwarding traffic through the Cujo\n- `unspecified` - the agent mode is unknown.\
-      \ Can be for not connected agents. \n\n### Agent state\n\nThe agent state can\
-      \ be as\n\n- `unregistered` - for not registered agents\n- `disabled` - for disabled\
-      \ agents\n- `enabled` - for enabled agents\n\n### Device properties\n\n- `hidden`\
-      \ - If user hide this device until it comes online. Useful for old devices.\n\
-      - `monitored` - If CUJO should monitor device\n- `secured` - If true CUJO will\
-      \ block automatically when threat detected. Otherwise just threat is created and\
-      \ user notified.\n- `quarantine` - If all traffic from device should be blocked\n\
+      \ for deleting resources.|\n\n
+      ### Generic Info\n
+After logging in or registering, the response will send an authentication token and the time which it will expire. The response will also include the authentication token in X-AUTH-TOKEN. The token must be included in X-AUTH-TOKEN in further requests. Example response after logging in:
+
+      \n\n
+
+      ```json\n{\n  \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGV4LnJpZGVyQG1pNi5jby51ayIsImV4cCI6MTQzOTIxNDc5Nn0.iZd6bH6Uu7n-BuvGq4hIU1nKu6PX2wKAhVuo8mem2uhxurrAWYTetUA7bY-v0BJ8GwQhDmKIW1mru3UYof7EmQ\",\n  \"expires\": \"1439214796336\"\n \
+       }\n
+
 
       "
 
   - name: Access Control Schedules
-    description: Access Control Schedules
+    description:
   - name: Access Profiles
-    description: Access Profiles
+    description:
   - name: Agents API
-    description: Allows to see details and manage agents
+    description: See details and manage agents
   - name: App API
-    description: App API
+    description:
   - name: Content Categories API
-    description: Content Categories API
+    description:
   - name: Country API
-    description: Country API
+    description:
   - name: Device Groups API
-    description: Device Groups API
+    description:
   - name: Devices API
-    description: Devices API
+    description:
   - name: Events API
-    description: Events API
+    description:
   - name: Features
-    description: 
-  - name: Generic Info
-    description: Generic Info
+    description:
   - name: Notifications API
-    description: Notifications API
-  - name: Request Data
-    description: Request Data
-  - name: Routers API
-    description: Routers API
-  - name: Services API
-    description: Services API
+    description:
   - name: Support API
-    description: Support API
+    description:
   - name: Users API
-    description: Users API
+    description:
   - name: Vulnerability API
-    description: Vulnerability API
-
-  - name: Notifications API
+    description:

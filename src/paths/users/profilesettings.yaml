@@ -3,7 +3,7 @@ post:
     - Users API
   summary: Update user settings
   description: To update user settings, post to the following with properties that need to be updated. Properties that should not be updated must be omitted.
-  operationId:
+  operationId: ProfileSettings
   requestBody:
     content:
       application/json:

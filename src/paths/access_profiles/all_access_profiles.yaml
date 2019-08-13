@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get agreement file form.
   description: Get agreement file form. Note the file is a raw text file.
-  operationId:
+  operationId: GetAgreementFileForm
   responses:
     200:
       description: OK.

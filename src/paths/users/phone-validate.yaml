@@ -3,7 +3,7 @@ post:
     - Users API
   summary: Validate customer phone number.
   description: Before registering a customer account, the customer phone number can be validated with Twilio. This call does not require authentication.
-  operationId:
+  operationId: ValidateNumber
   requestBody:
     content:
       application/json:

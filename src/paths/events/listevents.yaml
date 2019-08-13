@@ -3,14 +3,14 @@ get:
     - Events API
   summary: Get list of events for a specified agent.
   description: Get list of events for a specified agent which occurred during the specified amount of days.
-  operationId:
+  operationId: ListEvents
   responses:
     200:
       description: OK.
       content:
         application/json:
           schema:
-            $ref: 
+            $ref:
           examples:
             device:
               value:

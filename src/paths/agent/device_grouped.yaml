@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Get of grouped devices agent devices based on sortType.
-  description: Get of grouped devices agent devices based on sortType. Instead of only devices, all groups with devices mapped to those groups is returned. If the sorting method for the agent is not by position, a regular device list is returned based on the selected sortType.
-  operationId:
+  summary: Grouped agent devices
+  description: Get grouped devices agent devices based on sortType. Instead of only devices, all groups with devices mapped to those groups is returned. If the sorting method for the agent is not by position, a regular device list is returned based on the selected sortType.
+  operationId: GetGroupedDevices
   responses:
     200:
       description: OK.

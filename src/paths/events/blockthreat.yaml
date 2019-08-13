@@ -3,7 +3,7 @@ post:
     - Events API
   summary: Block Threat
   description: Block event (threat) if it is not in blocking mode.
-  operationId:
+  operationId: BlockThreat
 
   responses:
     200:

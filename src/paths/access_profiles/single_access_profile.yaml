@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get access profile
   description: Get a single access profile object.
-  operationId:
+  operationId: GetSingleAccessProfile
   responses:
     200:
       description: OK.
@@ -37,7 +37,7 @@ put:
     - Access Profiles
   summary: Update a specific access profile details.
   description: Update a specific access profile details.
-  operationId:
+  operationId: UpdateSingleAccessProfile
   requestBody:
     content:
       application/json:
@@ -85,12 +85,12 @@ delete:
     - Access Profiles
   summary: Delete a specific access profile.
   description: Delete a specific access profile.
-  operationId:
+  operationId: DeleteSingleAccessProfile
   requestBody:
     content:
       application/json:
         schema:
-          $ref: 
+          $ref:
   responses:
     200:
       description: OK.

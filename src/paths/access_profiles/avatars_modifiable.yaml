@@ -3,7 +3,7 @@ get:
     - Access Profiles
   summary: Get access profile avatars
   description: Get all available access profile avatars.
-  operationId:
+  operationId: GetAllAvailableAvatars
   responses:
     200:
       description: OK.

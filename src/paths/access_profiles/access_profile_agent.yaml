@@ -3,7 +3,7 @@ post:
     - Access Profiles
   summary: Forgot password
   description: To change the password of existing and verified customer. The customer will receive an email containing a unique link. The link will take the customer to password change page.
-  operationId:
+  operationId: ForgotPassword
   requestBody:
     content:
       application/json:

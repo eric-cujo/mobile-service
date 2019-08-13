@@ -1,0 +1,42 @@
+post:
+  tags:
+    - 
+  summary: Create a new schedule
+  description: Create a new schedule for a profile
+  operationId:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "/src/swagger.yaml#/components/schemas/ScheduleRequest"
+        examples:
+          schedules:
+            value:
+              weekDay: [1,2,3]
+              startTime: 1565463392139
+              endTime: 1565463992139
+              profileId: 13217439
+              agentId: 28194901
+              title: apiprofile
+              enabled: false
+              pauseInternet: false
+  responses:
+    200:
+      description: Agent successfully activated
+      content:
+        application/json:
+          schema:
+            $ref: "/src/swagger.yaml#/components/schemas/ScheduleResponse"
+          examples:
+            schedule:
+              value:
+                - id: TBD
+                  selected:
+                  description:
+                  name:
+                  icon:
+
+  x-code-samples:
+    - lang: CURL
+      source: |-
+        curl -v --request POST -H "Content-Type: application/json" -d '{"weekDay":[1,2,3],"startTime":"1565463392139","endTime":"1565463992139","profileId":"13217439", "agentId":"28194901", "title":"apiprofile","enabled":"false","pauseInternet":"false"}' --url "https://mobile.cujo.io/schedules" --header "x-auth-token: token-here" | json_pp

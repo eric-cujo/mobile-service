@@ -3,7 +3,7 @@ post:
     - Users API
   summary: Login
   description: Login to an existing user.
-  operationId:
+  operationId: Login
   requestBody:
     content:
       application/json:

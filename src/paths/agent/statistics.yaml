@@ -1,9 +1,9 @@
 get:
   tags:
     - Agents API
-  summary: Get agent statistics
+  summary: Statistics of agent
   description: Get agent statistics for the last days of specified interval. Value of days can be from 1 to 30 inclusive. e.g. GET /agent/123/statistics/7
-  operationId:
+  operationId: AgentStatistics
   responses:
     200:
       description: OK.

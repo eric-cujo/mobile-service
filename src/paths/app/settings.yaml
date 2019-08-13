@@ -1,9 +1,9 @@
 get:
   tags:
     - App API
-  summary: Get all available countries (POC)
+  summary: App settings
   description: Get common settings for the mobile application.
-  operationId:
+  operationId: AppSettings
   responses:
     200:
       description: OK.

@@ -3,12 +3,12 @@ post:
     - Notifications API
   summary: Update token
   description: Update device token.
-  operationId:
+  operationId: UpdateToken
   requestBody:
     content:
       application/json:
         schema:
-          $ref: 
+          $ref:
   responses:
     200:
       description: Agent successfully activated

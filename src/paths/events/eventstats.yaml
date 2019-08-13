@@ -3,7 +3,7 @@ get:
     - Events API
   summary: Event statistics
   description: Get event statistics based on a given time window. The returned object will contain date strings as keys and threat severity level as value. Example response for time window and a test agent, example created at 21st of December.
-  operationId:
+  operationId: EventStatistics
   responses:
     200:
       description: OK.

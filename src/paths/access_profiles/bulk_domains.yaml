@@ -3,9 +3,10 @@ delete:
     - Access Profiles
   summary: This request allows to remove allowed and blocked domains in bulk.
   description: This request allows to remove allowed and blocked domains in bulk.
-  operationId:
-    requestBody:
-      content:
+  operationId: RemoveBulkDomains
+  requestBody:
+    description:
+    content:
         application/json:
           schema:
               $ref: "/src/swagger.yaml#/components/schemas/AccessProfileBulkDomains"
@@ -36,9 +37,10 @@ put:
     - Access Profiles
   summary: This request allows to update or modify allowed and blocked domain lists.
   description: This request allows to update or modify allowed and blocked domain lists. Note if you provide an allowed domain which is in blocked list (on back-end). The domain from blocked list will be moved to allowed list (the same goes for blocked list).
-  operationId:
-    requestBody:
-      content:
+  operationId: UpdateBulkDomains
+  requestBody:
+    description:
+    content:
         application/json:
           schema:
               $ref: "/src/swagger.yaml#/components/schemas/AccessProfileBulkDomains"

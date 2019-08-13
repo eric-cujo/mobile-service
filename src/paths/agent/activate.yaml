@@ -1,9 +1,9 @@
 post:
   tags:
     - Agents API
-  summary: Once logged in, in order to register an agent to a customer post to the following.
-  description: Get the list of agents for the logged in customer.
-  operationId:
+  summary: Activate agent
+  description: Once logged in, in order to register an agent to a customer post to the following.
+  operationId: GetListofAgents
   requestBody:
     description: Request body should contain MAC address of the router or which is connected to both the mobile device and the agent.
     content:

@@ -5,7 +5,7 @@ get:
   description: "Allows to get list of customer devices, filtered by mac and DHCP host-name. Returned list of devices will contain minimal agent and access profile data.
 
   Note at least one query parameter must not be blank present. However, all parameters must be present in request."
-  operationId:
+  operationId: FilteredDevicesMac
   responses:
     200:
       description: OK.

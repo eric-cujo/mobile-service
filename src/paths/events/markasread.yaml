@@ -3,7 +3,7 @@ post:
     - Events API
   summary: Mark as read
   description: If the event was marked as unread, after performing post request it will be marked as read. if it was read, it will be marked as unread. Toggles the read state.
-  operationId:
+  operationId: MarkasRead
 
   responses:
     200:

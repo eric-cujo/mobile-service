@@ -1,9 +1,9 @@
 get:
   tags:
     - Devices API
-  summary: Get a list of device icons.
+  summary: Get a list of device icons
   description: Get a list of device icons.
-  operationId:
+  operationId: DeviceIcons
   responses:
     200:
       description: OK.

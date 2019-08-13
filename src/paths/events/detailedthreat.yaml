@@ -3,7 +3,7 @@ get:
     - Events API
   summary: Threat - detailed information
   description: To get detailed information about threat such as description, perform the following request. This will return with extra information about it in the \"information\" field, example response, if field is not set it will be null.
-  operationId:
+  operationId: GetThreatDetails
   responses:
     200:
       description: OK.

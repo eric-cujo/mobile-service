@@ -11,7 +11,7 @@ get:
 \r\nmodel - if empty will be ignored, else will match exact models.
 
 \r\nbrand - if empty will be ignored, else will match exact brand names."
-  operationId:
+  operationId: DeviceTypes
   responses:
     200:
       description: OK.

@@ -3,7 +3,7 @@ get:
     - Features
   summary: Get agent features.
   description: Get agent features.
-  operationId:
+  operationId: AgentFeatures
   responses:
     200:
       description: OK.
